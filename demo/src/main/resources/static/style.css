@@ -1,0 +1,23 @@
+.colum1{
+    height: 1080px;
+}
+.colum2{
+    background: rgba(255, 255, 255, 0.644);
+    
+    height: 1080px;
+    margin: 50px;
+    padding: 20px;
+}
+.colum3{
+    height: 1080px;
+    
+}
+.fondo{
+    background-image: url("img/fondo.jpg");
+    height: 100%;
+    background-size: contain;
+    background-repeat: repeat;
+}
+body{
+    overflow-x: hidden;
+}
