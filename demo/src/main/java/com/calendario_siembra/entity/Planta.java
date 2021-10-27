@@ -1,5 +1,6 @@
 package com.calendario_siembra.entity;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +9,7 @@ import javax.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Planta {
+public class Planta implements Serializable {
 
 	@Id
 	@GeneratedValue(generator = "uuid")

@@ -1,5 +1,6 @@
 package com.calendario_siembra.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,7 +12,7 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Parcela {
+public class Parcela implements Serializable {
 	
 	@Id
 	@GeneratedValue(generator = "uuid")
@@ -66,13 +67,14 @@ public class Parcela {
 		this.tamanioParcela = tamanioParcela;
 	}
 
-	public String getProvincia() {
-		return Provincia;
-	}
+        public String getProvincia() {
+            return provincia;
+        }
 
-	public void setProvincia(String provincia) {
-		Provincia = provincia;
-	}
+        public void setProvincia(String provincia) {
+            this.provincia = provincia;
+        }
+
 
 	public List<Planta> getListaPlantas() {
 		return listaPlantas;
