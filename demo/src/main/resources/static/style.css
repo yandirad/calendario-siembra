@@ -3,8 +3,7 @@
 }
 .colum2{
     background: rgba(255, 255, 255, 0.644);
-
-    height: 1080px;
+    height: 2500px;
     margin: 50px;
     padding: 20px;
 }
@@ -23,26 +22,132 @@ body{
 }
 
 .titulo{
-height: 150px;
-margin-top: 10px;
-margin-left: 40px;
-margin-right: 40px;
-margin-bottom: 10px;
-background-color: rgb(193, 203, 156);
-text-align: center;
-align-items: center;  /*para alignitems, justifycontent,display hay que poner flexbox en clase html*/
-justify-content: center;
-display:flex;
+    height: 150px;
+    margin-top: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 10px;
+    background-color: rgb(193, 203, 156);
+    text-align: center;
+    align-items: center;  /*para alignitems, justifycontent,display hay que poner flexbox en clase html*/
+    justify-content: center;
+    display:flex;
 }
 
 .filtro{
-  height: 600px;
+  height: 400px;
   margin-top: 10px;
   margin-left: 40px;
   margin-right: 40px;
   background-color: rgb(193, 203, 156);
-
   align-items: center;  /*para alignitems, justifycontent,display hay que poner flexbox en clase html*/
   justify-content: center;
   display:flex;
 }
+.btn-otoño{
+    height: 90px;
+    width: 90px;
+    background-color: burlywood;
+    margin-right: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.btn-invierno{
+    height: 90px;
+    width: 90px;
+    background-color: lightblue;
+    margin-right: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.btn-primavera{
+    height: 90px;
+    width: 90px;
+    background-color: lightcoral;
+    margin-right: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.btn-verano{
+    height: 90px;
+    width: 90px;
+    background-image: url(verano.webp);
+    background-size: cover;
+    font-size: 2rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.resultados{
+    height: auto;
+    max-height: auto;
+    margin-top: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+    background-color: rgb(193, 203, 156);
+    align-items: center;  
+    justify-content: center;
+    display:flex;
+}
+.seleccionados{
+    list-style: none;
+    display:flex;
+    margin-right: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    height: 60px;
+    width: 60px;
+
+}  
+.detalle-cultivo{
+    height: auto;
+    max-height: auto;
+    margin-top: 10px;
+    margin-left: 40px;
+    margin-right: 40px;
+    background-color: rgb(193, 203, 156);
+    align-items: center;  
+    justify-content: center;
+    display:flex;
+}
+.titulo-detalle{
+    background: rosybrown;
+    height: 90px;
+    width: 300px;
+    align-items: center;  
+    justify-content: center;
+    display:flex;
+}
+.descripcion-detalle{
+    background: whitesmoke;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 700px;
+    padding-block: 30px;
+    padding-inline: 30px;
+
+}
+h3{
+    font-size: 25px;;
+}
+.lista-detalle{
+    list-style: none;
+    display:flex;
+    margin-right: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 30px;
+    width: 30px;
+    align-items: center;  
+    justify-content: center;
+    display:flex;
+}
+
+
+
+

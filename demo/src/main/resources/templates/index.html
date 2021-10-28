@@ -19,16 +19,16 @@
                     <h1> Calendario de cultivo </h1>
                 </div>
                 <div class="row filtro">
-                    <div class="dropdown col-6">
+                    <div class="dropdown col-6 d-grid">
                         <label for="">Seleccioná tu provincia</label>
                         <br>
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Provincia</button>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a class="dropdown-item" href="#">Santa Fe</a></li>
                                 <li><a class="dropdown-item" href="#">Otras</a></li>
                             </ul>
                     </div>
-                    <div class="dropdown col-6">
+                    <div class="dropdown col-6 d-grid">
                         <label for="">Seleccioná el tamaño de tu parcela</label>
                         <br>
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Tamaño</button>
@@ -37,19 +37,88 @@
                             <li><a class="dropdown-item" href="#">1,1mt2 a 2mts</a></li>
                         </ul>
                     </div>
-                    <div class="dropdown col-12">
-                        <label for="">Seleccioná la estación del año</label>
+                    <div class="dropdown col-12 d-grid">
+                        <div class="btn-group btn-estaciones" role="group" aria-label="Basic radio toggle button group">
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary btn-invierno" for="btnradio1">Invierno</label>
+                          
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                            <label class="btn btn-outline-primary btn-otoño" for="btnradio2">Otoño</label>
+                          
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                            <label class="btn btn-outline-primary btn-primavera" for="btnradio3">Primavera</label>
+                    
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+                            <label class="btn btn-outline-primary btn-verano" for="btnradio4">Verano</label>
+                        </div>
                         <br>
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Estación</button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">Verano</a></li>
-                            <li><a class="dropdown-item" href="#">Otoño</a></li>
-                            <li><a class="dropdown-item" href="#">Invierno</a></li>
-                            <li><a class="dropdown-item" href="#">Primavera</a></li>
-                        </ul>
+                        <button class="btn btn-primary d-grid" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">BUSCAR MI CULTIVO IDEAL</button>
+                    </div>
+                </div>
+                <div class="row resultados">
+                    <div class="collapse" id="collapseExample">
+                        <div class="col-12">
+                            <ul class="row">
+                                <li  class="seleccionados col-2"><button class="btn btn-outline-success btn-lista " data-bs-toggle="collapse" data-bs-target="#collapseDetalle" aria-expanded="false" aria-controls="collapseDetalle" type="submit">Acelga</button></li>
+                                <li class="seleccionados col-2"><button class="btn btn-outline-success btn-lista" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" type="submit">Rucula</button></li>
+                                <li col-2 class="seleccionados col-2"><button class="btn btn-outline-success btn-lista" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" type="submit">Menta</button></li>
+                                <li class="seleccionados col-2"><button class="btn btn-outline-success" type="submit">Rabanito</button></li>
+                                <li  class="seleccionados col-2"><button class="btn btn-outline-success" type="submit">Acelga</button></li>
+                                <li class="seleccionados col-2"><button class="btn btn-outline-success" type="submit">Rucula</button></li>
+                                <li col-2 class="seleccionados col-2"><button class="btn btn-outline-success" type="submit">Menta</button></li>
+                                <li class="seleccionados col-2"><button class="btn btn-outline-success" type="submit">Rabanito</button></li>
+                                <li  class="seleccionados col-2"><button class="btn btn-outline-success" type="submit">Acelga</button></li>
+                                <li class="seleccionados col-2"><button class="btn btn-outline-success" type="submit">Rucula</button></li>
+                                <li col-2 class="seleccionados col-2"><button class="btn btn-outline-success" type="submit">Menta</button></li>
+                                <li class="seleccionados col-2"><button class="btn btn-outline-success" type="submit">Rabanito</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="detalle-cultivo flexbox">
+                    <div class="collapse" id="collapseDetalle">
+                        <div class="titulo-detalle">
+                            <h2>Acelga</h2>
+                        </div>
+                        <div class="descripcion-detalle">
+                            <p>El jugo contiene hasta un 27% de sacarosa, además de coniferina, galactinol, vanillina y gran cantidad de ácidos orgánicos y azúcares. Uno de sus principios activos es betaína que transforma los triglicéridos en lipoproteínas. Entre los aminoácidos se encuentran la isoleucina, glutamina y arginina. Además se encuentran saponinas, derivados de la xantina y la colina
+                            </p>
+                        </div>
+                        <div>
+                            <ul><div>
+                                <h3>Luz solar</h3>
+                                <li class="lista-detalle">Poca luz</li>
+                                </div>
+                                <div>
+                                <h3>Cantidad de riego</h3>
+                                <li class="lista-detalle">Poca o cada 5 dias</li>
+                                </div>
+                                <div>
+                                <h3>Tipo de siembra</h3>
+                                <li class="lista-detalle">No se</li>
+                                </div>
+                                <div>
+                                <h3>Mes de siembra</h3>
+                                <li class="lista-detalle">Otoño</li>
+                                </div>
+                                <div>
+                                <h3>Tiempo para la cocecha</h3>
+                                <li class="lista-detalle">Tantos dias</li>
+                                </div>
+                                <div>
+                                <h3>Profundidad de siembra</h3>
+                                <li class="lista-detalle">1 centimetro</li>
+                                </div>
+                                <div>
+                                <h3>Tiempo de germinacion</h3>
+                                <li class="lista-detalle">5 dias</li>
+                                </div>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
+            
             <div class="col-2 colum3">
             </div>
         </div>
