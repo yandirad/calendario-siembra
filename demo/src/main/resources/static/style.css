@@ -1,0 +1,48 @@
+.colum1{
+    height: 1080px;
+}
+.colum2{
+    background: rgba(255, 255, 255, 0.644);
+
+    height: 1080px;
+    margin: 50px;
+    padding: 20px;
+}
+.colum3{
+    height: 1080px;
+
+}
+.fondo{
+    background-image: url("img/fondo.jpg");
+    height: 100%;
+    background-size: contain;
+    background-repeat: repeat;
+}
+body{
+    overflow-x: hidden;
+}
+
+.titulo{
+height: 150px;
+margin-top: 10px;
+margin-left: 40px;
+margin-right: 40px;
+margin-bottom: 10px;
+background-color: rgb(193, 203, 156);
+text-align: center;
+align-items: center;  /*para alignitems, justifycontent,display hay que poner flexbox en clase html*/
+justify-content: center;
+display:flex;
+}
+
+.filtro{
+  height: 600px;
+  margin-top: 10px;
+  margin-left: 40px;
+  margin-right: 40px;
+  background-color: rgb(193, 203, 156);
+
+  align-items: center;  /*para alignitems, justifycontent,display hay que poner flexbox en clase html*/
+  justify-content: center;
+  display:flex;
+}
