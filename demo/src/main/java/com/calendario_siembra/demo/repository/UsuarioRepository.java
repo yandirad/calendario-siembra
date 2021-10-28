@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.calendario_siembra.demo.repository;
 
 import com.calendario_siembra.demo.entity.Usuario;
@@ -11,9 +7,14 @@ import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author yandirad
+ * Si hya fallas, probar de reemplazar 'JpaRepository<Usuario, String>' 
+ * por 'CrudRepository<Usuario, String>'
  */
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, String> {
+    
+    
+    public Usuario findByUsername(String username);
+        
     
 }

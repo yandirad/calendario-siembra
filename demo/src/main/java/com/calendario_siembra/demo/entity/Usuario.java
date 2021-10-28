@@ -38,6 +38,9 @@ public class Usuario implements Serializable{
     
     @Column
     private Boolean estado;
+    
+    @Column 
+    private String rol = "USER";
 
     public Usuario() {
     }
@@ -49,6 +52,7 @@ public class Usuario implements Serializable{
         this.pass = pass;
         this.mail = mail;
         this.parcelas = parcelas;
+        this.estado = true;
     }
 
     public String getId() {
@@ -99,6 +103,22 @@ public class Usuario implements Serializable{
         this.parcelas = parcelas;
     }
 
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+        
     @Override
     public int hashCode() {
         int hash = 7;
