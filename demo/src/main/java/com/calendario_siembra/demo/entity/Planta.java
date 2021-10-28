@@ -1,4 +1,4 @@
-package com.calendario_siembra.entity;
+package com.calendario_siembra.demo.entity;
 
 import java.io.Serializable;
 import javax.persistence.Column;

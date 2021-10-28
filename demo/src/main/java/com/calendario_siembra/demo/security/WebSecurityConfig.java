@@ -1,4 +1,4 @@
-package com.calendario_siembra.security;
+package com.calendario_siembra.demo.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

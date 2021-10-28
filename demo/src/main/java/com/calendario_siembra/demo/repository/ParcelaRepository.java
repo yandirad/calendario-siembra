@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.calendario_siembra.repository;
+package com.calendario_siembra.demo.repository;
 
-import com.calendario_siembra.entity.Planta;
+import com.calendario_siembra.demo.entity.Parcela;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +14,6 @@ import org.springframework.stereotype.Repository;
  * @author yandirad
  */
 @Repository
-public interface PlantaRepository extends JpaRepository<Planta, String>{
+public interface ParcelaRepository extends JpaRepository<Parcela, String>{
     
 }
