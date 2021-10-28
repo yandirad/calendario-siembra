@@ -6,6 +6,8 @@
 package com.calendario_siembra.demo.repository;
 
 import com.calendario_siembra.demo.entity.Planta;
+
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +17,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PlantaRepository extends JpaRepository<Planta, String>{
+	
+	public Planta findByNombre(String nombre);
     
 }
