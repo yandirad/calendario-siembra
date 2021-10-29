@@ -1,21 +1,20 @@
 .colum1{
-    height: 1080px;
+    height: auto;
 }
 .colum2{
     background: rgba(255, 255, 255, 0.644);
-    height: 2500px;
+    height: auto;
     margin: 50px;
     padding: 20px;
 }
 .colum3{
-    height: 1080px;
-
+    height: auto;
 }
 .fondo{
     background-image: url("img/fondo.jpg");
     height: 100%;
-    background-size: contain;
-    background-repeat: repeat;
+    background-size: cover;
+    background-position: fixed;
 }
 body{
     overflow-x: hidden;
@@ -125,27 +124,38 @@ body{
 }
 .descripcion-detalle{
     background: whitesmoke;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin: 40px;
     width: 700px;
-    padding-block: 30px;
-    padding-inline: 30px;
+    padding: 30px ;
+    background-color: aquamarine;
 
 }
 h3{
     font-size: 25px;;
 }
 .lista-detalle{
-    list-style: none;
+    /*
     display:flex;
     margin-right: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
-    height: 30px;
-    width: 30px;
+    width: 30px;    
     align-items: center;  
     justify-content: center;
     display:flex;
+    */
+    height: 30px;
+    list-style: none;
+}
+.crearCuenta{
+    background:rgb(193, 203, 156);
+    margin-left: 25%;
+    margin-right: 25%;
+    z-index: 9999;
+    height: 200px;
+    background: blanchedalmond;
+    box-shadow: 9px 10px 5px rgb(0 0 0 / 20%);
+    margin-bottom: -6%;
 }
 
 
