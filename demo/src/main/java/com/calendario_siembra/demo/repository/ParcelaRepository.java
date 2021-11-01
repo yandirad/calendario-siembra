@@ -8,10 +8,12 @@ package com.calendario_siembra.demo.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.calendario_siembra.demo.entity.Parcela;
+import com.calendario_siembra.demo.entity.Usuario;
 
 /**
  *
@@ -20,6 +22,7 @@ import com.calendario_siembra.demo.entity.Parcela;
 @Repository
 public interface ParcelaRepository extends JpaRepository<Parcela, String> {
 
-	public List<Parcela> obtenerListaParcelas(@Param("id_usuario") String id_usuario);
+	@Query("SELECT p FROM Parcela p WHERE p.usuario = :usuario")
+	public List<Parcela> obtenerListaParcelas(@Param("usuario") Usuario usuario);
 
 }

@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.calendario_siembra.demo.entity.Parcela;
 import com.calendario_siembra.demo.entity.Planta;
+import com.calendario_siembra.demo.entity.Usuario;
 import com.calendario_siembra.demo.exceptions.WebException;
 import com.calendario_siembra.demo.repository.ParcelaRepository;
 
@@ -38,8 +39,8 @@ public class ParcelaService {
 	}
 
 	@Transactional
-	public List<Parcela> obtenerListaParcelas(String id_usuario) throws WebException {
-		return parcelaRepository.obtenerListaParcelas(id_usuario);
+	public List<Parcela> obtenerListaParcelas(Usuario usuario) throws WebException {
+		return parcelaRepository.obtenerListaParcelas(usuario);
 	}
 
 	public Parcela agregarPlanta(Parcela parcela, Planta planta) {
