@@ -1,12 +1,16 @@
 package com.calendario_siembra.demo.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import com.calendario_siembra.demo.services.UsuarioService;
 
 @Configuration
 @EnableWebSecurity
@@ -19,12 +23,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(resources).permitAll().antMatchers("/index").permitAll()
-				.antMatchers("/admin*").hasAuthority("ADMIN").antMatchers("cliente/newCustomer*")
-				.access("hasRole('USER') or hasRole('ADMIN')").anyRequest().authenticated().and().formLogin()
-				.loginPage("/login").failureUrl("/login-error").permitAll().defaultSuccessUrl("/menu")
-				.usernameParameter("username").passwordParameter("password").and().logout().permitAll()
-				.logoutSuccessUrl("/login?logout");
+		http.authorizeRequests().antMatchers(resources).permitAll().and().formLogin().loginPage("/login")
+				.failureUrl("/login-error").permitAll().defaultSuccessUrl("/myaccount").usernameParameter("username")
+				.passwordParameter("password").and().logout().permitAll().logoutSuccessUrl("/login?logout");
 	}
 
 	BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -41,17 +42,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return bCryptPasswordEncoder;
 	}
 
-	/*
-	 * @Autowired UserDetailsServiceImpl userDetailsService;
-	 * 
-	 * // Registra el service para usuarios y el encriptador de contrasena
-	 * 
-	 * @Autowired public void configureGlobal(AuthenticationManagerBuilder auth)
-	 * throws Exception {
-	 * 
-	 * // Setting Service to find User in the database. // And Setting
-	 * PassswordEncoder
-	 * auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder()
-	 * ); }
-	 */
+	@Autowired
+	UsuarioService usuarioService;
+
+	// Registra el service para usuarios y el encriptador de contrasena
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		// Setting Service to find User in the database.
+		// And Setting PassswordEncoder
+		auth.userDetailsService(usuarioService).passwordEncoder(passwordEncoder());
+	}
+
 }
