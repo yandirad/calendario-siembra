@@ -161,3 +161,48 @@ h3{
 
 
 
+/*-------------------LOGIN------------------*/
+
+.contra{
+  text-align: right;
+}
+
+.cuenta{
+text-align:  center;
+
+}
+
+.button1{
+  background-color: #6963a7; /* Green */
+  border: none;
+  color:rgb(255, 255, 255);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+nav{
+    background:#ffffff;
+}
+.you{
+    margin-right:100px ;
+}
+.mb-4{
+width: 230px;
+display: grid;
+
+}
+
+.fondo-login{
+    background-image: url("img/fondo.jpg");
+    height: 700px;
+    background-size:auto;
+    background-repeat: no-repeat;
+}
+
+
+
+
+
