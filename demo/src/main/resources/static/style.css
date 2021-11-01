@@ -89,7 +89,7 @@ body{
     margin-left: 40px;
     margin-right: 40px;
     background-color: rgb(193, 203, 156);
-    align-items: center;  
+    align-items: center;
     justify-content: center;
     display:flex;
 }
@@ -102,7 +102,7 @@ body{
     height: 60px;
     width: 60px;
 
-}  
+}
 .detalle-cultivo{
     height: auto;
     max-height: auto;
@@ -110,7 +110,7 @@ body{
     margin-left: 40px;
     margin-right: 40px;
     background-color: rgb(193, 203, 156);
-    align-items: center;  
+    align-items: center;
     justify-content: center;
     display:flex;
 }
@@ -118,7 +118,7 @@ body{
     background: rosybrown;
     height: 90px;
     width: 300px;
-    align-items: center;  
+    align-items: center;
     justify-content: center;
     display:flex;
 }
@@ -139,8 +139,8 @@ h3{
     margin-right: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
-    width: 30px;    
-    align-items: center;  
+    width: 30px;
+    align-items: center;
     justify-content: center;
     display:flex;
     */
@@ -164,23 +164,23 @@ h3{
 /*-------------------LOGIN------------------*/
 
 .contra{
-  text-align: right;
+    text-align: right;
 }
 
 .cuenta{
-text-align:  center;
+    text-align:  center;
 
 }
 
 .button1{
-  background-color: #6963a7; /* Green */
-  border: none;
-  color:rgb(255, 255, 255);
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+    background-color: #6963a7; /* Green */
+    border: none;
+    color:rgb(255, 255, 255);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }
 
 nav{
@@ -190,8 +190,8 @@ nav{
     margin-right:100px ;
 }
 .mb-4{
-width: 230px;
-display: grid;
+    width: 230px;
+    display: grid;
 
 }
 
@@ -202,7 +202,4 @@ display: grid;
     background-repeat: no-repeat;
 }
 
-
-
-
-
+/*------------REGISTER----------*/
