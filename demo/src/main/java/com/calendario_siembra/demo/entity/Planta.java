@@ -1,10 +1,14 @@
 package com.calendario_siembra.demo.entity;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -28,8 +32,11 @@ public class Planta implements Serializable {
 	@Column
 	private String formaSiembra;
 
-	@Column
-	private String[] mesesSiembra;
+	@Temporal(TemporalType.DATE)
+	private Date fechaSiembra;
+
+	@Temporal(TemporalType.DATE)
+	private Date fechaCosecha;
 
 	@Column
 	private Integer tiempoCosecha;
@@ -44,15 +51,15 @@ public class Planta implements Serializable {
 		super();
 	}
 
-	public Planta(String id, String nombre, Integer horasSol, String tipoRiego, String formaSiembra,
-			String[] mesesSiembra, Integer tiempoCosecha, String profundidadSiembra, Integer tiempoGerminacion) {
+	public Planta(String id, String nombre, Integer horasSol, String tipoRiego, String formaSiembra, Date fechaSiembra,
+			Date fechaCosecha, Integer tiempoCosecha, String profundidadSiembra, Integer tiempoGerminacion) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.horasSol = horasSol;
 		this.tipoRiego = tipoRiego;
 		this.formaSiembra = formaSiembra;
-		this.mesesSiembra = mesesSiembra;
+		this.fechaCosecha = fechaCosecha;
 		this.tiempoCosecha = tiempoCosecha;
 		this.profundidadSiembra = profundidadSiembra;
 		this.tiempoGerminacion = tiempoGerminacion;
@@ -98,12 +105,20 @@ public class Planta implements Serializable {
 		this.formaSiembra = formaSiembra;
 	}
 
-	public String[] getMesesSiembra() {
-		return mesesSiembra;
+	public Date getFechaSiembra() {
+		return fechaSiembra;
 	}
 
-	public void setMesesSiembra(String[] mesesSiembra) {
-		this.mesesSiembra = mesesSiembra;
+	public void setFechaSiembra(Date fechaSiembra) {
+		this.fechaSiembra = fechaSiembra;
+	}
+
+	public Date getFechaCosecha() {
+		return fechaCosecha;
+	}
+
+	public void setFechaCosecha(Date fechaCosecha) {
+		this.fechaCosecha = fechaCosecha;
 	}
 
 	public Integer getTiempoCosecha() {
