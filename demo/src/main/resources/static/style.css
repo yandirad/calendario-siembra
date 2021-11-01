@@ -203,3 +203,13 @@ nav{
 }
 
 /*------------REGISTER----------*/
+.mb-2{
+  width: 400px;
+}
+
+.botonCrearCuenta{
+  align-items: center;
+width: 230px;
+  text-align: center;
+
+}
