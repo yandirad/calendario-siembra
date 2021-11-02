@@ -10,12 +10,12 @@ public class AppController {
 
 	@GetMapping({ "/", "/index" })
 	public String index() {
-		return "index.html";
+            return "index.html";
 	}
 
 	@GetMapping("/login")
 	public String login() {
-		return "login.html";
+            return "login.html";
 	}
 
 }

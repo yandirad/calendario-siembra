@@ -37,6 +37,12 @@ public class ParcelaService {
 		parcela.setListaPlantas(listaPlantas);
 		return parcelaRepository.save(parcela);
 	}
+        
+        @Transactional
+        public Parcela modificarParcela(Parcela parcela) throws WebException {
+            validar(parcela);
+            return parcelaRepository.save(parcela);
+        }
 
 	@Transactional
 	public List<Parcela> obtenerListaParcelas(Usuario usuario) throws WebException {
@@ -58,5 +64,10 @@ public class ParcelaService {
 		}
 
 	}
+        
+        public void bajaParcela(Parcela parcela) throws WebException {
+            parcela.setEstado(false);
+            parcelaRepository.save(parcela);
+        }
 
 }
