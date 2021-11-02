@@ -49,7 +49,7 @@ public class ParcelaService {
 		return parcelaRepository.obtenerListaParcelas(usuario);
 	}
 
-	public Parcela agregarPlanta(Parcela parcela, Planta planta) {
+	public Parcela agregarPlanta(Parcela parcela, Planta planta) throws WebException {
 		parcela.getListaPlantas().add(planta);
 		return parcelaRepository.save(parcela);
 	}
@@ -69,5 +69,12 @@ public class ParcelaService {
             parcela.setEstado(false);
             parcelaRepository.save(parcela);
         }
+        
+        
+        
+        public Parcela bajaPlanta(Parcela parcela, Planta planta) throws WebException {
+    		parcela.getListaPlantas().remove(planta);
+    		return parcelaRepository.save(parcela);
+    	}
 
 }

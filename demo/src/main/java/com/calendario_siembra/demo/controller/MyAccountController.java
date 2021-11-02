@@ -7,6 +7,7 @@
 package com.calendario_siembra.demo.controller;
 
 import com.calendario_siembra.demo.entity.Parcela;
+import com.calendario_siembra.demo.entity.Planta;
 import com.calendario_siembra.demo.entity.Usuario;
 import com.calendario_siembra.demo.exceptions.WebException;
 import com.calendario_siembra.demo.services.ParcelaService;
@@ -78,5 +79,31 @@ public class MyAccountController {
    
             return "redirect:/myaccount.html/";
         }
+        
+      
+      //Método para dar la alta a una planta
+        @PostMapping("/planta-alta")
+        public String altaPlanta(@RequestParam Planta planta,@RequestParam Parcela parcela, Model modelo) {
+            try {
+                parcelaService.agregarPlanta(parcela, planta);  
+            } catch (WebException e) {
+                modelo.addAttribute("error", e.getMessage());
+            }
+   
+            return "redirect:/myaccount.html/";
+        }
+        
+        //Método para dar la baja a una planta
+        @PostMapping("/planta-baja")
+        public String bajaPlanta(@RequestParam Planta planta,@RequestParam Parcela parcela, Model modelo) {
+            try {
+                parcelaService.bajaPlanta(parcela,planta);   
+            } catch (WebException e) {
+                modelo.addAttribute("error", e.getMessage());
+            }
+   
+            return "redirect:/myaccount.html/";
+        }
+        
         
 }
