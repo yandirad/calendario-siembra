@@ -10,6 +10,16 @@
 </head>
 <body>
     <div class="fondo">
+        <div class="crear-cuenta-sesion">
+            <div>
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+                                    <label class="btn btn-outline-primary btn-verano" for="btnradio4"><a href="C:/Users/Anto/Documents/GitHub/calendario-siembra/demo/src/main/resources/templates/login.html">Crear Cuenta</a></label> 
+            </div>
+            <div>
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+                                    <label class="btn btn-outline-primary btn-verano" for="btnradio4"><a href="C:/Users/Anto/Documents/GitHub/calendario-siembra/demo/src/main/resources/templates/register.html">Iniciar Sesion</a></label> 
+            </div>
+        </div>
         <div class="row">
             <div class="col-2 colum1">
 
@@ -22,7 +32,7 @@
                     <div class="dropdown col-6 d-grid">
                         <label for="">Seleccioná tu provincia</label>
                         <br>
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Provincias</button>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true">Provincias</button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a class="dropdown-item" href="#">Santa Fe</a></li>
                                 <li><a class="dropdown-item" href="#">Otras</a></li>
@@ -117,11 +127,14 @@
                                 </div>
 
                             </ul>
-                            <div class="crearCuenta">
-                                <p>Logueate para crear tu calendario de cultivo</p>
-                                <!--<input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-                                <label class="btn btn-outline-primary btn-verano" for="btnradio4">Crear cuenta</label> !-->
-
+                            <div class="crearCuenta flexbox">
+                                <div class="parrafo-cuenta">
+                                    <p>Crea tu cuenta para tu calendario de cultivo</p>
+                                </div>
+                                <div class="boton-crear-cuenta">
+                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+                                    <label class="btn btn-outline-primary btn-verano" for="btnradio4"><a href="C:/Users/Anto/Documents/GitHub/calendario-siembra/demo/src/main/resources/templates/register.html">Crear Cuenta</a></label> 
+                                </div>    
                             </div>
                         </div>
                     </div>
