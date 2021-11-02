@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -47,12 +48,16 @@ public class Planta implements Serializable {
 	@Column
 	private Integer tiempoGerminacion;
 
+	@ManyToOne
+	private Parcela parcela;
+
 	public Planta() {
 		super();
 	}
 
 	public Planta(String id, String nombre, Integer horasSol, String tipoRiego, String formaSiembra, Date fechaSiembra,
-			Date fechaCosecha, Integer tiempoCosecha, String profundidadSiembra, Integer tiempoGerminacion) {
+			Date fechaCosecha, Integer tiempoCosecha, String profundidadSiembra, Integer tiempoGerminacion,
+			Parcela parcela) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -63,6 +68,15 @@ public class Planta implements Serializable {
 		this.tiempoCosecha = tiempoCosecha;
 		this.profundidadSiembra = profundidadSiembra;
 		this.tiempoGerminacion = tiempoGerminacion;
+		this.parcela = parcela;
+	}
+
+	public Parcela getParcela() {
+		return parcela;
+	}
+
+	public void setParcela(Parcela parcela) {
+		this.parcela = parcela;
 	}
 
 	public String getId() {
