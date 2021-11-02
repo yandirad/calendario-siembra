@@ -236,6 +236,7 @@ nav{
     justify-content: center;
     display: flex;
 }
+.boton{
     margin-top: 50px;
     margin-bottom: 50px;
 }
