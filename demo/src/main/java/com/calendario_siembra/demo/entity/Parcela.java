@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -32,6 +33,7 @@ public class Parcela implements Serializable {
 	@OneToMany
 	private List<Planta> listaPlantas;
 
+	@ManyToOne
 	private Usuario usuario;
 
 	public Parcela(String id, String nombre, Integer tamanioParcela, String provincia, List<Planta> listaPlantas,
