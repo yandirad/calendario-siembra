@@ -29,6 +29,17 @@ public class PlantaService {
         return plantaRepository.findByNombre(nombre); 
     }
     
+    
+    @Transactional
+    public Planta altaPlanta(Planta planta) { 
+        return plantaRepository.save(planta); 
+    }
+    
+    @Transactional
+    public Planta bajaPlanta(Planta planta) { 
+    	planta.setEstado(false);
+    	return plantaRepository.save(planta);
+    }
 
 
 }
