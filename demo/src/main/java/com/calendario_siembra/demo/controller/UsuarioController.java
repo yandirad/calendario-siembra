@@ -13,7 +13,7 @@ import com.calendario_siembra.demo.exceptions.WebException;
 import com.calendario_siembra.demo.services.UsuarioService;
 
 @Controller
-@RequestMapping("/registro-usuario")
+@RequestMapping("/usuario")
 public class UsuarioController {
 
 	@Autowired
@@ -34,7 +34,7 @@ public class UsuarioController {
 		} catch (WebException e) {
 			modelo.addAttribute("error", e.getMessage());
 		}
-		return "redirect:/registro-usuario/register.html";
+		return "redirect:/usuario/register.html";
 	}
 
 }
