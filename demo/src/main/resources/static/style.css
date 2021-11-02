@@ -1,11 +1,16 @@
+.btn-verano1{
+padding: 15px;
+}
+
 .crear-cuenta-sesion{
-    height: 100px;
+    height: 70px;
     width: 200px;
     background: brown;
     right: 5%;
     position: fixed;
     z-index: 11000;
-    
+    display:flex;
+
 }
 .colum1{
     height: auto;
@@ -156,7 +161,7 @@ h3{
     background: blanchedalmond;
     box-shadow: 9px 10px 5px rgb(0 0 0 / 20%);
     margin-bottom: -6%;
-    align-items: center;  
+    align-items: center;
     justify-content: center;
 }
 .parrafo-cuenta{
@@ -169,7 +174,7 @@ h3{
     margin-right: 20px;
     margin-top: 40px;
     margin-bottom: 40px;
-  
+
 }
 
 
@@ -240,5 +245,3 @@ nav{
     margin-top: 50px;
     margin-bottom: 50px;
 }
-
-
