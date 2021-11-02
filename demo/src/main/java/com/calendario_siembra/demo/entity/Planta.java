@@ -50,6 +50,9 @@ public class Planta implements Serializable {
 
 	@ManyToOne
 	private Parcela parcela;
+	
+	@Column
+	private Boolean estado=true;
 
 	public Planta() {
 		super();
@@ -158,5 +161,15 @@ public class Planta implements Serializable {
 	public void setTiempoGerminacion(Integer tiempoGerminacion) {
 		this.tiempoGerminacion = tiempoGerminacion;
 	}
+
+	public Boolean getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Boolean estado) {
+		this.estado = estado;
+	}
+	
+	
 
 }
