@@ -33,8 +33,8 @@ public class Planta implements Serializable {
 	@Column
 	private String formaSiembra;
 
-	@Temporal(TemporalType.DATE)
-	private Date fechaSiembra;
+	@Column
+	private String mesSiembra;
 
 	@Temporal(TemporalType.DATE)
 	private Date fechaCosecha;
@@ -50,9 +50,9 @@ public class Planta implements Serializable {
 
 	@ManyToOne
 	private Parcela parcela;
-	
+
 	@Column
-	private Boolean estado=true;
+	private Boolean estado = true;
 
 	public Planta() {
 		super();
@@ -122,12 +122,12 @@ public class Planta implements Serializable {
 		this.formaSiembra = formaSiembra;
 	}
 
-	public Date getFechaSiembra() {
-		return fechaSiembra;
+	public String getMesSiembra() {
+		return mesSiembra;
 	}
 
-	public void setFechaSiembra(Date fechaSiembra) {
-		this.fechaSiembra = fechaSiembra;
+	public void setFechaSiembra(String mesSiembra) {
+		this.mesSiembra = mesSiembra;
 	}
 
 	public Date getFechaCosecha() {
@@ -169,7 +169,5 @@ public class Planta implements Serializable {
 	public void setEstado(Boolean estado) {
 		this.estado = estado;
 	}
-	
-	
 
 }
