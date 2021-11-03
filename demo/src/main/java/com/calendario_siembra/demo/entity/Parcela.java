@@ -28,11 +28,10 @@ public class Parcela implements Serializable {
 
 	@Column
 	private String provincia;
-        
-        @Column
-        private Boolean estado= true;
 
 	@Column
+	private Boolean estado = true;
+
 	@OneToMany
 	private List<Planta> listaPlantas;
 
@@ -44,7 +43,7 @@ public class Parcela implements Serializable {
 		this.id = id;
 		this.nombre = nombre;
 		this.tamanioParcela = tamanioParcela;
-		this.provincia = provincia;     
+		this.provincia = provincia;
 		this.listaPlantas = listaPlantas;
 		this.usuario = usuario;
 	}
@@ -92,13 +91,13 @@ public class Parcela implements Serializable {
 		this.provincia = provincia;
 	}
 
-        public Boolean getEstado() {
-            return estado;
-        }
+	public Boolean getEstado() {
+		return estado;
+	}
 
-        public void setEstado(Boolean estado) {
-            this.estado = estado;
-        }
+	public void setEstado(Boolean estado) {
+		this.estado = estado;
+	}
 
 	public List<Planta> getListaPlantas() {
 		return listaPlantas;
