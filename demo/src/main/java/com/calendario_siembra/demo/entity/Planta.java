@@ -1,15 +1,11 @@
 package com.calendario_siembra.demo.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -25,64 +21,54 @@ public class Planta implements Serializable {
 	private String nombre;
 
 	@Column
-	private Integer horasSol;
-
-	@Column
-	private String tipoRiego;
-
-	@Column
-	private String formaSiembra;
-
-	@Column
-	private String mesSiembra;
-
-	@Temporal(TemporalType.DATE)
-	private Date fechaCosecha;
-
-	@Column
-	private Integer tiempoCosecha;
+	private String tipoCultivo;
 
 	@Column
 	private String profundidadSiembra;
 
 	@Column
-	private Integer tiempoGerminacion;
-
-	@ManyToOne
-	private Parcela parcela;
+	private Integer horasSol;
 
 	@Column
-	private Boolean estado = true;
+	private String cantidadRiego;
+
+	@Column
+	private String cosecha;
+
+	@Column
+	private Integer heladas;
+
+	@Column
+	private String diasCosecha;
+
+	@Column
+	private String mesSiembra;
 
 	@Column
 	private String descripcion;
+
+	@Column
+	private Boolean estado = true;
 
 	public Planta() {
 		super();
 	}
 
-	public Planta(String id, String nombre, Integer horasSol, String tipoRiego, String formaSiembra, Date fechaSiembra,
-			Date fechaCosecha, Integer tiempoCosecha, String profundidadSiembra, Integer tiempoGerminacion,
-			Parcela parcela) {
+	public Planta(String id, String nombre, String tipoCultivo, String profundidadSiembra, Integer horasSol,
+			String cantidadRiego, String cosecha, Integer heladas, String diasCosecha, String mesSiembra,
+			String descripcion, Parcela parcela) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
-		this.horasSol = horasSol;
-		this.tipoRiego = tipoRiego;
-		this.formaSiembra = formaSiembra;
-		this.fechaCosecha = fechaCosecha;
-		this.tiempoCosecha = tiempoCosecha;
+		this.tipoCultivo = tipoCultivo;
 		this.profundidadSiembra = profundidadSiembra;
-		this.tiempoGerminacion = tiempoGerminacion;
-		this.parcela = parcela;
-	}
-
-	public Parcela getParcela() {
-		return parcela;
-	}
-
-	public void setParcela(Parcela parcela) {
-		this.parcela = parcela;
+		this.horasSol = horasSol;
+		this.cantidadRiego = cantidadRiego;
+		this.cosecha = cosecha;
+		this.heladas = heladas;
+		this.diasCosecha = diasCosecha;
+		this.mesSiembra = mesSiembra;
+		this.descripcion = descripcion;
 	}
 
 	public String getId() {
@@ -101,52 +87,12 @@ public class Planta implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public Integer getHorasSol() {
-		return horasSol;
+	public String getTipoCultivo() {
+		return tipoCultivo;
 	}
 
-	public void setHorasSol(Integer horasSol) {
-		this.horasSol = horasSol;
-	}
-
-	public String getTipoRiego() {
-		return tipoRiego;
-	}
-
-	public void setTipoRiego(String tipoRiego) {
-		this.tipoRiego = tipoRiego;
-	}
-
-	public String getFormaSiembra() {
-		return formaSiembra;
-	}
-
-	public void setFormaSiembra(String formaSiembra) {
-		this.formaSiembra = formaSiembra;
-	}
-
-	public String getMesSiembra() {
-		return mesSiembra;
-	}
-
-	public void setFechaSiembra(String mesSiembra) {
-		this.mesSiembra = mesSiembra;
-	}
-
-	public Date getFechaCosecha() {
-		return fechaCosecha;
-	}
-
-	public void setFechaCosecha(Date fechaCosecha) {
-		this.fechaCosecha = fechaCosecha;
-	}
-
-	public Integer getTiempoCosecha() {
-		return tiempoCosecha;
-	}
-
-	public void setTiempoCosecha(Integer tiempoCosecha) {
-		this.tiempoCosecha = tiempoCosecha;
+	public void setTipoCultivo(String tipoCultivo) {
+		this.tipoCultivo = tipoCultivo;
 	}
 
 	public String getProfundidadSiembra() {
@@ -157,12 +103,60 @@ public class Planta implements Serializable {
 		this.profundidadSiembra = profundidadSiembra;
 	}
 
-	public Integer getTiempoGerminacion() {
-		return tiempoGerminacion;
+	public Integer getHorasSol() {
+		return horasSol;
 	}
 
-	public void setTiempoGerminacion(Integer tiempoGerminacion) {
-		this.tiempoGerminacion = tiempoGerminacion;
+	public void setHorasSol(Integer horasSol) {
+		this.horasSol = horasSol;
+	}
+
+	public String getCantidadRiego() {
+		return cantidadRiego;
+	}
+
+	public void setCantidadRiego(String cantidadRiego) {
+		this.cantidadRiego = cantidadRiego;
+	}
+
+	public String getCosecha() {
+		return cosecha;
+	}
+
+	public void setCosecha(String cosecha) {
+		this.cosecha = cosecha;
+	}
+
+	public Integer getHeladas() {
+		return heladas;
+	}
+
+	public void setHeladas(Integer heladas) {
+		this.heladas = heladas;
+	}
+
+	public String getDiasCosecha() {
+		return diasCosecha;
+	}
+
+	public void setDiasCosecha(String diasCosecha) {
+		this.diasCosecha = diasCosecha;
+	}
+
+	public String getMesSiembra() {
+		return mesSiembra;
+	}
+
+	public void setMesSiembra(String mesSiembra) {
+		this.mesSiembra = mesSiembra;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public Boolean getEstado() {
