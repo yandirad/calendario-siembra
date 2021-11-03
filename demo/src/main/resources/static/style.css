@@ -1,38 +1,51 @@
 .btn-verano1{
-padding: 15px;
+    padding: 15px;
 }
 
 .crear-cuenta-sesion{
-    height: 70px;
-    width: 200px;
-    background: brown;
-    right: 5%;
+    height: 160px;
+    width: 190px;
+    background: url("img/login-back2.png");
+    right: 3%;
     position: fixed;
     z-index: 11000;
     display:flex;
-
 }
+
+.login-buttons {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    width: 160px;
+    margin-left: 20px;
+    justify-content: space-evenly;
+}
+
 .colum1{
     height: auto;
 }
 .colum2{
-    background: rgba(255, 255, 255, 0.644);
+    background: rgba(255, 255, 255, 0.8);
     height: auto;
-    margin: 50px;
-    margin-top: 110px;
+    margin-top: 100px;
     padding: 20px;
+    border-radius: .8rem;
 }
 .colum3{
     height: auto;
 }
 .fondo{
-    background-image: url("img/fondo.jpg");
+    background-image: url("img/background.png");
     height: 100%;
     background-size: cover;
     background-position: fixed;
 }
 body{
+    position: relative;
+    margin: 0;
+    min-height: 100vh;
     overflow-x: hidden;
+    display: grid;
 }
 
 .titulo{
@@ -246,7 +259,23 @@ nav{
     margin-bottom: 50px;
 }
 
+.lista-usuario{
+    list-style:none;
+    padding-left: .5rem;
+}
+
 .buttons-card-parcela{
     display: flex;
     flex-direction: row;
+}
+.botones-eliminar-modificar-parcela{
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+.titulo-parcelas{
+    text-align: center;
+}
+.boton-parcela{
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
