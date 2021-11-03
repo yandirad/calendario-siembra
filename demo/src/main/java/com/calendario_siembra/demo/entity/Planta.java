@@ -54,6 +54,9 @@ public class Planta implements Serializable {
 	@Column
 	private Boolean estado = true;
 
+	@Column
+	private String descripcion;
+
 	public Planta() {
 		super();
 	}
