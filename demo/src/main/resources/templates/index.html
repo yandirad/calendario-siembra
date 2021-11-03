@@ -67,7 +67,12 @@
                     <div class="collapse" id="collapseExample">
                         <div class="col-12">
                             <ul class="row">
-                                <li th:each="planta : ${listaPlantas}" class="seleccionados col-2"><button class="btn btn-outline-success btn-lista " data-bs-toggle="collapse" data-bs-target="#collapseDetalle" aria-expanded="false" aria-controls="collapseDetalle" type="submit" th:text="${planta} == null ? '' : ${planta.nombre}"></button></li>
+                                <li th:each="planta : ${listaPlantas}" class="seleccionados col-2">
+                                	<button class="btn btn-outline-success btn-lista " data-bs-toggle="collapse" 
+                                		data-bs-target="#collapseDetalle" aria-expanded="false" aria-controls="collapseDetalle"
+                                		type="submit" th:text="${planta} == null ? '' : ${planta.nombre}" th:attr="onclick=|almacenTemporal('${planta.nombre}', '${planta.horasSol}', '${planta.tipoRiego}', '${planta.formaSiembra}', '${planta.tiempoGerminacion}', '${planta.tiempoCosecha}', '${planta.profundidadSiembra}', '${planta.mesSiembra}')|">
+                                	</button>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -75,44 +80,13 @@
                 <div class="detalle-cultivo flexbox">
                     <div class="collapse" id="collapseDetalle">
                         <div class="titulo-detalle">
-                            <h2 th:text="${planta} == null ? '' : ${planta.nombre}"></h2>
+                            <h2 id="nombre"></h2>
                         </div>
                         <div class="descripcion-detalle">
-                            <p>El jugo contiene hasta un 27% de sacarosa, además de coniferina, galactinol, vanillina y gran cantidad de ácidos orgánicos y azúcares. Uno de sus principios activos es betaína que transforma los triglicéridos en lipoproteínas. Entre los aminoácidos se encuentran la isoleucina, glutamina y arginina. Además se encuentran saponinas, derivados de la xantina y la colina
-                            </p>
+                            <p id="descripcion"></p>
                         </div>
                         <div>
-                            <ul class="row">
-                                <div class="col-4">
-                                    <h4>Luz solar</h4>
-                                    <li class="lista-detalle" th:text="${planta} == null ? '' : ${planta.horasSol} + ' hs.'"> </li>
-                                </div>
-                                <div class="col-4">
-                                    <h4>Tipo de riego</h4>
-                                    <li class="lista-detalle" th:text="${planta} == null ? '' : ${planta.tipoRiego}"></li>
-                                </div>
-                                <div class="col-4">
-                                    <h4>Forma de siembra</h4>
-                                    <li class="lista-detalle" th:text="${planta} == null ? '' : ${planta.formaSiembra}"></li>
-                                </div>
-                                <div class="col-4">
-                                    <h4>Tiempo de germinacion</h4>
-                                    <li class="lista-detalle" th:text="${planta} == null ? '' : ${planta.tiempoGerminacion}"></li>
-                                </div>
-                                <div class="col-4">
-                                    <h4>Tiempo para la cocecha</h4>
-                                    <li class="lista-detalle" th:text="${planta} == null ? '' : ${planta.tiempoCosecha}"></li>
-                                </div>
-                                <div class="col-4">
-                                    <h4>Profundidad de siembra</h4>
-                                    <li class="lista-detalle" th:text="${planta} == null ? '' : ${planta.profundidadSiembra} + ' cm.'"></li>
-                                </div>
-
-                                <div class="col-4">
-                                    <h4>Mes de siembra</h4>
-                                    <li class="lista-detalle" th:text="${planta} == null ? '' : (${planta.mesSiembra} == null ? 'Todos' : ${planta.mesSiembra})"></li>
-                                </div>
-
+                            <ul class="row" id="detalles">
                             </ul>
                             <div class="crearCuenta flexbox">
                                 <div class="parrafo-cuenta">
@@ -133,5 +107,26 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<!-- JS QUE COMPLETA EL HTML EN BASE A LA PLANTA SELECCIONADA -->
+	<script type="text/javascript">
+		var h2 = document.getElementById("nombre");
+		var ul = document.getElementById("detalles");		
+		var p = document.getElementById("descripcion");		
+		function almacenTemporal(nombre, horasSol, tipoRiego, formaSiembra, tiempoGerminacion, tiempoCosecha, profundidadSiembra, mesSiembra) {
+			ul.innerHTML = "";
+			h2.innerHTML = nombre;
+			p.innerHTML = "DESCRIPCION";
+			if(mesSiembra){
+				mesSiembra = "Cualquier estación"
+			}
+			var lista = {"Luz Solar":horasSol, "Tipo de riego":tipoRiego, "Forma de siembra":formaSiembra, "Tiempo de germinacion":tiempoGerminacion, "Tiempo para la cosecha":tiempoCosecha, "Profundidad de siembra":profundidadSiembra, "Mes de siembra":mesSiembra };
+			for(var k in lista){
+				ul.innerHTML += `<div class="col-4">
+	            <h4>${k}</h4>
+	            <li class="lista-detalle">${lista[k]}</li>
+	        	</div>`
+			}
+		}
+	</script>
 </body>
 </html>
