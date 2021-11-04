@@ -43,24 +43,23 @@
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancelar"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form class="row">
+                                    <form class="row" th:action="@{/my-account/parcela-alta-modificar}" th:object="${nuevaParcela}" method="post">
                                         <div class="col-6">
                                           <label for="NombreParcela" class="form-label">Nombre de la parcela</label>
-                                          <input type="text" class="form-control" id="NombreParcela" aria-describedby="nombre de la parcela">
+                                          <input type="text" class="form-control" th:field="${nuevaParcela.nombre}" id="NombreParcela" aria-describedby="nombre de la parcela" required>
                                         </div>
                                         <div class="col-6">
-                                            <label for="TamanioParcela" class="form-label">Nombre de la parcela</label>
+                                            <label for="TamanioParcela" class="form-label">Tamaño de la parcela</label>
                                             <div class="input-group mb-3">
-                                                <input type="number" class="form-control" id="TamanioParcela" aria-describedby="tamaño de la parcela">
-                                                <span class="input-group-text">dm3</span>
+                                                <input type="number" class="form-control" th:field="${nuevaParcela.tamanioParcela}" id="TamanioParcela" aria-describedby="tamaño de la parcela" required>
+                                                <span class="input-group-text">cm2</span>
                                               </div>
-
                                           </div>
+										<div class="modal-footer">
+		                                  <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+		                                  <button type="submit" class="btn btn-outline-success" >Crear</button>
+		                                </div>
                                       </form>
-                                </div>
-                                <div class="modal-footer">
-                                  <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
-                                  <button type="button" class="btn btn-outline-success">Crear</button>
                                 </div>
                               </div>
                             </div>
@@ -130,7 +129,7 @@
                                         </div>
                                       </div>
 
-
+									<form th:action="@{/my-account//planta-alta}" th:object="${nuevaPlanta}" method="post">
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
                                         <div class="modal-dialog">
@@ -144,11 +143,12 @@
                                                     <div class="dropdown col-6 d-grid">
                                                         <label for="">Seleccioná tu provincia</label>
                                                         <br>
-                                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Provincias</button>
+                                                        <select class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" placeholder="Provincias" data-bs-toggle="dropdown" aria-expanded="false">
                                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                                <li><a class="dropdown-item" href="#">Santa Fe</a></li>
-                                                                <li><a class="dropdown-item" href="#">Otras</a></li>
+                                                                <option>Santa Fe</option>
+                                                                <option>Otras</option>
                                                             </ul>
+                                                        </select>
                                                     </div>
                                                     <div class="dropdown col-6 d-grid">
                                                         <label for="">Seleccioná el tamaño de tu parcela</label>
@@ -218,11 +218,12 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
-                                                    <button type="button" class="btn btn-outline-success">Crear</button>
+                                                    <button type="submit" class="btn btn-outline-success">Crear</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    </form>
                                     <div class="d-grid gap-2 d-md-flex align-items-end justify-content-md-end botones-eliminar-modificar-parcela">
                                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="far fa-delete"></i> Modificar parcela</button>
                                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="far fa-delete"></i> Eliminar parcela</button>
