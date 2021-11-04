@@ -28,7 +28,7 @@ public class UsuarioController {
 
 	@PostMapping("/registrar")
 	public String usuarioCreado(Usuario usuario, RedirectAttributes ra) {
-		try {
+		try {                 
                     usuarioService.guardarUsuario(usuario);
                     ra.addFlashAttribute("exitoso", "Se registro correctamente");
                     
