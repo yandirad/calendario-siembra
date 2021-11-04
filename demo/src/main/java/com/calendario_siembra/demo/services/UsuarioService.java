@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import com.calendario_siembra.demo.entity.Usuario;
 import com.calendario_siembra.demo.exceptions.WebException;
+import com.calendario_siembra.demo.repository.ParcelaRepository;
 import com.calendario_siembra.demo.repository.UsuarioRepository;
 
 /**
@@ -34,6 +35,9 @@ public class UsuarioService implements UserDetailsService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+
+	@Autowired
+	private ParcelaRepository parcelaRepository;
 
 	// asigna al usuario el rol de USUARIO sin permisos especiales
 	@Override
@@ -51,7 +55,9 @@ public class UsuarioService implements UserDetailsService {
 	public Usuario buscarUsuario() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String nickName = auth.getName();
-		return usuarioRepository.findByUsuario(nickName);
+		Usuario usuario = usuarioRepository.findByUsuario(nickName);
+		usuario.setParcelas(parcelaRepository.obtenerListaParcelas(usuario));
+		return usuario;
 	}
 
 	@Transactional
