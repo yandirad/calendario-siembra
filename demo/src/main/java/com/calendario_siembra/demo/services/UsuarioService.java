@@ -67,15 +67,16 @@ public class UsuarioService implements UserDetailsService {
 		if (usuario.getNombre().isEmpty() || usuario.getNombre().equals("") || usuario.getNombre() == null) {
 			throw new WebException("El nombre no puede estar vacío");
 		}
+                if (usuario.getMail().isEmpty() || usuario.getMail().equals("") || usuario.getMail() == null) {
+			throw new WebException("El mail no puede estar vacío");
+		}
 		if (usuario.getUsuario().isEmpty() || usuario.getUsuario().equals("") || usuario.getUsuario() == null) {
 			throw new WebException("El usuario no puede estar vacío");
 		}
 		if (usuario.getPass().isEmpty() || usuario.getPass().equals("") || usuario.getPass() == null) {
 			throw new WebException("La contraseña no puede estar vacía");
 		}
-		if (usuario.getMail().isEmpty() || usuario.getMail().equals("") || usuario.getMail() == null) {
-			throw new WebException("El mail no puede estar vacío");
-		}
+		
 
 	}
 

@@ -24,8 +24,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers(resources).permitAll().and().formLogin().loginPage("/login")
-				.failureUrl("/login-error").permitAll().defaultSuccessUrl("/my-account/").usernameParameter("usuario")
-				.passwordParameter("pass").and().logout().permitAll().logoutSuccessUrl("/login?logout");
+		.failureUrl("/login-error").permitAll().defaultSuccessUrl("/my-account/").usernameParameter("usuario")
+		.passwordParameter("pass").and().logout().permitAll().logoutSuccessUrl("/login?logout");
 	}
 
 	BCryptPasswordEncoder bCryptPasswordEncoder;
