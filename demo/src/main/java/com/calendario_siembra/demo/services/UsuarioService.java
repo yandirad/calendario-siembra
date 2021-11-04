@@ -88,7 +88,7 @@ public class UsuarioService implements UserDetailsService {
 		}
 		if (usuario.getUsuario().isEmpty() || usuario.getUsuario().equals("") || usuario.getUsuario() == null) {
 			throw new WebException("El usuario no puede estar vacío");
-		} else if (usuario.getUsuario().equals(usuarioRepository.findByUsuario(usuario.getUsuario()).getUsuario())) {
+		} else if (usuario.getUsuario().equals(usuarioRepository.buscarUsuario(usuario.getUsuario()))) {
 			throw new WebException("El usuario ya existe.");
 		}
 		if (usuario.getPass().isEmpty() || usuario.getPass().equals("") || usuario.getPass() == null
