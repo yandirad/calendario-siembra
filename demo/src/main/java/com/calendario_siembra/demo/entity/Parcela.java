@@ -51,6 +51,10 @@ public class Parcela implements Serializable {
 	public Parcela() {
 	}
 
+	public Parcela(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public Usuario getUsuario() {
 		return usuario;
 	}
