@@ -36,7 +36,7 @@ public class Planta implements Serializable {
 	private String cosecha;
 
 	@Column
-	private Integer heladas;
+	private String heladas;
 
 	@Column
 	private String diasCosecha;
@@ -55,7 +55,7 @@ public class Planta implements Serializable {
 	}
 
 	public Planta(String id, String nombre, String tipoCultivo, String profundidadSiembra, Integer horasSol,
-			String cantidadRiego, String cosecha, Integer heladas, String diasCosecha, String mesSiembra,
+			String cantidadRiego, String cosecha, String heladas, String diasCosecha, String mesSiembra,
 			String descripcion, Parcela parcela) {
 		super();
 		this.id = id;
@@ -127,11 +127,11 @@ public class Planta implements Serializable {
 		this.cosecha = cosecha;
 	}
 
-	public Integer getHeladas() {
+	public String getHeladas() {
 		return heladas;
 	}
 
-	public void setHeladas(Integer heladas) {
+	public void setHeladas(String heladas) {
 		this.heladas = heladas;
 	}
 

@@ -46,6 +46,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <form class="row" th:action="@{/my-account/parcela-alta-modificar}" th:object="${nuevaParcela}" method="post">
+                                        <input th:field="${nuevaParcela.usuario}" hidden>
                                         <div class="col-6">
                                           <label for="NombreParcela" class="form-label">Nombre de la parcela</label>
                                           <input type="text" class="form-control" th:field="${nuevaParcela.nombre}" id="NombreParcela" aria-describedby="nombre de la parcela" required>
