@@ -15,7 +15,7 @@ import com.calendario_siembra.demo.entity.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, String> {
 
 	public Usuario findByUsuario(String username);
-        
-        public Usuario findByMail(String mail);
+
+	public String findByMail(String mail);
 
 }
