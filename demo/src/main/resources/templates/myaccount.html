@@ -13,6 +13,12 @@
 </head>
 <body>
     <div class="fondo">
+      <div class="row crear-cuenta-sesion">
+            <div class="login-buttons">
+                <button type="button" class="btn btn-success btn-sm d-grid gap-2"><a>Cerrar Sesion</a></button>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-2 colum1">
 
@@ -94,28 +100,28 @@
 
                                                           <div class="ms-2 me-auto">
 	                                                            <div class="fw-bold" th:text="'Profundidad de siembra: ' + ${planta.profundidadSiembra}"></div>
-<img src="../static/img/profundidad.png" width="64" height="64">
+                                                          <img src="../static/img/profundidad.png" width="64" height="64">
                                                           </div>
                                                         </li>
                                                         <li class="list-group-item d-flex justify-content-between align-items-start">
 	                                                        <span class=""><i class=""></i></span>
 	                                                        <div class="ms-2 me-auto">
 	                                                            <div class="fw-bold" th:text="'Luz solar: ' + ${planta.horasSol}"></div>
-<img src="../static/img/luz-solar.png" width="64" height="64">
+                                                          <img src="../static/img/luz-solar.png" width="64" height="64">
                                                           </div>
                                                         </li>
                                                         <li class="list-group-item d-flex justify-content-between align-items-start">
 	                                                        <span class=""><i class=""></i></span>
 	                                                        <div class="ms-2 me-auto">
 	                                                            <div class="fw-bold" th:text="'Cantidad de riego: ' + ${planta.cantidadRiego}" ></div>
-<img src="../static/img/regadera.png" width="64" height="64">
+                                                              <img src="../static/img/regadera.png" width="64" height="64">
                                                           </div>
                                                         </li>
                                                         <li class="list-group-item d-flex justify-content-between align-items-start">
 	                                                        <span class=""><i class=""></i></span>
 	                                                        <div class="ms-2 me-auto">
 	                                                            <div class="fw-bold" th:text="'Recomendacion de cosecha: ' + ${planta.cosecha}"></div>
-<img src="../static/img/cosecha.png" width="64" height="64">
+                                                              <img src="../static/img/cosecha.png" width="64" height="64">
 
                                                           </div>
                                                         </li>
