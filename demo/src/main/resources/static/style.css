@@ -74,7 +74,7 @@ h1{
 .btn-otoño{
     height: 150px;
     width: 0px;
-    background-image: url("img/otoño.png");
+    background: url("img/otoño.png") no-repeat center;
     font-size: 2rem;
     align-items: center;
     justify-content: center;
@@ -90,7 +90,7 @@ h1{
 .btn-invierno{
     height: 150px;
     width: 0px;
-    background-image: url("img/invierno.png");
+    background: url("img/invierno.png") no-repeat center;
     font-size: 2rem;
     align-items: center;
     justify-content: center;
@@ -123,7 +123,7 @@ h1{
 .btn-primavera{
     height: 150px;
     width: 0px;
-    background-image: url("img/primavera.png");
+    background: url("img/primavera.png") no-repeat center;
     font-size: 2rem;
     align-items: center;
     justify-content: center;
@@ -138,7 +138,7 @@ h1{
 .btn-verano{
     height: 150px;
     width: 0px;
-    background-image: url("img/verano.png");
+    background: url("img/verano.png") no-repeat center;
     font-size: 2rem;
     align-items: center;
     justify-content: center;
