@@ -90,47 +90,40 @@
                                     <div class="row row-cols-1 row-cols-md-3 g-4" th:each="planta : ${parcela.listaPlantas}">
                                         <div class="col">
                                           <div class="card h-100">
-                                            <img src="../static/img/planeta.png" class="card-img-top" alt="...">
+                                            <img th:src="@{/img/planeta.png}" class="card-img-top" alt="...">
                                             <div class="card-body">
                                                 <h5 class="card-title" th:text="${planta.nombre}"></h5>
                                                 <h6 class="card-title" th:text="${planta.tipoCultivo}"></h6>
                                                 <p class="card-text">
                                                     <ol class="list-group list-group-flush ">
                                                         <li class="list-group-item d-flex justify-content-between align-items-start ">
-	                                                        <span class=""><i class=""> </i></span>
-
-                                                          <div class="ms-2 me-auto">
-	                                                            <div class="fw-bold" th:text="'Profundidad de siembra: ' + ${planta.profundidadSiembra}"></div>
-                                                          <img src="../static/img/profundidad.png" width="64" height="64">
+															<img th:src="@{/img/profundidad.png}" width="32" height="32">
+                                                          	<div class="ms-2 me-auto">
+	                                                            <div style="padding: 5px" class="fw-bold" th:text="'Profundidad de siembra: ' + ${planta.profundidadSiembra}"></div>
                                                           </div>
                                                         </li>
                                                         <li class="list-group-item d-flex justify-content-between align-items-start">
-	                                                        <span class=""><i class=""></i></span>
+	                                                        <img th:src="@{/img/luz-solar.png}" width="32" height="32">
 	                                                        <div class="ms-2 me-auto">
-	                                                            <div class="fw-bold" th:text="'Luz solar: ' + ${planta.horasSol}"></div>
-                                                          <img src="../static/img/luz-solar.png" width="64" height="64">
+	                                                            <div style="padding: 5px" class="fw-bold" th:text="'Luz solar: ' + ${planta.horasSol}"></div>
+                                                          	</div>
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-start">
+	                                                        <img th:src="@{/img/regadera.png}" width="32" height="32">
+	                                                        <div class="ms-2 me-auto">
+	                                                            <div style="padding: 5px" class="fw-bold" th:text="'Cantidad de riego: ' + ${planta.cantidadRiego}" ></div>
                                                           </div>
                                                         </li>
                                                         <li class="list-group-item d-flex justify-content-between align-items-start">
-	                                                        <span class=""><i class=""></i></span>
+															<img th:src="@{/img/cosecha.png}" width="32" height="32">
 	                                                        <div class="ms-2 me-auto">
-	                                                            <div class="fw-bold" th:text="'Cantidad de riego: ' + ${planta.cantidadRiego}" ></div>
-                                                              <img src="../static/img/regadera.png" width="64" height="64">
+	                                                            <div style="padding: 5px" class="fw-bold" th:text="'Recomendacion de cosecha: ' + ${planta.cosecha}"></div>
                                                           </div>
                                                         </li>
                                                         <li class="list-group-item d-flex justify-content-between align-items-start">
-	                                                        <span class=""><i class=""></i></span>
+                                                        	<img th:src="@{/img/cosecha.png}" width="32" height="32">
 	                                                        <div class="ms-2 me-auto">
-	                                                            <div class="fw-bold" th:text="'Recomendacion de cosecha: ' + ${planta.cosecha}"></div>
-                                                              <img src="../static/img/cosecha.png" width="64" height="64">
-
-                                                          </div>
-                                                        </li>
-                                                        <li class="list-group-item d-flex justify-content-between align-items-start">
-	                                                        <span class=""><i class=""></i></span>
-	                                                        <div class="ms-2 me-auto">
-	                                                            <div class="fw-bold" th:text="'Comportamiento a heladas: ' + ${planta.heladas}"></div>
-en proceso
+	                                                            <div style="padding: 5px" class="fw-bold" th:text="'Comportamiento a heladas: ' + ${planta.heladas}"></div>
                                                           </div>
                                                         </li>
                                                     </ol>
