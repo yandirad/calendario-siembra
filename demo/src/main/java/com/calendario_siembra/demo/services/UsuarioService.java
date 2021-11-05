@@ -58,6 +58,8 @@ public class UsuarioService implements UserDetailsService {
 	public Usuario buscarUsuario() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String nickName = auth.getName();
+		if (nickName.equals("anonymousUser"))
+			return null;
 		Usuario usuario = usuarioRepository.findByUsuario(nickName);
 		usuario.setParcelas(parcelaRepository.obtenerListaParcelas(usuario));
 		return usuario;

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 @Entity
 public class Planta implements Serializable {
@@ -45,6 +46,7 @@ public class Planta implements Serializable {
 	private String mesSiembra;
 
 	@Column
+	@Type(type = "text")
 	private String descripcion;
 
 	@Column
