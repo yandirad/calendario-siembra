@@ -91,14 +91,15 @@ public class MyAccountController {
 
 	// Método para dar la alta a una planta
 	@PostMapping("/planta-alta")
-	public String altaPlanta(@RequestParam Planta planta, @RequestParam Parcela parcela, Model modelo) {
+	public String altaPlanta(String parcelaID, String plantaID, Model modelo) {
 		try {
-			parcelaService.agregarPlanta(parcela, planta);
+
+			parcelaService.agregarPlanta(parcelaID, plantaID);
 		} catch (WebException e) {
 			modelo.addAttribute("error", e.getMessage());
 		}
 
-		return "redirect:/my-account.html/";
+		return "redirect:/my-account/";
 	}
 
 	// Método para dar la baja a una planta
@@ -110,7 +111,7 @@ public class MyAccountController {
 			modelo.addAttribute("error", e.getMessage());
 		}
 
-		return "redirect:/my-account.html/";
+		return "redirect:/my-account/";
 	}
 
 }
