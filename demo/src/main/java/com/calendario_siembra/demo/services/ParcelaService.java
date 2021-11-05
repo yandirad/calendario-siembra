@@ -8,6 +8,7 @@ package com.calendario_siembra.demo.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ import com.calendario_siembra.demo.entity.Planta;
 import com.calendario_siembra.demo.entity.Usuario;
 import com.calendario_siembra.demo.exceptions.WebException;
 import com.calendario_siembra.demo.repository.ParcelaRepository;
+import com.calendario_siembra.demo.repository.PlantaRepository;
 
 /**
  *
@@ -30,6 +32,9 @@ public class ParcelaService {
 	@Autowired
 	private ParcelaRepository parcelaRepository;
 
+	@Autowired
+	private PlantaRepository plantaRepository;
+
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { WebException.class })
 	public Parcela crearParcela(Parcela parcela) throws WebException {
 		validar(parcela);
@@ -37,21 +42,23 @@ public class ParcelaService {
 		parcela.setListaPlantas(listaPlantas);
 		return parcelaRepository.save(parcela);
 	}
-        
-        @Transactional
-        public Parcela modificarParcela(Parcela parcela) throws WebException {
-            validar(parcela);
-            return parcelaRepository.save(parcela);
-        }
+
+	@Transactional
+	public Parcela modificarParcela(Parcela parcela) throws WebException {
+		validar(parcela);
+		return parcelaRepository.save(parcela);
+	}
 
 	@Transactional
 	public List<Parcela> obtenerListaParcelas(Usuario usuario) throws WebException {
 		return parcelaRepository.obtenerListaParcelas(usuario);
 	}
 
-	public Parcela agregarPlanta(Parcela parcela, Planta planta) throws WebException {
-		parcela.getListaPlantas().add(planta);
-		return parcelaRepository.save(parcela);
+	public Parcela agregarPlanta(String parcelaID, String plantaID) throws WebException {
+		Optional<Planta> planta = plantaRepository.findById(plantaID);
+		Optional<Parcela> parcela = parcelaRepository.findById(parcelaID);
+		parcela.get().getListaPlantas().add(planta.get());
+		return parcelaRepository.save(parcela.get());
 	}
 
 	public void validar(Parcela parcela) throws WebException {
@@ -64,17 +71,15 @@ public class ParcelaService {
 		}
 
 	}
-        
-        public void bajaParcela(Parcela parcela) throws WebException {
-            parcela.setEstado(false);
-            parcelaRepository.save(parcela);
-        }
-        
-        
-        
-        public Parcela bajaPlanta(Parcela parcela, Planta planta) throws WebException {
-    		parcela.getListaPlantas().remove(planta);
-    		return parcelaRepository.save(parcela);
-    	}
+
+	public void bajaParcela(Parcela parcela) throws WebException {
+		parcela.setEstado(false);
+		parcelaRepository.save(parcela);
+	}
+
+	public Parcela bajaPlanta(Parcela parcela, Planta planta) throws WebException {
+		parcela.getListaPlantas().remove(planta);
+		return parcelaRepository.save(parcela);
+	}
 
 }
