@@ -337,3 +337,15 @@ nav{
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+#animation{
+    animation-name: caida;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+}
+
+@keyframes caida {
+    0%{top: -150px;}
+    50%{top: 0px;}
+    100%{top: -70px;}
+}
