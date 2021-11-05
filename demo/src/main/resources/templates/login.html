@@ -24,7 +24,9 @@
                 <div class="col-2 colum1">
 
                 </div>
+                
                 <div class="col-8 colum2 container">
+                   
                     <div class="flexbox">
                         <h1> Inicio de sesión</h1>
                     </div>
@@ -34,6 +36,10 @@
                     
                     <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
                         <strong th:text="${error}"></strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <div th:if="${success}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                        <strong th:text="${success}"></strong>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     

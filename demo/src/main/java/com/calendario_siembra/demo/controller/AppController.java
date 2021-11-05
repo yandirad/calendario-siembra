@@ -38,4 +38,10 @@ public class AppController {
             return "login.html";
 	}
         
+        @GetMapping("/logout")
+	public String logout(Model model) {
+            model.addAttribute("success", "Ha finalizado su sesión exitosamente.");
+   
+            return "login";
+	}
 }
