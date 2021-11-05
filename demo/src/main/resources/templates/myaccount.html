@@ -77,13 +77,13 @@
                         <div class="accordion" id="accordionExample">
                             <div class="accordion-item" th:each="parcela : ${usuario.parcelas}">
                               <h2 class="accordion-header" id="headingOne" >
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" th:text="${parcela.nombre}">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" th:attr="data-bs-target=|#collapse${parcela.id}" aria-expanded="true" aria-controls="collapseOne" th:text="${parcela.nombre}">
                                 </button>
                               </h2>
-                              <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                              <div th:attr="id=|collapse${parcela.id}|" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#collapse">
                                 <div class="accordion-body">
                                      <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary boton" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                    <button type="button" class="btn btn-primary boton" data-bs-toggle="modal" th:attr="data-bs-target=|#modal${parcela.id}|">
                                         Agregar nuevo cultivo
                                     </button>
 
@@ -147,9 +147,9 @@ en proceso
                                         </div>
                                       </div>
 									<!-- FORMULARIO DE ALTA DE PLANTA -->
-									<form th:action="@{/my-account/planta-alta}" th:object="${nuevaPlanta}" method="post">
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+									<form th:action="@{/my-account/planta-alta}" method="post">
+                                    <input type="hidden" th:name="parcelaID" th:value="${parcela.id}">
+                                    <div class="modal fade" th:attr="id=|modal${parcela.id}|" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -194,13 +194,13 @@ en proceso
                                                         <button class="btn btn-primary d-grid" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">BUSCAR MI CULTIVO IDEAL</button>
                                                         <div class="row resultados">
                                                             <div class="collapse" id="collapseExample">
-                                                                <div class="col-12">
+                                                                <div class="col-12" th:each="planta : ${listaCultivos}">
                                                                     <ul class="list-group">
                                                                         <li class="list-group-item">
-                                                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                                                            <label class="form-check-label" for="flexRadioDefault1"></label>
+                                                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" th:name="plantaID" th:value="${planta.id}">
+                                                                            <label class="form-check-label" for="flexRadioDefault1" th:text="${planta.nombre}" ></label>
                                                                         </li>
-                                                                      </ul>
+                                                                     </ul>
                                                                 </div>
                                                             </div>
                                                         </div>
