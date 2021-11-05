@@ -30,9 +30,6 @@
 
         <div class="fondo-login">
             <div class="row">
-                <div class="col-2 colum1">
-
-                </div>
                 <div class="col-8 colum2 container">
                     <div class="flexbox">
                         <h1> Inicio de sesión</h1>
@@ -40,10 +37,12 @@
                     <div class="">
                         <h4> <i>Bienvenido nuevamente, ingresa tus datos para acceder</i></h4>
                     </div>
-
-
-
-
+                    
+                    <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                        <strong th:text="${error}"></strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    
                     <form th:action="@{/login}" method="post" class="flexbox">
                         <div class="mb-4 container">
                             <label for="usuario" class="form-label">Usuario</label>
@@ -59,31 +58,19 @@
                             <input type="checkbox" name="connected" class="form-check-input">
                             <label for="connected" class="form-check-label">Mantenerme conectado</label>
                         </div>
+                        
                         <div class="">
                             <button type="submit" name="button">Iniciar sesión</button>
-
                         </div>
 
                         <div class="my-3">
                             <span>No tienes cuenta? <a th:href="@{/usuario/registrar}">Registrate</a> </span>
                             <br>
-                            <span>Has olvidado tu contraseña? <a href="#">Recuperar contraseña</a> </span>
-
                         </div>
 
                     </form>
-
-
-
                 </div>
-
-
             </div>
-        </div>
-
-
-
-        <div class="col-2 colum3">
         </div>
     </div>
 </div>

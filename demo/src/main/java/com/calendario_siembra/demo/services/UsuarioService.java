@@ -105,4 +105,11 @@ public class UsuarioService implements UserDetailsService {
 		Matcher matcher = pattern.matcher(mail);
 		return matcher.find();
 	}
+        
+        public void validarLogin(Usuario usuario) throws WebException{
+            if (usuario.getPass().isEmpty() || usuario.getPass().equals("") || usuario.getPass() == null
+				|| usuario.getPass().length() < 8) {
+		throw new WebException("La contraseña no puede estar vacía o tener menos de 8 dígitos");
+		}
+        }
 }
