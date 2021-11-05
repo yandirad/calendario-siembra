@@ -146,8 +146,8 @@ en proceso
                                           </div>
                                         </div>
                                       </div>
-
-									<form th:action="@{/my-account//planta-alta}" th:object="${nuevaPlanta}" method="post">
+									<!-- FORMULARIO DE ALTA DE PLANTA -->
+									<form th:action="@{/my-account/planta-alta}" th:object="${nuevaPlanta}" method="post">
                                     <!-- Modal -->
                                     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
                                         <div class="modal-dialog">
@@ -164,7 +164,6 @@ en proceso
                                                         <select class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" placeholder="Provincias" data-bs-toggle="dropdown" aria-expanded="false">
                                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                                 <option>Santa Fe</option>
-                                                                <option>Otras</option>
                                                             </ul>
                                                         </select>
                                                     </div>
@@ -199,33 +198,7 @@ en proceso
                                                                     <ul class="list-group">
                                                                         <li class="list-group-item">
                                                                             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                                                            <label class="form-check-label" for="flexRadioDefault1">
-                                                                                Acelga
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="list-group-item">
-                                                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                                                                            <label class="form-check-label" for="flexRadioDefault2">
-                                                                              Rabanitos
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="list-group-item">
-                                                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-                                                                            <label class="form-check-label" for="flexRadioDefault3">
-                                                                              Tomate
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="list-group-item">
-                                                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
-                                                                            <label class="form-check-label" for="flexRadioDefault4">
-                                                                              Espinaca
-                                                                            </label>
-                                                                        </li>
-                                                                        <li class="list-group-item">
-                                                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault5">
-                                                                            <label class="form-check-label" for="flexRadioDefault5">
-                                                                              Pimientos
-                                                                            </label>
+                                                                            <label class="form-check-label" for="flexRadioDefault1"></label>
                                                                         </li>
                                                                       </ul>
                                                                 </div>
