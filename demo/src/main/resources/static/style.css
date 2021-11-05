@@ -2,25 +2,6 @@
     padding: 15px;
 }
 
-.crear-cuenta-sesion{
-    height: 160px;
-    width: 190px;
-    background: url("img/login-back2.png");
-    right: 3%;
-    position: fixed;
-    z-index: 11000;
-    display:flex;
-}
-
-.login-buttons {
-    display: flex;
-    flex-direction: column;
-    margin-top: 60px;
-    width: 160px;
-    margin-left: 20px;
-    justify-content: space-evenly;
-}
-
 .colum1{
     height: auto;
 }
@@ -39,6 +20,7 @@
     height: 100%;
     background-size: cover;
     background-position: fixed;
+    min-height: 100vh;
 }
 body{
     position: relative;
@@ -46,6 +28,8 @@ body{
     min-height: 100vh;
     overflow-x: hidden;
     display: grid;
+    font-family: 'Handlee', cursive;
+
 }
 
 .titulo{
@@ -54,11 +38,27 @@ body{
     margin-left: 40px;
     margin-right: 40px;
     margin-bottom: 10px;
-    background-color: rgb(193, 203, 156);
+    background: rgba(29, 161, 51, 0.8);
     text-align: center;
     align-items: center;  /*para alignitems, justifycontent,display hay que poner flexbox en clase html*/
     justify-content: center;
     display:flex;
+}
+
+h1{
+    text-align: center;
+}
+
+.h5{
+    margin-top: 20px;
+    margin-bottom: 15px; 
+    text-align: center;
+}
+.color-boton{
+    background-color: yellowgreen;
+}
+.color-boton:hover{
+    background-color: yellowgreen;
 }
 
 .filtro{
@@ -66,49 +66,88 @@ body{
   margin-top: 10px;
   margin-left: 40px;
   margin-right: 40px;
-  background-color: rgb(193, 203, 156);
+  background: rgba(29, 161, 51, 0.8);
   align-items: center;  /*para alignitems, justifycontent,display hay que poner flexbox en clase html*/
   justify-content: center;
   display:flex;
 }
 .btn-otoño{
-    height: 90px;
-    width: 90px;
-    background-color: burlywood;
-    margin-right: 20px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-.btn-invierno{
-    height: 90px;
-    width: 90px;
-    background-color: lightblue;
-    margin-right: 20px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-.btn-primavera{
-    height: 90px;
-    width: 90px;
-    background-color: lightcoral;
-    margin-right: 20px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-.btn-verano{
-    height: 90px;
-    width: 90px;
-    background-image: url(verano.webp);
-    background-size: cover;
+    height: 150px;
+    width: 0px;
+    background-image: url("img/otoño.png");
     font-size: 2rem;
     align-items: center;
     justify-content: center;
     display: flex;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 40px;
+    margin-left: 40px;
+    border: 0px;
+}
+
+
+.btn-invierno{
+    height: 150px;
+    width: 0px;
+    background-image: url("img/invierno.png");
+    font-size: 2rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 40px;
+    margin-left: 40px;
+    border: 0px;
+    
+}
+
+
+.btn-primavera:hover,.btn-verano:hover,.btn-invierno:hover,.btn-otoño:hover {
+    color: #fff;
+    background-color: #0dfd49;
+    border-radius: 50%!important;
+}
+.btn-check:active+.btn-outline-primary, .btn-check:checked+.btn-outline-primary, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show, .btn-outline-primary:active{
+    color: #fff;
+    background-color: #0d6efd;
+    border-radius: 50%!important;
+}
+
+.btn-check:focus+.btn-outline-primary, .btn-outline-primary:focus {
+    box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 50%);
+    border-radius: 50%;
+}
+
+.btn-primavera{
+    height: 150px;
+    width: 0px;
+    background-image: url("img/primavera.png");
+    font-size: 2rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 40px;
+    margin-left: 40px;
+    border: 0px;
+}
+
+.btn-verano{
+    height: 150px;
+    width: 0px;
+    background-image: url("img/verano.png");
+    font-size: 2rem;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 40px;
+    margin-left: 40px;
+    border: 0px;
 }
 .resultados{
     height: auto;
@@ -116,10 +155,11 @@ body{
     margin-top: 10px;
     margin-left: 40px;
     margin-right: 40px;
-    background-color: rgb(193, 203, 156);
     align-items: center;
     justify-content: center;
     display:flex;
+    background: rgba(29, 161, 51, 0.8);
+    border-radius: .8rem;
 }
 .seleccionados{
     list-style: none;
@@ -137,10 +177,12 @@ body{
     margin-top: 10px;
     margin-left: 40px;
     margin-right: 40px;
-    background-color: rgb(193, 203, 156);
     align-items: center;
     justify-content: center;
     display:flex;
+    background: rgba(29, 161, 51, 0.8);
+    border-radius: .8rem;
+
 }
 .titulo-detalle{
     background: rosybrown;
@@ -149,6 +191,7 @@ body{
     align-items: center;
     justify-content: center;
     display:flex;
+    border-radius: .8rem;
 }
 .descripcion-detalle{
     background: whitesmoke;
@@ -156,10 +199,11 @@ body{
     width: 700px;
     padding: 30px ;
     background-color: aquamarine;
+    border-radius: .8rem;
 
 }
 h3{
-    font-size: 25px;;
+    font-size: 25px;
 }
 .lista-detalle{
     height: 30px;
@@ -171,11 +215,11 @@ h3{
     margin-right: 25%;
     z-index: 9999;
     height: 200px;
-    background: blanchedalmond;
     box-shadow: 9px 10px 5px rgb(0 0 0 / 20%);
     margin-bottom: -6%;
     align-items: center;
     justify-content: center;
+    border-radius: .8rem;
 }
 .parrafo-cuenta{
     color: brown;
@@ -202,6 +246,27 @@ h3{
 
 }
 
+.crear-cuenta-sesion{
+    height: 160px;
+    width: 190px;
+    background: url("img/login-back2.png");
+    right: 3%;
+    position: fixed;
+    z-index: 11000;
+    display:flex;
+}
+
+.login-buttons {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    width: 160px;
+    margin-left: 20px;
+    justify-content: space-evenly;
+}
+
+
+
 .button1{
     background-color: #6963a7; /* Green */
     border: none;
@@ -223,14 +288,6 @@ nav{
     width: 230px;
     display: grid;
 
-}
-
-.fondo-login{
-    background-image: url("img/fondo.jpg");
-    height: 700px;
-    background-size:auto;
-    background-repeat: no-repeat;
-    align-items: center;
 }
 
 /*------------REGISTER----------*/
