@@ -74,7 +74,7 @@
                               </div>
                             </div>
                         </div>
-                        
+
                         <div class="accordion" id="accordionExample">
                             <div class="accordion-item" th:each="parcela : ${usuario.parcelas}">
                               <h2 class="accordion-header" id="headingOne" >
@@ -91,7 +91,7 @@
                                     <div class="row row-cols-1 row-cols-md-3 g-4">
                                         <div class="col" th:each="planta : ${parcela.listaPlantas}">
                                           <div class="card h-100">
-                                            <img th:src="@{/img/planeta.png}" class="card-img-top" alt="...">
+                                            <img th:src="@{/img/card-cover.png}" class="card-img-top" alt="...">
                                             <div class="card-body">
                                                 <h5 class="card-title" th:text="${planta.nombre}"></h5>
                                                 <h6 class="card-title" th:text="${planta.tipoCultivo}"></h6>
@@ -122,7 +122,7 @@
                                                           </div>
                                                         </li>
                                                         <li class="list-group-item d-flex justify-content-between align-items-start">
-                                                        	<img th:src="@{/img/cosecha.png}" width="32" height="32">
+                                                        	<img th:src="@{/img/heladas.png}" width="32" height="32">
 	                                                        <div class="ms-2 me-auto">
 	                                                            <div style="padding: 5px" class="fw-bold" th:text="'Comportamiento a heladas: ' + ${planta.heladas}"></div>
                                                           </div>
