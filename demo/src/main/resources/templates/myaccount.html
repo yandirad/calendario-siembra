@@ -74,6 +74,7 @@
                               </div>
                             </div>
                         </div>
+                        
                         <div class="accordion" id="accordionExample">
                             <div class="accordion-item" th:each="parcela : ${usuario.parcelas}">
                               <h2 class="accordion-header" id="headingOne" >
@@ -87,8 +88,8 @@
                                         Agregar nuevo cultivo
                                     </button>
 
-                                    <div class="row row-cols-1 row-cols-md-3 g-4" th:each="planta : ${parcela.listaPlantas}">
-                                        <div class="col">
+                                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                                        <div class="col" th:each="planta : ${parcela.listaPlantas}">
                                           <div class="card h-100">
                                             <img th:src="@{/img/planeta.png}" class="card-img-top" alt="...">
                                             <div class="card-body">
