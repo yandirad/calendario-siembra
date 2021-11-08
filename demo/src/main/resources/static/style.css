@@ -347,5 +347,6 @@ nav{
 @keyframes caida {
     0%{top: -150px;}
     50%{top: 0px;}
-    100%{top: -70px;}
+    85%{top: -10px;}
+    100%{top: 0px;}
 }

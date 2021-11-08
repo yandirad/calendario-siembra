@@ -210,9 +210,61 @@
                                     </div>
                                     </form>
                                     <div class="d-grid gap-2 d-md-flex align-items-end justify-content-md-end botones-eliminar-modificar-parcela">
-                                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="far fa-delete"></i> Modificar parcela</button>
-                                        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="far fa-delete"></i> Eliminar parcela</button>
+                                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modificarparcela" data-bs-dismiss="modificar-parcela"><i class="far fa-delete"></i> Modificar parcela</button>
+                                        <div class="modal fade" id="modificarparcela" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">Modificar parcela</h5>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modificar-parcela" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form class="row">
+                                                        <input  hidden>
+                                                        <div class="col-6">
+                                                          <label for="NombreParcela" class="form-label">Nombre de la parcela</label>
+                                                          <input type="text" class="form-control"  id="modificarparcela" aria-describedby="nombre de la parcela" required>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <label for="TamanioParcela" class="form-label">Tamaño de la parcela</label>
+                                                            <div class="input-group mb-3">
+                                                                <input type="number" class="form-control" id="modificarparcela" aria-describedby="tamaño de la parcela" required>
+                                                                <span class="input-group-text">cm2</span>
+                                                              </div>
+                                                          </div>
+                                                      </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modificar-parcela">Cancelar</button>
+                                                    <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modificar-parcela" >Modificar</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#eliminarparcela" data-bs-dismiss="eliminar-parcela"><i class="far fa-delete"></i> Eliminar parcela</button>
+                                        <div class="modal fade" id="eliminarparcela" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="eliminarparcela">Modificar parcela</h5>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="eliminar-parcela" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div>
+                                                        <h5 class="h5">¿Esta seguro que desea eliminar esta parcela?</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="eliminar-parcela">Cancelar</button>
+                                                    <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modificar-parcela" >Eliminar</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        </div>
                                     </div>
+                                  </div>
+                                </div>
+                              </div>
                               </div>
                             </div>
                         </div>
