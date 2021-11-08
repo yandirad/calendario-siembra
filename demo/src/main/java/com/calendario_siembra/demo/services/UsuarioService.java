@@ -46,6 +46,8 @@ public class UsuarioService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Usuario user = usuarioRepository.findByUsuario(username);
+		if (!user.getEstado())
+			return null;
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
 
 		// use list if you wish
@@ -71,6 +73,7 @@ public class UsuarioService implements UserDetailsService {
 		validar(usuario);
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
 		usuario.setPass(bCryptPasswordEncoder.encode(usuario.getPass()));
+		usuario.setEstado(true);
 		usuarioRepository.save(usuario);
 	}
 
@@ -107,11 +110,11 @@ public class UsuarioService implements UserDetailsService {
 		Matcher matcher = pattern.matcher(mail);
 		return matcher.find();
 	}
-        
-        public void validarLogin(Usuario usuario) throws WebException{
-            if (usuario.getPass().isEmpty() || usuario.getPass().equals("") || usuario.getPass() == null
+
+	public void validarLogin(Usuario usuario) throws WebException {
+		if (usuario.getPass().isEmpty() || usuario.getPass().equals("") || usuario.getPass() == null
 				|| usuario.getPass().length() < 8) {
-		throw new WebException("La contraseña no puede estar vacía o tener menos de 8 dígitos");
+			throw new WebException("La contraseña no puede estar vacía o tener menos de 8 dígitos");
 		}
-        }
+	}
 }
