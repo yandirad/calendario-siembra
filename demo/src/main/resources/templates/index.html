@@ -33,8 +33,8 @@
                         <br>
                         <button class="color-boton btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true">Provincias</button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="#">Santa Fe</a></li>
-                                <li><a class="dropdown-item" href="#">Otras</a></li>
+                                <option><a class="dropdown-item" href="#">Santa Fe</a></option>
+                                <option><a class="dropdown-item" href="#">Otras</a></option>
                             </ul>
                     </div>
                     <div class="dropdown col-6 d-grid">
@@ -42,8 +42,8 @@
                         <br>
                         <button class="color-boton btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Tamaño</button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">0,5 mt2 a 1mt2</a></li>
-                            <li><a class="dropdown-item" href="#">1,1mt2 a 2mts</a></li>
+                            <option><a class="dropdown-item" href="#">0,5 mt2 a 1mt2</a></option>
+                            <option><a class="dropdown-item" href="#">1,1mt2 a 2mts</a></option>
                         </ul>
                     </div>
                     <div class="dropdown col-12 d-grid">
@@ -70,7 +70,7 @@
                         <div class="col-12">
                             <ul class="row">
                                 <li th:each="planta : ${listaPlantas}" class="seleccionados col-2">
-                                	<button class="btn btn-outline-success btn-lista " data-bs-toggle="collapse" 
+                                	<button class="btn btn-outline-success btn-lista " data-bs-toggle="collapse"
                                 		data-bs-target="#collapseDetalle" aria-expanded="false" aria-controls="collapseDetalle"
                                 		type="submit" th:text="${planta} == null ? '' : ${planta.nombre}" th:attr="onclick=|almacenTemporal('${planta.nombre}', '${planta.tipoCultivo}', '${planta.profundidadSiembra}', '${planta.horasSol}', '${planta.cantidadRiego}', '${planta.cosecha}', '${planta.heladas}', '${planta.diasCosecha}', '${planta.mesSiembra}', '${planta.descripcion}')|">
                                 	</button>
@@ -112,8 +112,8 @@
 	<!-- JS QUE COMPLETA EL HTML EN BASE A LA PLANTA SELECCIONADA -->
 	<script type="text/javascript">
 		var h2 = document.getElementById("nombre");
-		var ul = document.getElementById("detalles");		
-		var p = document.getElementById("descripcion");		
+		var ul = document.getElementById("detalles");
+		var p = document.getElementById("descripcion");
 		function almacenTemporal(nombre, tipoCultivo, profundidadSiembra, horasSol, cantidadRiego, cosecha, heladas, diasCosecha, mesSiembra, descripcion) {
 			console.log(nombre, tipoCultivo, profundidadSiembra, horasSol, cantidadRiego, cosecha, heladas, diasCosecha, mesSiembra, descripcion)
 			ul.innerHTML = "";
