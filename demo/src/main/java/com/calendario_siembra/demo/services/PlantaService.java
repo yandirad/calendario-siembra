@@ -6,6 +6,8 @@
 
 package com.calendario_siembra.demo.services;
 
+import com.calendario_siembra.demo.entity.Foto;
+import com.calendario_siembra.demo.entity.Parcela;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -14,17 +16,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.calendario_siembra.demo.entity.Planta;
+import com.calendario_siembra.demo.exceptions.WebException;
 import com.calendario_siembra.demo.repository.PlantaRepository;
+import java.util.Optional;
+import org.springframework.web.multipart.MultipartFile;
 
-/**
- *
- * 
- */
+
 @Service
 public class PlantaService {
 
 	@Autowired
 	private PlantaRepository plantaRepository;
+        
+        @Autowired
+        private FotoService fotoService;
 
 	@Transactional
 	public Planta buscarPlanta(String nombre) {
@@ -45,5 +50,62 @@ public class PlantaService {
 	public List<Planta> listarPlantas() {
 		return plantaRepository.findAll();
 	}
+        
+        //Metodo creado para el uso exclusivo de los administradores
+        public void registrar(String nombre, String tipoCultivo, String profundidadSiembra, 
+                Integer horasSol, String cantidadRiego, String cosecha, String heladas, String diasCosecha, 
+                String mesSiembra, String descripcion, MultipartFile archivo) throws WebException{
+            
+            Planta planta = new Planta();
+            planta.setNombre(nombre);
+            planta.setTipoCultivo(tipoCultivo);
+            planta.setProfundidadSiembra(profundidadSiembra);
+            planta.setHorasSol(horasSol);
+            planta.setCantidadRiego(cantidadRiego);
+            planta.setCosecha(cosecha);
+            planta.setHeladas(heladas);
+            planta.setDiasCosecha(diasCosecha);
+            planta.setMesSiembra(mesSiembra);
+            planta.setDescripcion(descripcion);
+            
+            Foto foto = fotoService.guardarFoto(archivo);
+            planta.setFoto(foto);
+            
+            plantaRepository.save(planta);
+        }
+        
+        //Metodo creado para el uso exclusivo de los administradores
+        public void modificar(String id, String nombre, String tipoCultivo, String profundidadSiembra, 
+            Integer horasSol, String cantidadRiego, String cosecha, String heladas, String diasCosecha, 
+            String mesSiembra, String descripcion, MultipartFile archivo) throws WebException{
+            
+            Optional<Planta> rta = plantaRepository.findById(id);
+            if(rta.isPresent()){
+                Planta planta = rta.get();
+                planta.setNombre(nombre);
+                planta.setTipoCultivo(tipoCultivo);
+                planta.setProfundidadSiembra(profundidadSiembra);
+                planta.setHorasSol(horasSol);
+                planta.setCantidadRiego(cantidadRiego);
+                planta.setCosecha(cosecha);
+                planta.setHeladas(heladas);
+                planta.setDiasCosecha(diasCosecha);
+                planta.setMesSiembra(mesSiembra);
+                planta.setDescripcion(descripcion);
+                
+                String idFoto = null;
+                if(planta.getFoto() != null){
+                    idFoto = planta.getFoto().getId();
+                }
+                
+                Foto foto = fotoService.actualizarFoto(idFoto, archivo);
+                planta.setFoto(foto);
+                
+                plantaRepository.save(planta);
+            }else{
+                throw new WebException("No se encontró la planta solicitada");
+            }
 
+        }
+        
 }

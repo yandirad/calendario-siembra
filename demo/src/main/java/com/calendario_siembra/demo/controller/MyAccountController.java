@@ -93,8 +93,7 @@ public class MyAccountController {
 	@PostMapping("/planta-alta")
 	public String altaPlanta(String parcelaID, String plantaID, Model modelo) {
 		try {
-
-			parcelaService.agregarPlanta(parcelaID, plantaID);
+                    parcelaService.agregarPlanta(parcelaID, plantaID);
 		} catch (WebException e) {
 			modelo.addAttribute("error", e.getMessage());
 		}

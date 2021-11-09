@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -53,16 +54,19 @@ public class Planta implements Serializable {
 
 	@Column
 	private Boolean estado = true;
-
-	public Planta() {
+        
+        @Column
+        @OneToOne
+        private Foto foto;
+        
+      	public Planta() {
 		super();
 	}
 
-	public Planta(String id, String nombre, String tipoCultivo, String profundidadSiembra, Integer horasSol,
+	public Planta(String nombre, String tipoCultivo, String profundidadSiembra, Integer horasSol,
 			String cantidadRiego, String cosecha, String heladas, String diasCosecha, String mesSiembra,
-			String descripcion, Parcela parcela) {
+			String descripcion, Foto foto) {
 		super();
-		this.id = id;
 		this.nombre = nombre;
 		this.tipoCultivo = tipoCultivo;
 		this.profundidadSiembra = profundidadSiembra;
@@ -73,6 +77,7 @@ public class Planta implements Serializable {
 		this.diasCosecha = diasCosecha;
 		this.mesSiembra = mesSiembra;
 		this.descripcion = descripcion;
+                this.foto = foto;
 	}
 
 	public String getId() {
@@ -170,5 +175,13 @@ public class Planta implements Serializable {
 	public void setEstado(Boolean estado) {
 		this.estado = estado;
 	}
+
+        public Foto getFoto() {
+            return foto;
+        }
+
+        public void setFoto(Foto foto) {
+            this.foto = foto;
+        }
 
 }
