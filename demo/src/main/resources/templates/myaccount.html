@@ -78,7 +78,7 @@
                         <div class="accordion" id="accordionExample">
                             <div class="accordion-item" th:each="parcela : ${usuario.parcelas}">
                               <h2 class="accordion-header" id="headingOne" >
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse" th:attr="data-bs-target=|#collapse${parcela.id}" aria-expanded="true" aria-controls="collapseOne" th:text="${parcela.nombre}">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" th:attr="data-bs-target=|#collapse${parcela.id}" aria-expanded="true" aria-controls="collapseOne" th:text="${parcela.nombre} + ' - Tamaño: ' + ${parcela.tamanioParcela} + ' cm2'" th:value="${parcela.id}">
                                 </button>
                               </h2>
                               <div th:attr="id=|collapse${parcela.id}|" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#collapse">
@@ -210,56 +210,59 @@
                                     </div>
                                     </form>
                                     <div class="d-grid gap-2 d-md-flex align-items-end justify-content-md-end botones-eliminar-modificar-parcela">
-                                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modificarparcela" data-bs-dismiss="modificar-parcela"><i class="far fa-delete"></i> Modificar parcela</button>
-                                        <div class="modal fade" id="modificarparcela" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                              <div class="modal-content">
-                                                <div class="modal-header">
-                                                  <h5 class="modal-title" id="exampleModalLabel">Modificar parcela</h5>
-                                                  <button type="button" class="btn-close" data-bs-dismiss="modificar-parcela" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form class="row">
-                                                        <input  hidden>
-                                                        <div class="col-6">
-                                                          <label for="NombreParcela" class="form-label">Nombre de la parcela</label>
-                                                          <input type="text" class="form-control"  id="modificarparcela" aria-describedby="nombre de la parcela" required>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <label for="TamanioParcela" class="form-label">Tamaño de la parcela</label>
-                                                            <div class="input-group mb-3">
-                                                                <input type="number" class="form-control" id="modificarparcela" aria-describedby="tamaño de la parcela" required>
-                                                                <span class="input-group-text">cm2</span>
-                                                              </div>
-                                                          </div>
-                                                      </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modificar-parcela">Cancelar</button>
-                                                    <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modificar-parcela" >Modificar</button>
-                                                </div>
-                                              </div>
-                                            </div>
+                                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" th:attr="data-bs-target=|#modificarparcela${parcela.id}" data-bs-dismiss="modificar-parcela"><i class="far fa-delete"></i> Modificar parcela</button>
+                                        <div class="modal fade" th:attr="id=|modificarparcela${parcela.id}|" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <form th:action="@{/my-account/parcela-alta-modificar}" th:object="${parcela}" method="post">
+                                            	<input type="hidden" th:name="id" th:value="${parcela.id}">
+                                            	<div class="modal-dialog">
+                                              		<div class="modal-content">
+	                                                	<div class="modal-header">
+	                                                  		<h5 class="modal-title" id="exampleModalLabel">Modificar parcela</h5>
+	                                                  		<button type="button" class="btn-close" data-bs-dismiss="modificar-parcela" aria-label="Close"></button>
+	                                                	</div>
+	                                                	<div class="modal-body">
+	                                                        <div class="col-6">
+	                                                          <label for="NombreParcela" class="form-label">Nombre de la parcela</label>
+	                                                          <input type="text" class="form-control" id="modificarparcela" aria-describedby="nombre de la parcela" th:name="nombre" th:value="${parcela.nombre}" required>
+	                                                        </div>
+	                                                        <div class="col-6">
+	                                                            <label for="TamanioParcela" class="form-label">Tamaño de la parcela</label>
+	                                                            <div class="input-group mb-3">
+	                                                                <input type="number" class="form-control" id="modificarparcela" aria-describedby="tamaño de la parcela" th:name="tamanioParcela" th:value="${parcela.tamanioParcela}" required>
+	                                                                <span class="input-group-text">cm2</span>
+	                                                              </div>
+	                                                        </div>
+	                                                	</div>
+	                                                	<div class="modal-footer">
+	                                                    	<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modificar-parcela">Cancelar</button>
+	                                                    	<button type="submit" class="btn btn-outline-success" data-bs-dismiss="modificar-parcela" >Modificar</button>
+	                                                	</div>
+                                              		</div>
+                                            	</div>
+                                            </form>
                                         </div>
-                                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#eliminarparcela" data-bs-dismiss="eliminar-parcela"><i class="far fa-delete"></i> Eliminar parcela</button>
-                                        <div class="modal fade" id="eliminarparcela" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                              <div class="modal-content">
-                                                <div class="modal-header">
-                                                  <h5 class="modal-title" id="eliminarparcela">Eliminar parcela</h5>
-                                                  <button type="button" class="btn-close" data-bs-dismiss="eliminar-parcela" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div>
-                                                        <h5 class="h5">¿Esta seguro que desea eliminar esta parcela?</h5>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="eliminar-parcela">Cancelar</button>
-                                                    <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modificar-parcela" >Eliminar</button>
-                                                </div>
-                                              </div>
-                                            </div>
+                                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" th:attr="data-bs-target=|#eliminarparcela${parcela.id}" data-bs-dismiss="eliminar-parcela"><i class="far fa-delete"></i> Eliminar parcela</button>
+                                        <div class="modal fade" th:attr="id=|eliminarparcela${parcela.id}|" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <form th:action="@{/my-account/parcela-baja}" method="post">
+	                                            <input type="hidden" th:name="parcelaID" th:value="${parcela.id}">
+	                                            <div class="modal-dialog">
+                                              		<div class="modal-content">
+                                                		<div class="modal-header">
+                                                  			<h5 class="modal-title" id="eliminarparcela">Eliminar parcela</h5>
+                                                  			<button type="button" class="btn-close" data-bs-dismiss="eliminar-parcela" aria-label="Close"></button>
+                                                		</div>
+	                                                	<div class="modal-body">
+	                                                    	<div>
+	                                                        	<h5 class="h5">¿Esta seguro que desea eliminar esta parcela?</h5>
+	                                                    	</div>
+	                                                	</div>
+		                                                <div class="modal-footer">
+		                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="eliminar-parcela">Cancelar</button>
+		                                                    <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modificar-parcela" >Eliminar</button>
+		                                                </div>
+                                             		</div>
+                                            	</div>
+                                            </form>
                                         </div>
                                     </div>
                                   </div>

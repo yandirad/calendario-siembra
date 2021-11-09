@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +23,7 @@ import com.calendario_siembra.demo.entity.Usuario;
 import com.calendario_siembra.demo.exceptions.WebException;
 import com.calendario_siembra.demo.repository.ParcelaRepository;
 import com.calendario_siembra.demo.repository.PlantaRepository;
+import com.calendario_siembra.demo.repository.UsuarioRepository;
 
 /**
  *
@@ -35,6 +38,9 @@ public class ParcelaService {
 	@Autowired
 	private PlantaRepository plantaRepository;
 
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { WebException.class })
 	public Parcela crearParcela(Parcela parcela) throws WebException {
 		validar(parcela);
@@ -46,6 +52,10 @@ public class ParcelaService {
 	@Transactional
 	public Parcela modificarParcela(Parcela parcela) throws WebException {
 		validar(parcela);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String nickName = auth.getName();
+		Usuario usuario = usuarioRepository.findByUsuario(nickName);
+		parcela.setUsuario(usuario);
 		return parcelaRepository.save(parcela);
 	}
 
@@ -72,9 +82,10 @@ public class ParcelaService {
 
 	}
 
-	public void bajaParcela(Parcela parcela) throws WebException {
-		parcela.setEstado(false);
-		parcelaRepository.save(parcela);
+	public void bajaParcela(String parcelaID) throws WebException {
+		Optional<Parcela> parcela = parcelaRepository.findById(parcelaID);
+		parcela.get().setEstado(false);
+		parcelaRepository.save(parcela.get());
 	}
 
 	public Parcela bajaPlanta(Parcela parcela, Planta planta) throws WebException {
