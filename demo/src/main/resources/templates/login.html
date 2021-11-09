@@ -33,7 +33,10 @@
                     <div class="">
                         <h4 class="h5"> <i>Bienvenido nuevamente, ingresa tus datos para acceder</i></h4>
                     </div>
-                    
+                    <div th:if="${exitoso}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                        <strong th:text="${exitoso}"></strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
                     <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
                         <strong th:text="${error}"></strong>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
