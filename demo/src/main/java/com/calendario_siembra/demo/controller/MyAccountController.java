@@ -79,14 +79,14 @@ public class MyAccountController {
 
 	// Método para dar la baja a una parcela
 	@PostMapping("/parcela-baja")
-	public String bajaParcela(@RequestParam Parcela parcela, Model modelo) {
+	public String bajaParcela(String parcelaID, Model modelo) {
 		try {
-			parcelaService.bajaParcela(parcela);
+			parcelaService.bajaParcela(parcelaID);
 		} catch (WebException e) {
 			modelo.addAttribute("error", e.getMessage());
 		}
 
-		return "redirect:/my-account.html/";
+		return "redirect:/my-account/";
 	}
 
 	// Método para dar la alta a una planta
