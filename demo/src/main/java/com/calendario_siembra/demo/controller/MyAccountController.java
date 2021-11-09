@@ -104,7 +104,7 @@ public class MyAccountController {
 
 	// Método para dar la baja a una planta
 	@PostMapping("/planta-baja")
-	public String bajaPlanta(@RequestParam Planta planta, @RequestParam Parcela parcela, Model modelo) {
+	public String bajaPlanta(Planta planta, Parcela parcela, Model modelo) {
 		try {
 			parcelaService.bajaPlanta(parcela, planta);
 		} catch (WebException e) {
