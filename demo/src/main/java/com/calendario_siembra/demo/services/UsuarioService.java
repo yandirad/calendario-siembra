@@ -88,7 +88,7 @@ public class UsuarioService implements UserDetailsService {
 		if (!validarMail(usuario.getMail())) {
 			throw new WebException("El mail no es válido.");
 		}
-		if (usuario.getMail().equals(usuarioRepository.findByMail(usuario.getMail()))) {
+		if (usuario.getMail().equals((String) usuarioRepository.findByMail(usuario.getMail()))) {
 			throw new WebException("El mail introducido ya fue registrado.");
 		}
 		if (usuario.getUsuario().isEmpty() || usuario.getUsuario().equals("") || usuario.getUsuario() == null) {
