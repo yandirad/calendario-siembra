@@ -1,14 +1,16 @@
 .btn-verano1{
     padding: 15px;
 }
-
+a{
+    text-decoration: none;
+}
 .colum1{
     height: auto;
 }
 .colum2{
     background: rgba(255, 255, 255, 0.8);
     height: auto;
-    margin-top: 100px;
+    margin-top: 50px;
     padding: 20px;
     border-radius: .8rem;
 }
@@ -43,6 +45,7 @@ body{
     align-items: center;  /*para alignitems, justifycontent,display hay que poner flexbox en clase html*/
     justify-content: center;
     display:flex;
+    border-radius: .8rem;
 }
 
 h1{
@@ -62,7 +65,7 @@ h1{
 }
 
 .filtro{
-  height: 400px;
+  height: auto;
   margin-top: 10px;
   margin-left: 40px;
   margin-right: 40px;
@@ -70,6 +73,10 @@ h1{
   align-items: center;  /*para alignitems, justifycontent,display hay que poner flexbox en clase html*/
   justify-content: center;
   display:flex;
+  border-radius: .8rem;
+}
+.boton-cultivo{
+    margin-bottom: 10px;
 }
 .btn-otoño{
     height: 150px;
@@ -103,7 +110,9 @@ h1{
     
 }
 
-
+.btn-group-vertical>.btn, .btn-group>.btn {
+    border-radius: 50%!important;
+}
 .btn-primavera:hover,.btn-verano:hover,.btn-invierno:hover,.btn-otoño:hover {
     color: #fff;
     background-color: #0dfd49;
@@ -263,6 +272,10 @@ h3{
     width: 160px;
     margin-left: 20px;
     justify-content: space-evenly;
+}
+.login-buttons a{
+    color: whitesmoke;
+    font-weight: bold;
 }
 
 
