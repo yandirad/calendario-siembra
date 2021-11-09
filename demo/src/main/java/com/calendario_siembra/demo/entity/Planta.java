@@ -21,6 +21,7 @@ public class Planta implements Serializable {
 	@Column
 	private String nombre;
 
+        //frutal, hortaliza, etc
 	@Column
 	private String tipoCultivo;
 
@@ -39,6 +40,7 @@ public class Planta implements Serializable {
 	@Column
 	private String heladas;
 
+        //tiempo que lleva hasta la cosecha.. ejemplo:90 dias
 	@Column
 	private String diasCosecha;
 
