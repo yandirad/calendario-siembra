@@ -6,11 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.calendario_siembra.demo.entity.Usuario;
 import com.calendario_siembra.demo.exceptions.WebException;
 import com.calendario_siembra.demo.services.UsuarioService;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/usuario")
@@ -28,12 +28,12 @@ public class UsuarioController {
 
 	@PostMapping("/registrar")
 	public String usuarioCreado(Usuario usuario, RedirectAttributes ra) {
-		try {                 
-                    usuarioService.guardarUsuario(usuario);
-                    ra.addFlashAttribute("exitoso", "Se registro correctamente");
-                    
+		try {
+			usuarioService.guardarUsuario(usuario);
+			ra.addFlashAttribute("exitoso", "Se registró correctamente! Inicie sesión");
+			return "redirect:/login";
 		} catch (WebException e) {
-                    ra.addFlashAttribute("error", e.getMessage());
+			ra.addFlashAttribute("error", e.getMessage());
 		}
 		return "redirect:/usuario/registrar";
 	}
