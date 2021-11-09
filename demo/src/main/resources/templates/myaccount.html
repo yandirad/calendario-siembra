@@ -144,7 +144,7 @@
 									<form th:action="@{/my-account/planta-alta}" method="post">
                                     <input type="hidden" th:name="parcelaID" th:value="${parcela.id}">
                                     <div class="modal fade" th:attr="id=|modal${parcela.id}|" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
-                                        <div class="modal-dialog">
+                                        <div class="modal-dialog larala">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalLabel2">Nuevo cultivo</h5>
@@ -152,37 +152,41 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="card card-body filtro-myaccount">
-                                                    <div class="dropdown col-6 d-grid">
-                                                        <label for="">Seleccioná tu provincia</label>
-                                                        <br>
-                                                        <select class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" placeholder="Provincias" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                                <option>Santa Fe</option>
-                                                            </ul>
-                                                        </select>
-                                                    </div>
-                                                    <div class="dropdown col-6 d-grid">
-                                                        <label for="">Seleccioná el tamaño de tu parcela</label>
-                                                        <br>
-                                                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Tamaño</button>
-                                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                            <option><a class="dropdown-item" href="#">0,5 mt2 a 1mt2</a></option>
-                                                            <option><a class="dropdown-item" href="#">1,1mt2 a 2mts</a></option>
-                                                        </ul>
+                                                    <div class="row flexbox">
+                                                        <div class="dropdown col-6 d-grid prov-tam">
+                                                            <label for="">Seleccioná tu provincia</label>
+                                                            <br>
+                                                            <select class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" placeholder="Provincias" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                                    <option>Santa Fe</option>
+                                                                </ul>
+                                                            </select>
+                                                        </div>
+                                                        <div class="dropdown col-6 d-grid prov-tam">
+                                                            <label for="">Seleccioná el tamaño de tu parcela</label>
+                                                            <br>
+                                                            <select class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" placeholder="Tamaño" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                                                    <option>>0,5 mt2 a 1mt2</option>
+                                                                    <option>>1,1mt2 a 2mts</option>
+                                                                </ul>
+                                                            </select>    
+                                                        </div>
                                                     </div>
                                                     <div class="dropdown col-12 d-grid">
+                                                        <div><h5 class="h5">Selecciona la estacion en la que queres sembrar</h5></div>
                                                         <div class="btn-group btn-estaciones" role="group" aria-label="Basic radio toggle button group">
                                                             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                                                            <label class="btn btn-outline-primary btn-invierno" for="btnradio1">Invierno</label>
+                                                            <label class="btn btn-outline-primary btn-invierno" for="btnradio1"></label>
 
                                                             <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                                                            <label class="btn btn-outline-primary btn-otoño" for="btnradio2">Otoño</label>
+                                                            <label class="btn btn-outline-primary btn-otoño" for="btnradio2"></label>
 
                                                             <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                                                            <label class="btn btn-outline-primary btn-primavera" for="btnradio3">Primavera</label>
+                                                            <label class="btn btn-outline-primary btn-primavera" for="btnradio3"></label>
 
                                                             <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-                                                            <label class="btn btn-outline-primary btn-verano" for="btnradio4">Verano</label>
+                                                            <label class="btn btn-outline-primary btn-verano" for="btnradio4"></label>
                                                         </div>
                                                         <br>
                                                         <button class="btn btn-primary d-grid" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">BUSCAR MI CULTIVO IDEAL</button>

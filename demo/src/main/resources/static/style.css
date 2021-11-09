@@ -158,6 +158,9 @@ h1{
     margin-left: 40px;
     border: 0px;
 }
+.larala{
+    max-width: 800px;
+}
 .resultados{
     height: auto;
     max-height: auto;
@@ -319,11 +322,15 @@ nav{
 /*-----------------------------------------------------------------------------------------------*/
 .filtro-myaccount{
     margin-right: 40px;
-    width: 465px;
+    width: 100%;
     background-color: rgb(193, 203, 156);
     align-items: center;
     justify-content: center;
     display: flex;
+}
+.prov-tam{
+    align-items: center;
+    justify-content: center;
 }
 .boton{
     margin-top: 50px;
