@@ -22,7 +22,7 @@ import com.calendario_siembra.demo.entity.Usuario;
 @Repository
 public interface ParcelaRepository extends JpaRepository<Parcela, String> {
 
-	@Query("SELECT p FROM Parcela p WHERE p.usuario = :usuario")
+	@Query("SELECT p FROM Parcela p WHERE p.usuario = :usuario AND p.estado = true")
 	public List<Parcela> obtenerListaParcelas(@Param("usuario") Usuario usuario);
 
 }
