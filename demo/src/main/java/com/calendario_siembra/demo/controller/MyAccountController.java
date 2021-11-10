@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.calendario_siembra.demo.entity.Parcela;
 import com.calendario_siembra.demo.entity.Planta;
@@ -20,12 +21,6 @@ import com.calendario_siembra.demo.exceptions.WebException;
 import com.calendario_siembra.demo.services.ParcelaService;
 import com.calendario_siembra.demo.services.PlantaService;
 import com.calendario_siembra.demo.services.UsuarioService;
-import java.util.Optional;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 @RequestMapping("/my-account")
@@ -42,7 +37,7 @@ public class MyAccountController {
 
     // vista inicial del perfil de cada usuario
     @GetMapping("/")
-    public String verDatos(Model modelo) {
+    public String verDatos(Model modelo, @RequestParam(required = false) String error) {
         Usuario usuario = usuarioService.buscarUsuario();
         if (usuario == null) {
             return "redirect:/login";
@@ -51,20 +46,20 @@ public class MyAccountController {
         modelo.addAttribute("nuevaParcela", new Parcela(usuario));
         modelo.addAttribute("listaCultivos", plantaService.listarPlantas());
         modelo.addAttribute("nuevaPlanta", new Planta());
+        modelo.addAttribute("error", error);
         return "myaccount.html";
     }
 
     // Metodo para modificar datos del usuario, mediante pop-up
     @PostMapping("/usuario-modificar")
-    public String modificarUsuario(@RequestParam Usuario usuario, Model modelo) {
+    public String modificarUsuario(Usuario usuario, RedirectAttributes ra) {
         try {
             usuarioService.guardarUsuario(usuario);
-
         } catch (WebException e) {
-            modelo.addAttribute("error", e.getMessage());
+            ra.addAttribute("error", e.getMessage());
         }
 
-        return "redirect:/my-account.html/";
+        return "redirect:/my-account/";
     }
 
     // Método para crear/modificar una nueva parcela
@@ -118,7 +113,5 @@ public class MyAccountController {
 
         return "redirect:/my-account/";
     }
-
-    
 
 }

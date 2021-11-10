@@ -75,6 +75,7 @@ public class UsuarioService implements UserDetailsService {
 		usuario.setPass(bCryptPasswordEncoder.encode(usuario.getPass()));
 		usuario.setEstado(true);
 		usuarioRepository.save(usuario);
+		SecurityContextHolder.clearContext();
 	}
 
 	public void validar(Usuario usuario) throws WebException {
@@ -88,13 +89,23 @@ public class UsuarioService implements UserDetailsService {
 		if (!validarMail(usuario.getMail())) {
 			throw new WebException("El mail no es válido.");
 		}
-		if (usuario.getMail().equals((String) usuarioRepository.findByMail(usuario.getMail()))) {
-			throw new WebException("El mail introducido ya fue registrado.");
+		if (usuario.getId() == null) {
+			if (usuario.getMail().equals((String) usuarioRepository.findByMail(usuario.getMail()))) {
+				throw new WebException("El mail introducido ya fue registrado.");
+			}
+		} else {
+			if (usuario.getMail()
+					.equals((String) usuarioRepository.findByMailUser(usuario.getMail(), usuario.getUsuario()))) {
+				throw new WebException("El mail introducido ya se encuentra en uso.");
+			}
 		}
 		if (usuario.getUsuario().isEmpty() || usuario.getUsuario().equals("") || usuario.getUsuario() == null) {
 			throw new WebException("El usuario no puede estar vacío");
-		} else if (usuario.getUsuario().equals(usuarioRepository.buscarUsuario(usuario.getUsuario()))) {
-			throw new WebException("El usuario ya existe.");
+		}
+		if (usuario.getId() == null) {
+			if (usuario.getUsuario().equals(usuarioRepository.buscarUsuario(usuario.getUsuario()))) {
+				throw new WebException("El usuario ya existe.");
+			}
 		}
 		if (usuario.getPass().isEmpty() || usuario.getPass().equals("") || usuario.getPass() == null
 				|| usuario.getPass().length() < 8) {
@@ -112,14 +123,14 @@ public class UsuarioService implements UserDetailsService {
 	}
 
 	public void validarLogin(Usuario usuario) throws WebException {
-            if (usuario.getPass().isEmpty() || usuario.getPass().equals("") || usuario.getPass() == null
-			|| usuario.getPass().length() < 8) {
-		throw new WebException("La contraseña no puede estar vacía o tener menos de 8 dígitos");
-            }
+		if (usuario.getPass().isEmpty() || usuario.getPass().equals("") || usuario.getPass() == null
+				|| usuario.getPass().length() < 8) {
+			throw new WebException("La contraseña no puede estar vacía o tener menos de 8 dígitos");
+		}
 	}
-        
-        public void bajaUsuario(Usuario usuario) throws WebException{
-            usuario.setEstado(false);
-            usuarioRepository.save(usuario);
-        }
+
+	public void bajaUsuario(Usuario usuario) throws WebException {
+		usuario.setEstado(false);
+		usuarioRepository.save(usuario);
+	}
 }

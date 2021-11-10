@@ -31,6 +31,10 @@
                         </div>
                         <div class="card col-6">
                             <div class="card-body">
+                                <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+			                        <strong th:text="${error}"></strong>
+			                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			                    </div>
                                 <h3>Mis Datos</h3>
                                 <ul class="lista-usuario">
                                     <li class="card-title" th:text="'Nombre: ' + ${usuario.nombre}"></li>
@@ -46,40 +50,34 @@
                                 <div class="modal fade" id="modifUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="modifUsuarioLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
+                                        <form th:action="@{/my-account/usuario-modificar}" method="post" th:object="${usuario}" class="flexbox">
+                                            <input type="hidden" class="form-control" th:field="${usuario.id}" th:name="id" required>
+                                            <input type="hidden" class="form-control" th:field="${usuario.usuario}" th:name="usuario">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="modifUsuarioLabel">Editar tus datos</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form th:action="@{/usuario/registrar}" method="post" th:object="${usuario}" class="flexbox">
                                                     <div class="mb-2 container">
                                                         <label for="nombre" class="form-label">Nombre</label>
-                                                        <input type="text" class="form-control" th:field="${usuario.nombre}" th:name="nombre">
+                                                        <input type="text" class="form-control" th:field="${usuario.nombre}" th:name="nombre" required>
                                                     </div>
 
                                                     <div class="mb-2 container">
                                                         <label for="email" class="form-label">Correo electrónico</label>
-                                                        <input type="text" class="form-control" th:field="${usuario.mail}" th:name="mail">
+                                                        <input type="text" class="form-control" th:field="${usuario.mail}" th:name="mail" required>
                                                     </div>
-
-
-                                                    <div class="mb-2 container">
-                                                        <label for="usuario" class="form-label">Usuario</label>
-                                                        <input type="text" class="form-control" th:field="${usuario.usuario}" th:name="usuario">
-                                                    </div>
-
-
 
                                                     <div class="mb-2 container">
                                                         <label for="contraseña" class="form-label">Contraseña</label>
-                                                        <input type="password" class="form-control" th:field="${usuario.pass}" th:name="pass">
+                                                        <input type="password" class="form-control" th:field="${usuario.pass}" th:name="pass" required>
                                                     </div>
-                                                </form>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
-                                                <button type="button" class="btn btn-success">Guardar</button>
+                                                <button type="submit" class="btn btn-success">Guardar</button>
                                             </div>
+											</form>
                                         </div>
                                     </div>
                                 </div>
@@ -139,7 +137,7 @@
                                             <div class="row row-cols-1 row-cols-md-3 g-4">
                                                 <div class="col" th:each="planta : ${parcela.listaPlantas}">
                                                     <div class="card h-100">
-                                                        <img th:if="${planta.foto != null}" th:src="${'/admin/foto/' + planta.id}" class="card-img-top" width="">
+                                                        <img th:if="${planta.foto != null}" th:src="${'/my-account/foto/' + planta.id}" class="card-img-top" width="">
                                                         <div class="card-body">
                                                             <h5 class="card-title" th:text="${planta.nombre}"></h5>
                                                             <h6 class="card-title" th:text="${planta.tipoCultivo}"></h6>
