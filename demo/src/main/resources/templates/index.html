@@ -15,8 +15,8 @@
     <div class="fondo">
         <div id="animation" class="row crear-cuenta-sesion">
             <div class="login-buttons">
-                <button type="button" class="btn btn-success btn-sm d-grid gap-2"><a th:href=@{/login}>Iniciar Sesión</a></button>
-                <button type="button" class="btn btn-info btn-sm d-grid gap-2"><a th:href=@{/usuario/registrar}>Crear Cuenta</a></button>
+                <button type="button" class="btn btn-success btn-sm d-grid gap-2"><a th:href="@{/login}">Iniciar Sesión</a></button>
+                <button type="button" class="btn btn-info btn-sm d-grid gap-2"><a th:href="@{/usuario/registrar}">Crear Cuenta</a></button>
             </div>
         </div>
         <div class="row">
@@ -90,8 +90,8 @@
                                 <div class="parrafo-cuenta">
                                     <h5 class="h5">¡Crea una cuenta para organizar tus cultivos!</h5>
                                 </div>
-                                <button class="btn btn-primary botonCrearCuenta" th:href=@{/usuario/registrar} for="btnradio4">
-                                    Crear Cuenta
+                                <button class="btn btn-primary botonCrearCuenta" for="btnradio4">
+                                    <a style="text-decoration: none; color: white" th:href="@{/usuario/registrar}">Crear Cuenta</a>
                                 </button>
                             </div>
                         </div>
