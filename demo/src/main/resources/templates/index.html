@@ -70,16 +70,7 @@
                     <div class="collapse" id="collapseExample">
                         <div class="col-12">
                             <ul class="row">
-<<<<<<< HEAD
-                                <li th:each="planta : ${listaPlantas}" class="seleccionados col-2">
-                                	<button class="btn btn-success btn-lista " data-bs-toggle="collapse"
-                                		data-bs-target="#collapseDetalle" aria-expanded="false" aria-controls="collapseDetalle"
-                                		type="submit" th:text="${planta} == null ? '' : ${planta.nombre}" th:attr="onclick=|almacenTemporal('${planta.nombre}', '${planta.tipoCultivo}', '${planta.profundidadSiembra}', '${planta.horasSol}', '${planta.cantidadRiego}', '${planta.cosecha}', '${planta.heladas}', '${planta.diasCosecha}', '${planta.mesSiembra}', '${planta.descripcion}')|">
-                                	</button>
-                                </li>
-=======
                                 <li id="botones" class="seleccionados col-2"></li>
->>>>>>> 3d828f0dd5bec75c608e70f9775b32531519b4f1
                             </ul>
                         </div>
                     </div>
