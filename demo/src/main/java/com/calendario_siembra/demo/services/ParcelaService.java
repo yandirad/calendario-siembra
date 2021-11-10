@@ -7,6 +7,7 @@
 package com.calendario_siembra.demo.services;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +25,6 @@ import com.calendario_siembra.demo.exceptions.WebException;
 import com.calendario_siembra.demo.repository.ParcelaRepository;
 import com.calendario_siembra.demo.repository.PlantaRepository;
 import com.calendario_siembra.demo.repository.UsuarioRepository;
-import java.util.Iterator;
 
 /**
  *
@@ -56,6 +56,11 @@ public class ParcelaService {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String nickName = auth.getName();
 		Usuario usuario = usuarioRepository.findByUsuario(nickName);
+		for (Parcela obj : usuario.getParcelas()) {
+			if (obj.getId().equals(parcela.getId())) {
+				parcela.setListaPlantas(obj.getListaPlantas());
+			}
+		}
 		parcela.setUsuario(usuario);
 		return parcelaRepository.save(parcela);
 	}
@@ -90,18 +95,18 @@ public class ParcelaService {
 	}
 
 	public Parcela bajaPlanta(String parcelaId, String plantaId) throws WebException {
-                Optional<Parcela> parcela = parcelaRepository.findById(parcelaId);
-                List<Planta> plantas = parcela.get().getListaPlantas();
-                
-                Iterator<Planta> it = plantas.iterator();
-                while(it.hasNext()){
-                    Planta planta = (Planta) it.next();
-                    if(planta.getId().equals(plantaId)){
-                        plantas.remove(planta);
-                        break;
-                    }
-                    
-                }
+		Optional<Parcela> parcela = parcelaRepository.findById(parcelaId);
+		List<Planta> plantas = parcela.get().getListaPlantas();
+
+		Iterator<Planta> it = plantas.iterator();
+		while (it.hasNext()) {
+			Planta planta = (Planta) it.next();
+			if (planta.getId().equals(plantaId)) {
+				plantas.remove(planta);
+				break;
+			}
+
+		}
 		return parcelaRepository.save(parcela.get());
 	}
 
