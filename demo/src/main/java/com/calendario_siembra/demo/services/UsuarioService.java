@@ -112,9 +112,14 @@ public class UsuarioService implements UserDetailsService {
 	}
 
 	public void validarLogin(Usuario usuario) throws WebException {
-		if (usuario.getPass().isEmpty() || usuario.getPass().equals("") || usuario.getPass() == null
-				|| usuario.getPass().length() < 8) {
-			throw new WebException("La contraseña no puede estar vacía o tener menos de 8 dígitos");
-		}
+            if (usuario.getPass().isEmpty() || usuario.getPass().equals("") || usuario.getPass() == null
+			|| usuario.getPass().length() < 8) {
+		throw new WebException("La contraseña no puede estar vacía o tener menos de 8 dígitos");
+            }
 	}
+        
+        public void bajaUsuario(Usuario usuario) throws WebException{
+            usuario.setEstado(false);
+            usuarioRepository.save(usuario);
+        }
 }

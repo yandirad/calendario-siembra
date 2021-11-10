@@ -11,16 +11,22 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Foto implements Serializable {
 
     @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     
+    @Column
     private String mime;
+    @Column
     private String nombre;
 
     @Column(length=Integer.MAX_VALUE, nullable=true)
