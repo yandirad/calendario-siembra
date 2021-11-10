@@ -22,7 +22,7 @@ public class Planta implements Serializable {
 	@Column
 	private String nombre;
 
-        //frutal, hortaliza, etc
+	// frutal, hortaliza, etc
 	@Column
 	private String tipoCultivo;
 
@@ -41,7 +41,7 @@ public class Planta implements Serializable {
 	@Column
 	private String heladas;
 
-        //tiempo que lleva hasta la cosecha.. ejemplo:90 dias
+	// tiempo que lleva hasta la cosecha.. ejemplo:90 dias
 	@Column
 	private String diasCosecha;
 
@@ -62,9 +62,8 @@ public class Planta implements Serializable {
 		super();
 	}
 
-	public Planta(String nombre, String tipoCultivo, String profundidadSiembra, Integer horasSol,
-			String cantidadRiego, String cosecha, String heladas, String diasCosecha, String mesSiembra,
-			String descripcion, Foto foto) {
+	public Planta(String nombre, String tipoCultivo, String profundidadSiembra, Integer horasSol, String cantidadRiego,
+			String cosecha, String heladas, String diasCosecha, String mesSiembra, String descripcion, Foto foto) {
 		super();
 		this.nombre = nombre;
 		this.tipoCultivo = tipoCultivo;
@@ -76,7 +75,7 @@ public class Planta implements Serializable {
 		this.diasCosecha = diasCosecha;
 		this.mesSiembra = mesSiembra;
 		this.descripcion = descripcion;
-                this.foto = foto;
+		this.foto = foto;
 	}
 
 	public String getId() {
@@ -175,12 +174,12 @@ public class Planta implements Serializable {
 		this.estado = estado;
 	}
 
-        public Foto getFoto() {
-            return foto;
-        }
+	public Foto getFoto() {
+		return foto;
+	}
 
-        public void setFoto(Foto foto) {
-            this.foto = foto;
-        }
+	public void setFoto(Foto foto) {
+		this.foto = foto;
+	}
 
 }
