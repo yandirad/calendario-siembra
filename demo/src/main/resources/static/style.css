@@ -197,44 +197,40 @@ h1{
 
 }
 .titulo-detalle{
-    background: rosybrown;
-    height: 90px;
-    width: 300px;
-    align-items: center;
-    justify-content: center;
     display:flex;
-    border-radius: .8rem;
 }
+
 .descripcion-detalle{
-    background: whitesmoke;
-    margin: 40px;
-    width: 700px;
-    padding: 30px ;
-    background-color: aquamarine;
-    border-radius: .8rem;
 
 }
+
+.detalle-cultivo-internal{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 25px;
+}
+
 h3{
     font-size: 25px;
 }
 .lista-detalle{
-    height: 30px;
     list-style: none;
 }
 .crearCuenta{
     background:rgb(193, 203, 156);
-    margin-left: 25%;
-    margin-right: 25%;
     z-index: 9999;
-    height: 200px;
     box-shadow: 9px 10px 5px rgb(0 0 0 / 20%);
-    margin-bottom: -6%;
-    align-items: center;
-    justify-content: center;
     border-radius: .8rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: 260px;
+    padding: 10px;
+    margin: auto;
 }
 .parrafo-cuenta{
-    color: brown;
+    color: rgba(11, 82, 89, 0.94);
 }
 .boton-crear-cuenta{
     height: 90px;
@@ -281,7 +277,10 @@ h3{
     font-weight: bold;
 }
 
-
+.detalle-atributo {
+    margin:0;
+    padding: 0;
+}
 
 .button1{
     background-color: #6963a7; /* Green */
@@ -312,9 +311,8 @@ nav{
 }
 
 .botonCrearCuenta{
-    align-items: center;
-    width: 230px;
-    text-align: center;
+    margin: auto;
+    min-width: 150px;
 }
 
 /*-----------------------------------------------------------------------------------------------*/

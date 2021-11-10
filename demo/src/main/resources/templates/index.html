@@ -71,7 +71,7 @@
                         <div class="col-12">
                             <ul class="row">
                                 <li th:each="planta : ${listaPlantas}" class="seleccionados col-2">
-                                	<button class="btn btn-outline-success btn-lista " data-bs-toggle="collapse"
+                                	<button class="btn btn-success btn-lista " data-bs-toggle="collapse"
                                 		data-bs-target="#collapseDetalle" aria-expanded="false" aria-controls="collapseDetalle"
                                 		type="submit" th:text="${planta} == null ? '' : ${planta.nombre}" th:attr="onclick=|almacenTemporal('${planta.nombre}', '${planta.tipoCultivo}', '${planta.profundidadSiembra}', '${planta.horasSol}', '${planta.cantidadRiego}', '${planta.cosecha}', '${planta.heladas}', '${planta.diasCosecha}', '${planta.mesSiembra}', '${planta.descripcion}')|">
                                 	</button>
@@ -81,7 +81,7 @@
                     </div>
                 </div>
                 <div class="detalle-cultivo flexbox">
-                    <div class="collapse" id="collapseDetalle">
+                    <div class="collapse detalle-cultivo-internal" id="collapseDetalle">
                         <div class="titulo-detalle">
                             <h2 id="nombre"></h2>
                         </div>
@@ -89,16 +89,15 @@
                             <p id="descripcion"></p>
                         </div>
                         <div>
-                            <ul class="row" id="detalles">
+                            <ul class="detalle-atributo" id="detalles">
                             </ul>
-                            <div class="crearCuenta flexbox">
+                            <div class="crearCuenta">
                                 <div class="parrafo-cuenta">
-                                    <h5 class="h5">Crea una cuenta para organizar tus cultivos</h5>
+                                    <h5 class="h5">¡Crea una cuenta para organizar tus cultivos!</h5>
                                 </div>
-                                <div class="boton-crear-cuenta">
-                                    <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
-                                    <label class="btn btn-outline-primary btn-verano" for="btnradio4"><a th:href=@{/usuario/registrar}>Crear Cuenta</a></label>
-                                </div>
+                                <button class="btn btn-primary botonCrearCuenta" th:href=@{/usuario/registrar} for="btnradio4">
+                                    Crear Cuenta
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -120,15 +119,12 @@
 			ul.innerHTML = "";
 			h2.innerHTML = nombre;
 			p.innerHTML = descripcion;
-			if(mesSiembra){
+			if(!mesSiembra){
 				mesSiembra = "Cualquier estación"
 			}
 			var lista = {"Tipo de cultivo":tipoCultivo, "Profundiad de siembra":profundidadSiembra, "Horas de sol":horasSol, "Cantidad de riego":cantidadRiego, "Forma de cosecha":cosecha, "Resistencia a heladas":heladas, "Dias para la cosecha":diasCosecha, "Mes de siembra":mesSiembra };
 			for(var k in lista){
-				ul.innerHTML += `<div class="col-4">
-	            <h4>${k}</h4>
-	            <li class="lista-detalle">${lista[k]}</li>
-	        	</div>`
+				ul.innerHTML += `<h5>${k}</h5><li class="lista-detalle">${lista[k]}</li>`;
 			}
 		}
 	</script>
