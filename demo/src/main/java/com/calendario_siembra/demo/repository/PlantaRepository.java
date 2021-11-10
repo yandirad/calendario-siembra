@@ -17,5 +17,5 @@ import org.springframework.stereotype.Repository;
 public interface PlantaRepository extends JpaRepository<Planta, String>{
 	
 	public Planta findByNombre(String nombre);
-           
+                   
 }

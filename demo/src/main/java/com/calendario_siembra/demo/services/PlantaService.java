@@ -7,7 +7,6 @@
 package com.calendario_siembra.demo.services;
 
 import com.calendario_siembra.demo.entity.Foto;
-import com.calendario_siembra.demo.entity.Parcela;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -34,6 +33,11 @@ public class PlantaService {
 	@Transactional
 	public Planta buscarPlanta(String nombre) {
 		return plantaRepository.findByNombre(nombre);
+	}
+        
+        @Transactional
+	public Optional<Planta> buscarPlantaID(String id) {
+		return plantaRepository.findById(id);
 	}
 
 	@Transactional

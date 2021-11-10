@@ -42,7 +42,7 @@ public class AdminController {
 	public String registrar(Model modelo) {
             Planta planta = new Planta();
             modelo.addAttribute("planta", planta);
-            return "xx"; //nombre HTML
+            return "form-planta.html"; //nombre HTML
 	}
 
 	@PostMapping("/registrar-planta")
@@ -60,11 +60,11 @@ public class AdminController {
                             cantidadRiego, cosecha, heladas, diasCosecha, mesSiembra, descripcion, archivo);
                     ra.addFlashAttribute("exitoso", "Se cargó la modificación correctamente!");
                 }
-		return "redirect:/xx";//agregar ruta para caso exitoso
+		return "redirect:/admin/registrar-planta/";//agregar ruta (no el nombre del html) para caso exitoso
 		} catch (WebException e) {
 			ra.addFlashAttribute("error", e.getMessage());
 		}
-		return "redirect:/xx";//agregar ruta para caso NO exitoso
+		return "redirect:/admin/registrar-planta/";//agregar ruta (no el nombre del html) para caso NO exitoso
 	}
         
         //ruta para eliminar planta (baja)
