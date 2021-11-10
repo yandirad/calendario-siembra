@@ -30,9 +30,10 @@ and open the template in the editor.
         
         
         <form th:action="@{/admin/registrar-planta}" method="post" th:object="${planta}" enctype="multipart/form-data" class="flexbox">
+            <input type="hidden" name="id" th:value="${planta} == null ? 'no tiene' : ${planta.id}"/>
             <div class="mb-2 container">
                 <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" th:field="${planta.nombre}" th:name="nombre">
+                <input type="text" class="form-control" th:value="${planta} == null ? 'no tiene' : ${planta.nombre}" th:name="nombre">
             </div>
 
             <div class="mb-2 container">

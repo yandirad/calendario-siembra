@@ -119,25 +119,6 @@ public class MyAccountController {
         return "redirect:/my-account/";
     }
 
-    //Metodo para cargar una foto de planta
-    @GetMapping("/foto/{id}")
-    public ResponseEntity<byte[]> fotoPlanta(@PathVariable String id) throws WebException {
-        Optional<Planta> planta = plantaService.buscarPlantaID(id);
-
-        if (planta.isPresent()) {
-            if (planta.get().getFoto() == null) {
-                throw new WebException("La planta no posee foto");
-            }
-            byte[] foto = planta.get().getFoto().getContenido();
-
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.IMAGE_JPEG);
-
-            return new ResponseEntity<>(foto, headers, HttpStatus.OK);
-
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-
-    }
+    
 
 }

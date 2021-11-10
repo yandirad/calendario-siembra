@@ -139,7 +139,7 @@
                                             <div class="row row-cols-1 row-cols-md-3 g-4">
                                                 <div class="col" th:each="planta : ${parcela.listaPlantas}">
                                                     <div class="card h-100">
-                                                        <img th:if="${planta.foto != null}" th:src="${'/my-account/foto/' + planta.id}" class="card-img-top" width="">
+                                                        <img th:if="${planta.foto != null}" th:src="${'/admin/foto/' + planta.id}" class="card-img-top" width="">
                                                         <div class="card-body">
                                                             <h5 class="card-title" th:text="${planta.nombre}"></h5>
                                                             <h6 class="card-title" th:text="${planta.tipoCultivo}"></h6>
