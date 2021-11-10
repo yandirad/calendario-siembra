@@ -55,7 +55,6 @@ public class Planta implements Serializable {
 	@Column
 	private Boolean estado = true;
         
-        @Column
         @OneToOne
         private Foto foto;
         
