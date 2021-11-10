@@ -24,6 +24,7 @@ import com.calendario_siembra.demo.exceptions.WebException;
 import com.calendario_siembra.demo.repository.ParcelaRepository;
 import com.calendario_siembra.demo.repository.PlantaRepository;
 import com.calendario_siembra.demo.repository.UsuarioRepository;
+import java.util.Iterator;
 
 /**
  *
@@ -88,9 +89,20 @@ public class ParcelaService {
 		parcelaRepository.save(parcela.get());
 	}
 
-	public Parcela bajaPlanta(Parcela parcela, Planta planta) throws WebException {
-		parcela.getListaPlantas().remove(planta);
-		return parcelaRepository.save(parcela);
+	public Parcela bajaPlanta(String parcelaId, String plantaId) throws WebException {
+                Optional<Parcela> parcela = parcelaRepository.findById(parcelaId);
+                List<Planta> plantas = parcela.get().getListaPlantas();
+                
+                Iterator<Planta> it = plantas.iterator();
+                while(it.hasNext()){
+                    Planta planta = (Planta) it.next();
+                    if(planta.getId().equals(plantaId)){
+                        plantas.remove(planta);
+                        break;
+                    }
+                    
+                }
+		return parcelaRepository.save(parcela.get());
 	}
 
 }
