@@ -178,9 +178,45 @@
                                                     </ol>
                                                 </p>
                                                 <div class="d-grid gap-2 d-md-flex align-items-end justify-content-md-end">
-                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="far fa-delete"></i> Ver detalles</button>
-                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="far fa-delete"></i> Eliminar</button>
+                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#ModalDetalle" >Ver detalles</button>
+                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#ModalEliminarCultivo"><i class="far fa-delete"></i> Eliminar</button>
                                                 </div>
+
+                                                <!-- Modal Detalle-->
+                                                <div class="modal fade" id="ModalDetalle" tabindex="-1" aria-labelledby="ModalDetalle" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                        <h5 class="modal-title" id="ModalDetalleLabel">Nombre planta</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        ...
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <!-- Modal Eliminar Cultivo -->
+                                                <div class="modal fade" id="ModalEliminarCultivo" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ModalEliminarCultivoLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="ModalEliminarCultivoLabel">Eliminar Cultivo</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>¿Esta seguro que desea eliminar este Cultivo?</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
+                                                            <button type="button" class="btn btn-danger">Eliminar</button>
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                
                                             </div>
                                             <div class="card-footer">
                                               <small class="text-success" th:text="'Dias hasta la cosecha: ' + ${planta.diasCosecha}"></small>
@@ -264,15 +300,15 @@
                                     </div>
                                     </form>
                                     <div class="d-grid gap-2 d-md-flex align-items-end justify-content-md-end botones-eliminar-modificar-parcela">
-                                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" th:attr="data-bs-target=|#modificarparcela${parcela.id}" data-bs-dismiss="modificar-parcela"><i class="far fa-delete"></i> Modificar parcela</button>
-                                        <div class="modal fade" th:attr="id=|modificarparcela${parcela.id}|" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                             
-                                            	<input type="hidden" th:name="id" th:value="${parcela.id}">
+                                        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" th:attr="data-bs-target=|#modificarparcela${parcela.id}" data-bs-dismiss="modal"></i> Modificar parcela</button>
+                                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" th:attr="data-bs-target=|#eliminarparcela${parcela.id}" data-bs-dismiss="eliminar-parcela"><i class="far fa-delete"></i> Eliminar parcela</button>
+                                        <div class="modal fade" th:attr="id=|modificarparcela${parcela.id}|" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+                                            <input type="hidden" th:name="id" th:value="${parcela.id}">
                                             	<div class="modal-dialog">
                                               		<div class="modal-content">
 	                                                	<div class="modal-header">
 	                                                  		<h5 class="modal-title" id="exampleModalLabel">Modificar parcela</h5>
-	                                                  		<button type="button" class="btn-close" data-bs-dismiss="modificar-parcela" aria-label="Close"></button>
+	                                                  		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	                                                	</div>
                                                             <div class="modal-body">
                                                                 <form class="row" th:action="@{/my-account/parcela-alta-modificar}" th:object="${parcela}" method="post">
@@ -290,14 +326,12 @@
                                                                 </form>
                                                             </div>
 	                                                	<div class="modal-footer">
-	                                                    	<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modificar-parcela">Cancelar</button>
-	                                                    	<button type="submit" class="btn btn-outline-success" data-bs-dismiss="modificar-parcela" >Modificar</button>
+	                                                    	<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+	                                                    	<button type="submit" class="btn btn-outline-success" data-bs-dismiss="modal" >Modificar</button>
 	                                                	</div>
                                               		</div>
                                             	</div>
-                                            
                                         </div>
-                                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" th:attr="data-bs-target=|#eliminarparcela${parcela.id}" data-bs-dismiss="eliminar-parcela"><i class="far fa-delete"></i> Eliminar parcela</button>
                                         <div class="modal fade" th:attr="id=|eliminarparcela${parcela.id}|" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <form th:action="@{/my-account/parcela-baja}" method="post">
 	                                            <input type="hidden" th:name="parcelaID" th:value="${parcela.id}">
@@ -305,7 +339,7 @@
                                               		<div class="modal-content">
                                                 		<div class="modal-header">
                                                   			<h5 class="modal-title" id="eliminarparcela">Eliminar parcela</h5>
-                                                  			<button type="button" class="btn-close" data-bs-dismiss="eliminar-parcela" aria-label="Close"></button>
+                                                  			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 		</div>
 	                                                	<div class="modal-body">
 	                                                    	<div>
@@ -313,8 +347,8 @@
 	                                                    	</div>
 	                                                	</div>
 		                                                <div class="modal-footer">
-		                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="eliminar-parcela">Cancelar</button>
-		                                                    <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modificar-parcela" >Eliminar</button>
+		                                                    <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+		                                                    <button type="submit" class="btn btn-outline-success" data-bs-dismiss="modal">Eliminar</button>
 		                                                </div>
                                              		</div>
                                             	</div>
