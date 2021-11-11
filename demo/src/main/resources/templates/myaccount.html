@@ -263,16 +263,16 @@
                                                                             <h5 class="h5">Selecciona la estacion en la que queres sembrar</h5>
                                                                         </div>
                                                                         <div class="btn-group btn-estaciones" role="group" aria-label="Basic radio toggle button group">
-                                                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                                                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" th:attr="onclick=|filtroEstacion('Invierno')|">
                                                                             <label class="btn btn-outline-primary btn-invierno" for="btnradio1"></label>
 
-                                                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                                                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" th:attr="onclick=|filtroEstacion('Otoño')|">
                                                                             <label class="btn btn-outline-primary btn-otoño" for="btnradio2"></label>
 
-                                                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                                                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" th:attr="onclick=|filtroEstacion('Primavera')|">
                                                                             <label class="btn btn-outline-primary btn-primavera" for="btnradio3"></label>
 
-                                                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off">
+                                                                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" th:attr="onclick=|filtroEstacion('Verano')|">
                                                                             <label class="btn btn-outline-primary btn-verano" for="btnradio4"></label>
                                                                         </div>
                                                                         <br>
@@ -373,5 +373,25 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<script type="text/javascript" th:inline="javascript">
+		var div = document.getElementById("collapseExample");	
+		console.log(div)
+		function filtroEstacion(estacion){
+			div.innerHTML = "";
+			div.innerHTML += `<div>`
+            var lista = [[${listaCultivos}]];
+            for(var k in lista){
+         		if(lista[k].mesSiembra == estacion){
+         			div.innerHTML += `<ul class="list-group">
+         			<li class="list-group-item">
+            		<input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" th:name="plantaID" th:value='${lista[k].id}'>
+            		<label class="form-check-label" for="flexRadioDefault1" >${lista[k].nombre}</label>
+            		</li>
+            		</ul>`
+            	}
+            }
+            div.innerHTML += `</div>`
+    	}
+	</script>
 </body>
 </html>
