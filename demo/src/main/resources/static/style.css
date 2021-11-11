@@ -199,11 +199,6 @@ h1{
 .titulo-detalle{
     display:flex;
 }
-
-.descripcion-detalle{
-
-}
-
 .detalle-cultivo-internal{
     display: flex;
     flex-direction: column;
@@ -390,4 +385,11 @@ nav{
     text-align: center;
     margin-bottom: 20px;
     margin-top: 20px;
+}
+
+.back-admin {
+    margin-top: 40px;
+    background: #ffffff80;
+    border-radius: 1rem;
+    min-height: 80vh;
 }
