@@ -36,38 +36,39 @@
                         </div>
                         <div class="collapse" id="collapseExample">
                             <div class="card card-body form-libros">
-                                <form class="row g-3">
+                                <form class="row g-3" th:action="@{/admin/registrar-planta}" method="post" th:object="${planta}" enctype="multipart/form-data">
+                                    <input type="hidden" name="id" th:value="${planta} == null ? 'no tiene' : ${planta.id}"/>
                                     <div class="col-md-4">
                                       <label for="inputEmail4" class="form-label">Nombre</label>
-                                      <input type="text" class="form-control" id="inputEmail4" >
+                                      <input type="text" class="form-control" th:name="nombre" th:value="${planta} == null ? 'no tiene' : ${planta.nombre}" >
                                     </div>
                                     <div class="col-md-4">
                                         <label for="inputEmail4" class="form-label">Tipo de riego</label>
-                                        <input type="text" class="form-control" id="inputEmail4" >
+                                        <input type="text" class="form-control" th:name="cantidadRiego" th:value="${planta} == null ? 'no tiene' : ${planta.cantidadRiego}" >
                                     </div>
                                     <div class="col-md-4">
                                         <label for="inputEmail4" class="form-label">Recomendacion de cosecha</label>
-                                        <input type="email" class="form-control" id="inputEmail4" >
+                                        <input type="email" class="form-control" th:name="cosecha" th:value="${planta} == null ? 'no tiene' : ${planta.cosecha}" >
                                       </div>
                                     <div class="col-4">
                                       <label for="inputAddress" class="form-label">Descripcion</label>
-                                      <input type="text" class="form-control" id="inputAddress" >
+                                      <textarea class="form-control" aria-label="With textarea" th:name="descripcion" th:value="${planta} == null ? 'no tiene' : ${planta.descripcion}"></textarea>
                                     </div>
                                     <div class="col-4">
                                       <label for="inputAddress2" class="form-label">Dias de cosecha</label>
-                                      <input type="text" class="form-control" id="inputAddress2" >
+                                      <input type="text" class="form-control" th:name="diasCosecha" th:value="${planta} == null ? 'no tiene' : ${planta.diasCosecha}" >
                                     </div>
                                     <div class="col-4">
                                         <label for="inputAddress2" class="form-label">Estado</label>
-                                        <input type="text" class="form-control" id="inputAddress2" >
+                                        <input type="text" class="form-control" th:name="estado" th:value="${planta} == null ? 'no tiene' : ${planta.estado}" >
                                       </div>
                                     <div class="col-4">
                                       <label for="inputCity" class="form-label">Heladas</label>
-                                      <input type="text" class="form-control" id="inputCity" >
+                                      <input type="text" class="form-control" th:name="heladas" th:value="${planta} == null ? 'no tiene' : ${planta.heladas" >
                                     </div>
                                     <div class="col-4">
                                         <label for="inputCity" class="form-label">Horas de sol</label>
-                                        <input type="text" class="form-control" id="inputCity" >
+                                        <input type="text" class="form-control" th:name="horasSol" th:value="${planta} == null ? 'no tiene' : ${planta.horasSol}" >
                                     </div>
                                     <div class="col-4">
                                         <label for="inputCity" class="form-label">Horas de sol</label>
@@ -75,20 +76,24 @@
                                     </div>
                                     <div class="col-4">
                                         <label for="inputCity" class="form-label">Mes de siembra</label>
-                                        <input type="text" class="form-control" id="inputCity" >
+                                        <input type="text" class="form-control" th:name="mesSiembra" th:value="${planta} == null ? 'no tiene' : ${planta.mesSiembra}" >
                                     </div>
                                     <div class="col-4">
                                         <label for="inputCity" class="form-label">Profundidad siembra</label>
-                                        <input type="text" class="form-control" id="inputCity" >
+                                        <input type="text" class="form-control" th:name="profundidadSiembra" th:value="${planta} == null ? 'no tiene' : ${planta.profundidadSiembra}" >
                                     </div>
                                     <div class="col-4">
                                         <label for="inputCity" class="form-label">Tipo de cultivo</label>
-                                        <input type="text" class="form-control" id="inputCity">
+                                        <input type="text" class="form-control" th:name="tipoCultivo" th:value="${planta} == null ? 'no tiene' : ${planta.tipoCultivo}">
                                     </div>
+                                        <div class="mb-2 container">
+                                            <label for="archivo" class="form-label">Foto</label>
+                                            <input type="file" class="form-control" th:name="archivo">
+                                        </div>
                                     <div class="col-12">
-                                        <button type="button" class="btn btn-secondary">Guardar</button>
+                                        <button type="submit" class="btn btn-secondary">Guardar</button>
                                     </div>
-                                  </form>
+                                </form>
                             </div>
                         </div>
                         
@@ -125,7 +130,7 @@
                                   <td th:text="${planta.mesSiembra}"></th>
                                   <td th:text="${planta.profundidadSiembra}"></th>
                                   <td th:text="${planta.tipoCultivo}"></th>
-                                  <td><button type="button" class="btn btn-success">Editar</button></td>
+                                  <td><button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModalEditarPlanta">Editar</button></td>
                                   <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalEliminarPlanta">Eliminar</button></td>
                                 </tr>
                                
@@ -175,7 +180,84 @@
                             </div>
                         </div>
                     </form>
-                </div>   
+                </div>
+                <div class="modal fade" id="ModalEditarPlanta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ModalEliminarPlanta" aria-hidden="true">
+                    <form >
+                        <input type="hidden">
+                        <input type="hidden">
+                        <div class="modal-dialog" >
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="ModalEditarPlantaLabel">Editar Planta</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <form th:action="@{/admin/registrar-planta}" method="post" th:object="${planta}" enctype="multipart/form-data">
+                                            <input type="hidden" name="id" th:value="${planta} == null ? 'no tiene' : ${planta.id}"/>
+                                            <div class="col-md-4">
+                                            <label for="inputEmail4" class="form-label">Nombre</label>
+                                            <input type="text" class="form-control" id="inputEmail4" >
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="inputEmail4" class="form-label">Tipo de riego</label>
+                                                <input type="text" class="form-control" id="inputEmail4" >
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="inputEmail4" class="form-label">Recomendacion de cosecha</label>
+                                                <input type="email" class="form-control" id="inputEmail4" >
+                                            </div>
+                                            <div class="col-4">
+                                            <label for="inputAddress" class="form-label">Descripcion</label>
+                                            <textarea class="form-control" aria-label="With textarea"></textarea>
+                                            </div>
+                                            <div class="col-4">
+                                            <label for="inputAddress2" class="form-label">Dias de cosecha</label>
+                                            <input type="text" class="form-control" id="inputAddress2" >
+                                            </div>
+                                            <div class="col-4">
+                                                <label for="inputAddress2" class="form-label">Estado</label>
+                                                <input type="text" class="form-control" id="inputAddress2" >
+                                            </div>
+                                            <div class="col-4">
+                                            <label for="inputCity" class="form-label">Heladas</label>
+                                            <input type="text" class="form-control" id="inputCity" >
+                                            </div>
+                                            <div class="col-4">
+                                                <label for="inputCity" class="form-label">Horas de sol</label>
+                                                <input type="text" class="form-control" id="inputCity" >
+                                            </div>
+                                            <div class="col-4">
+                                                <label for="inputCity" class="form-label">Horas de sol</label>
+                                                <input type="text" class="form-control" id="inputCity" >
+                                            </div>
+                                            <div class="col-4">
+                                                <label for="inputCity" class="form-label">Mes de siembra</label>
+                                                <input type="text" class="form-control" id="inputCity" >
+                                            </div>
+                                            <div class="col-4">
+                                                <label for="inputCity" class="form-label">Profundidad siembra</label>
+                                                <input type="text" class="form-control" id="inputCity" >
+                                            </div>
+                                            <div class="col-4">
+                                                <label for="inputCity" class="form-label">Tipo de cultivo</label>
+                                                <input type="text" class="form-control" id="inputCity">
+                                            </div>
+                                                <div class="mb-2 container">
+                                                    <label for="archivo" class="form-label">Foto</label>
+                                                    <input type="file" class="form-control" th:name="archivo">
+                                                </div>                                                                                                                           
+                                        </form>
+                                    </div>    
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-success">Editar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>      
             </div> 
             <div class="col-1 colum3">
             </div>   
