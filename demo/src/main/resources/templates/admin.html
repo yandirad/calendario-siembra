@@ -18,7 +18,7 @@
             <div class="col-1 colum1">
 
             </div>
-            <div class="col-10 ">    
+            <div class="col-10 back-admin">    
                 <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Administrar plantas</button>
@@ -32,7 +32,7 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="cargar-planta">
-                            <button class="btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Cargar Planta</button>
+                            <button class="btn btn-outline-light col-6 mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Cargar Planta</button>
                         </div>
                         <div class="collapse" id="collapseExample">
                             <div class="card card-body form-libros">
@@ -126,7 +126,7 @@
                                   <td th:text="${planta.profundidadSiembra}"></th>
                                   <td th:text="${planta.tipoCultivo}"></th>
                                   <td><button type="button" class="btn btn-success">Editar</button></td>
-                                  <td><button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"><i class="far fa-delete"></i>Eliminar</button></td>
+                                  <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#ModalEliminarPlanta">Eliminar</button></td>
                                 </tr>
                                
                             </tbody>
@@ -138,7 +138,7 @@
                         <table class="table table-light table-striped">
                             <thead>
                             <tr>
-                                <th scope="col"></th>
+                                <th scope="col">Usuario</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Correo electronico</th>
                                 <th scope="col"></th>
@@ -155,18 +155,18 @@
                         </table>
                     </div>
                 </div>
-                <div class="modal fade"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ModalEliminarCultivoLabel" aria-hidden="true">
+                <div class="modal fade" id="ModalEliminarPlanta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ModalEliminarPlanta" aria-hidden="true">
                     <form >
                         <input type="hidden">
                         <input type="hidden">
                         <div class="modal-dialog" >
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="ModalEliminarCultivoLabel">Eliminar Cultivo</h5>
+                                    <h5 class="modal-title" id="ModalEliminarPlantaLabel">Eliminar Cultivo</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>¿Esta seguro que desea eliminar este Cultivo?</p>
+                                    <p>¿Esta seguro que desea eliminar esta Planta?</p>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
