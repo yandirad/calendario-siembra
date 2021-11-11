@@ -23,16 +23,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(resources).permitAll()
-          .and().formLogin()
-                .loginPage("/login")
-		.failureUrl("/login?error").permitAll()
-                .defaultSuccessUrl("/my-account/")
-                .usernameParameter("usuario")
-		.passwordParameter("pass")
-          .and().logout().permitAll()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/logout");
+		http.authorizeRequests().antMatchers(resources).permitAll().antMatchers("/").permitAll().antMatchers("/admin/*")
+				.hasAuthority("ADMIN").and().formLogin().loginPage("/login").failureUrl("/login?error").permitAll()
+				.defaultSuccessUrl("/my-account/").usernameParameter("usuario").passwordParameter("pass").and().logout()
+				.permitAll().logoutUrl("/logout").logoutSuccessUrl("/logout");
 	}
 
 	BCryptPasswordEncoder bCryptPasswordEncoder;

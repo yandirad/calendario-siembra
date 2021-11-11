@@ -5,15 +5,9 @@
  */
 package com.calendario_siembra.demo.controller;
 
-import com.calendario_siembra.demo.entity.Parcela;
-import com.calendario_siembra.demo.entity.Planta;
-import com.calendario_siembra.demo.entity.Usuario;
-import com.calendario_siembra.demo.exceptions.WebException;
-import com.calendario_siembra.demo.services.ParcelaService;
-import com.calendario_siembra.demo.services.PlantaService;
-import com.calendario_siembra.demo.services.UsuarioService;
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -29,6 +23,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+import com.calendario_siembra.demo.entity.Planta;
+import com.calendario_siembra.demo.entity.Usuario;
+import com.calendario_siembra.demo.exceptions.WebException;
+import com.calendario_siembra.demo.services.ParcelaService;
+import com.calendario_siembra.demo.services.PlantaService;
+import com.calendario_siembra.demo.services.UsuarioService;
 
 @Controller
 @RequestMapping("/admin")
@@ -42,17 +42,24 @@ public class AdminController {
 
     @Autowired
     PlantaService plantaService;
+
     
-    //metodo para mostrar tablas
+    // metodo para mostrar tablas
     @GetMapping("/")
     public String verTablas(Model modelo, @RequestParam(required = false) String error) {
-        List<Usuario> usuarios = usuarioService.listarUsuarios();
-        List<Planta> plantas = plantaService.listarPlantas();
-        modelo.addAttribute("usuarios", usuarios);
-        modelo.addAttribute("plantas", plantas);
-        modelo.addAttribute("error", error);
-        return "admin.html";
+        Usuario usuario = usuarioService.buscarUsuario();
+        if (usuario.getRol().equals("ADMIN")) {
+            List<Usuario> usuarios = usuarioService.listarUsuarios();
+            List<Planta> plantas = plantaService.listarPlantas();
+            modelo.addAttribute("usuarios", usuarios);
+            modelo.addAttribute("plantas", plantas);
+            modelo.addAttribute("error", error);
+            return "admin.html";
+        } else {
+            return "redirect:/my-account/";
+        }
     }
+
 
     //ruta para crear/modificar planta
     @GetMapping("/registrar-planta")
@@ -63,7 +70,7 @@ public class AdminController {
     }
 
     @PostMapping("/registrar-planta")
-    public String plantaGuardar(RedirectAttributes ra, String id, String nombre, String tipoCultivo, String profundidadSiembra,
+    public String plantaGuardar(RedirectAttributes ra, @RequestParam(required = false) String id, String nombre, String tipoCultivo, String profundidadSiembra,
             Integer horasSol, String cantidadRiego, String cosecha, String heladas, String diasCosecha,
             String mesSiembra, String descripcion, MultipartFile archivo) {
 
@@ -83,7 +90,7 @@ public class AdminController {
         }
         return "redirect:/admin/registrar-planta/";//agregar ruta (no el nombre del html) para caso NO exitoso
     }
-
+    
     //ruta para eliminar planta (baja)
     @GetMapping("/baja-planta/{id}")
     public RedirectView bajaPlanta(Planta planta) throws Exception {
@@ -118,5 +125,4 @@ public class AdminController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
     }
-
 }

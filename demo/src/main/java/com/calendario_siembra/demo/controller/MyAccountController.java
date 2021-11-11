@@ -26,92 +26,95 @@ import com.calendario_siembra.demo.services.UsuarioService;
 @RequestMapping("/my-account")
 public class MyAccountController {
 
-    @Autowired
-    UsuarioService usuarioService;
+	@Autowired
+	UsuarioService usuarioService;
 
-    @Autowired
-    ParcelaService parcelaService;
+	@Autowired
+	ParcelaService parcelaService;
 
-    @Autowired
-    PlantaService plantaService;
+	@Autowired
+	PlantaService plantaService;
 
-    // vista inicial del perfil de cada usuario
-    @GetMapping("/")
-    public String verDatos(Model modelo, @RequestParam(required = false) String error) {
-        Usuario usuario = usuarioService.buscarUsuario();
-        if (usuario == null) {
-            return "redirect:/login";
-        }
-        modelo.addAttribute("usuario", usuario);
-        modelo.addAttribute("nuevaParcela", new Parcela(usuario));
-        modelo.addAttribute("listaCultivos", plantaService.listarPlantas());
-        modelo.addAttribute("nuevaPlanta", new Planta());
-        modelo.addAttribute("error", error);
-        return "myaccount.html";
-    }
+	// vista inicial del perfil de cada usuario
+	@GetMapping("/")
+	public String verDatos(Model modelo, @RequestParam(required = false) String error) {
+		Usuario usuario = usuarioService.buscarUsuario();
+		if (usuario == null) {
+			return "redirect:/login";
+		}
+		if (usuario.getRol().equals("ADMIN")) {
+			return "redirect:/admin/";
+		}
+		modelo.addAttribute("usuario", usuario);
+		modelo.addAttribute("nuevaParcela", new Parcela(usuario));
+		modelo.addAttribute("listaCultivos", plantaService.listarPlantas());
+		modelo.addAttribute("nuevaPlanta", new Planta());
+		modelo.addAttribute("error", error);
+		return "myaccount.html";
+	}
 
-    // Metodo para modificar datos del usuario, mediante pop-up
-    @PostMapping("/usuario-modificar")
-    public String modificarUsuario(Usuario usuario, RedirectAttributes ra) {
-        try {
-            usuarioService.guardarUsuario(usuario);
-        } catch (WebException e) {
-            ra.addAttribute("error", e.getMessage());
-        }
+	// Metodo para modificar datos del usuario, mediante pop-up
+	@PostMapping("/usuario-modificar")
+	public String modificarUsuario(Usuario usuario, RedirectAttributes ra) {
+		try {
+			usuarioService.guardarUsuario(usuario);
+		} catch (WebException e) {
+			ra.addAttribute("error", e.getMessage());
+		}
 
-        return "redirect:/my-account/";
-    }
+		return "redirect:/my-account/";
+	}
 
-    // Método para crear/modificar una nueva parcela
-    @PostMapping("/parcela-alta-modificar")
-    public String crearParcela(Parcela parcela, Model modelo) {
-        try {
-            if (parcela.getId() == null) {
-                parcelaService.crearParcela(parcela);
-            } else {
-                parcelaService.modificarParcela(parcela);
-            }
-        } catch (WebException e) {
-            modelo.addAttribute("error", e.getMessage());
-        }
+	// Método para crear/modificar una nueva parcela
+	@PostMapping("/parcela-alta-modificar")
+	public String crearParcela(Parcela parcela, Model modelo) {
+		try {
+			if (parcela.getId() == null) {
+				parcelaService.crearParcela(parcela);
+			} else {
+				parcelaService.modificarParcela(parcela);
+			}
+		} catch (WebException e) {
+			modelo.addAttribute("error", e.getMessage());
+		}
 
-        return "redirect:/my-account/";
-    }
+		return "redirect:/my-account/";
+	}
 
-    // Método para dar la baja a una parcela
-    @PostMapping("/parcela-baja")
-    public String bajaParcela(String parcelaID, Model modelo) {
-        try {
-            parcelaService.bajaParcela(parcelaID);
-        } catch (WebException e) {
-            modelo.addAttribute("error", e.getMessage());
-        }
+	// Método para dar la baja a una parcela
+	@PostMapping("/parcela-baja")
+	public String bajaParcela(String parcelaID, Model modelo) {
+		try {
+			parcelaService.bajaParcela(parcelaID);
+		} catch (WebException e) {
+			modelo.addAttribute("error", e.getMessage());
+		}
 
-        return "redirect:/my-account/";
-    }
+		return "redirect:/my-account/";
+	}
 
-    // Método para dar la alta a una planta
-    @PostMapping("/planta-alta")
-    public String altaPlanta(String parcelaID, String plantaID, Model modelo) {
-        try {
-            parcelaService.agregarPlanta(parcelaID, plantaID);
-        } catch (WebException e) {
-            modelo.addAttribute("error", e.getMessage());
-        }
+	// Método para dar la alta a una planta
+	@PostMapping("/planta-alta")
+	public String altaPlanta(String parcelaID, String plantaID, Model modelo) {
+		try {
+			parcelaService.agregarPlanta(parcelaID, plantaID);
+		} catch (WebException e) {
+			modelo.addAttribute("error", e.getMessage());
+		}
 
-        return "redirect:/my-account/";
-    }
+		return "redirect:/my-account/";
+	}
 
-    // Método para dar la baja a una planta
-    @PostMapping("/planta-baja")
-    public String bajaPlanta(String plantaId, String parcelaId, Model modelo) {
-        try {
-            parcelaService.bajaPlanta(parcelaId, plantaId);
-        } catch (WebException e) {
-            modelo.addAttribute("error", e.getMessage());
-        }
+	// Método para dar la baja a una planta
+	@PostMapping("/planta-baja")
+	public String bajaPlanta(String plantaId, String parcelaId, Model modelo) {
+		try {
+			parcelaService.bajaPlanta(parcelaId, plantaId);
+		} catch (WebException e) {
+			modelo.addAttribute("error", e.getMessage());
+		}
 
-        return "redirect:/my-account/";
-    }
+		return "redirect:/my-account/";
+	}
 
 }
