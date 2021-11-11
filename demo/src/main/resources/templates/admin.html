@@ -21,12 +21,14 @@
             <div class="col-10 ">    
                 <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Aministrar plantas</button>
+                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Administrar plantas</button>
                     </li>
                     <li class="nav-item" role="presentation">
                         <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Administrar usuarios</button>
                     </li>
                 </ul>
+                
+                <!--    FORMULARIO CARGA PLANTAS    -->
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="cargar-planta">
@@ -89,10 +91,12 @@
                                   </form>
                             </div>
                         </div>
+                        
+                        <!--    TABLA PLANTAS    -->
                         <table class="table table-light table-striped">
                             <thead>
                               <tr>
-                                <th scope="col"></th>
+                                <th scope="col">Nombre</th>
                                 <th scope="col">Riego</th>
                                 <th scope="col">Cosecha</th>
                                 <th scope="col">Descripcion</th>
@@ -101,33 +105,35 @@
                                 <th scope="col">Heladas</th>
                                 <th scope="col">Horas sol</th>
                                 <th scope="col">Mes siembra</th>
-                                <th scope="col">Prof siembra</th>
+                                <th scope="col">Profunidad de siembra</th>
                                 <th scope="col">Tipo cultivo</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
                               </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                  <th scope="row">nombre</th>
-                                  <td >Riego</th>
-                                  <td >Cosecha</th>
-                                  <td >Descripcion</th>
-                                  <td >Tipo cosecha</th>
-                                  <td >Estado</th>
-                                  <td >Heladas</th>
-                                  <td >Horas sol</th>
-                                  <td >Mes siembra</th>
-                                  <td >Prof siembra</th>
-                                  <td >Tipo cultivo</th>
+                                <tr th:each="planta: ${plantas}">
+                                  <td type="hidden" th:text="${planta.id}"></td>
+                                  <th scope="row" th:text="${planta.nombre}"></th>
+                                  <td th:text="${planta.cantidadRiego}"></th>
+                                  <td th:text="${planta.diasCosecha}"></th>
+                                  <td th:text="${planta.descripcion}"></th>
+                                  <td th:text="${planta.cosecha}"></th>
+                                  <td th:text="${planta.estado}"></th>
+                                  <td th:text="${planta.heladas}"></th>
+                                  <td th:text="${planta.horasSol}"></th>
+                                  <td th:text="${planta.mesSiembra}"></th>
+                                  <td th:text="${planta.profundidadSiembra}"></th>
+                                  <td th:text="${planta.tipoCultivo}"></th>
                                   <td><button type="button" class="btn btn-success">Editar</button></td>
                                   <td><button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"><i class="far fa-delete"></i>Eliminar</button></td>
                                 </tr>
                                
                             </tbody>
-                        </table>
-                        
+                        </table>    
                     </div>
+                    
+                    <!--    TABLA USUARIOS    -->
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <table class="table table-light table-striped">
                             <thead>
@@ -139,10 +145,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr th:each="usuario: ${usuarios}">
                                     <th scope="row">Usuario</th>
-                                    <td >Nombre</th>
-                                    <td >Correo electronico</th>
+                                    <td th:text="${usuario.nombre}"></th>
+                                    <td th:text="${usuario.mail}"></th>
                                     <td><button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal"><i class="far fa-delete"></i>Eliminar</button></td>
                                 </tr>
                             </tbody>
