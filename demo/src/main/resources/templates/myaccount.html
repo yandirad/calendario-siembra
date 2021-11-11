@@ -176,20 +176,20 @@
                                                             </ol>
                                                             </p>
                                                             <div class="d-grid gap-2 d-md-flex align-items-end justify-content-md-end">
-                                                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#ModalDetalle" >Ver detalles</button>
+                                                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" data-bs-toggle="modal" th:attr="data-bs-target=|#ModalDetalle${planta.id}|" >Ver detalles</button>
                                                                 <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" data-bs-toggle="modal" th:attr="data-bs-target=|#eliminarplanta${planta.id}de${parcela.id}"><i class="far fa-delete"></i> Eliminar</button>
                                                             </div>
 
                                                             <!-- Modal Detalle-->
-                                                            <div class="modal fade" id="ModalDetalle" tabindex="-1" aria-labelledby="ModalDetalle" aria-hidden="true">
+                                                            <div class="modal fade" th:attr="id=|ModalDetalle${planta.id}|" tabindex="-1" aria-labelledby="ModalDetalle" aria-hidden="true">
                                                                 <div class="modal-dialog">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
-                                                                            <h5 class="modal-title" id="ModalDetalleLabel">Nombre planta</h5>
+                                                                            <h5 class="modal-title" id="ModalDetalleLabel" th:text="${planta.nombre}"></h5>
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body">
-                                                                            ...
+                                                                            <label th:text="${planta.descripcion}"></label>
                                                                         </div>
                                                                     </div>
                                                                 </div>
