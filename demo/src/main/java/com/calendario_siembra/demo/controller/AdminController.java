@@ -5,15 +5,9 @@
  */
 package com.calendario_siembra.demo.controller;
 
-import com.calendario_siembra.demo.entity.Parcela;
-import com.calendario_siembra.demo.entity.Planta;
-import com.calendario_siembra.demo.entity.Usuario;
-import com.calendario_siembra.demo.exceptions.WebException;
-import com.calendario_siembra.demo.services.ParcelaService;
-import com.calendario_siembra.demo.services.PlantaService;
-import com.calendario_siembra.demo.services.UsuarioService;
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,93 +24,105 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.calendario_siembra.demo.entity.Planta;
+import com.calendario_siembra.demo.entity.Usuario;
+import com.calendario_siembra.demo.exceptions.WebException;
+import com.calendario_siembra.demo.services.ParcelaService;
+import com.calendario_siembra.demo.services.PlantaService;
+import com.calendario_siembra.demo.services.UsuarioService;
+
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
-    @Autowired
-    UsuarioService usuarioService;
+	@Autowired
+	UsuarioService usuarioService;
 
-    @Autowired
-    ParcelaService parcelaService;
+	@Autowired
+	ParcelaService parcelaService;
 
-    @Autowired
-    PlantaService plantaService;
-    
-    //metodo para mostrar tablas
-    @GetMapping("/")
-    public String verTablas(Model modelo, @RequestParam(required = false) String error) {
-        List<Usuario> usuarios = usuarioService.listarUsuarios();
-        List<Planta> plantas = plantaService.listarPlantas();
-        modelo.addAttribute("usuarios", usuarios);
-        modelo.addAttribute("plantas", plantas);
-        modelo.addAttribute("error", error);
-        return "admin.html";
-    }
+	@Autowired
+	PlantaService plantaService;
 
-    //ruta para crear/modificar planta
-    @GetMapping("/registrar-planta")
-    public String registrar(Model modelo) {
-        Planta planta = new Planta();
-        modelo.addAttribute("planta", planta);
-        return "form-planta.html"; //nombre HTML
-    }
+	// metodo para mostrar tablas
+	@GetMapping("/")
+	public String verTablas(Model modelo, @RequestParam(required = false) String error) {
+		Usuario usuario = usuarioService.buscarUsuario();
+		if (usuario.getRol().equals("ADMIN")) {
+			List<Usuario> usuarios = usuarioService.listarUsuarios();
+			List<Planta> plantas = plantaService.listarPlantas();
+			modelo.addAttribute("usuarios", usuarios);
+			modelo.addAttribute("plantas", plantas);
+			modelo.addAttribute("error", error);
+			return "admin.html";
+		} else {
+			return "redirect:/my-account/";
+		}
+	}
 
-    @PostMapping("/registrar-planta")
-    public String plantaGuardar(RedirectAttributes ra, @RequestParam(required = false) String id, String nombre, String tipoCultivo, String profundidadSiembra,
-            Integer horasSol, String cantidadRiego, String cosecha, String heladas, String diasCosecha,
-            String mesSiembra, String descripcion, MultipartFile archivo) {
+	// ruta para crear/modificar planta
+	@GetMapping("/registrar-planta")
+	public String registrar(Model modelo) {
+		Planta planta = new Planta();
+		modelo.addAttribute("planta", planta);
+		return "form-planta.html"; // nombre HTML
+	}
 
-        try {
-            if (id == null) {
-                plantaService.registrar(nombre, tipoCultivo, profundidadSiembra, horasSol, cantidadRiego, cosecha,
-                        heladas, diasCosecha, mesSiembra, descripcion, archivo);
-                ra.addFlashAttribute("exitoso", "Se cargó nueva planta correctamente!");
-            } else {
-                plantaService.modificar(heladas, nombre, tipoCultivo, profundidadSiembra, horasSol,
-                        cantidadRiego, cosecha, heladas, diasCosecha, mesSiembra, descripcion, archivo);
-                ra.addFlashAttribute("exitoso", "Se cargó la modificación correctamente!");
-            }
-            return "redirect:/admin/registrar-planta/";//agregar ruta (no el nombre del html) para caso exitoso
-        } catch (WebException e) {
-            ra.addFlashAttribute("error", e.getMessage());
-        }
-        return "redirect:/admin/registrar-planta/";//agregar ruta (no el nombre del html) para caso NO exitoso
-    }
+	@PostMapping("/registrar-planta")
+	public String plantaGuardar(RedirectAttributes ra, @RequestParam(required = false) String id, String nombre,
+			String tipoCultivo, String profundidadSiembra, Integer horasSol, String cantidadRiego, String cosecha,
+			String heladas, String diasCosecha, String mesSiembra, String descripcion, MultipartFile archivo) {
 
-    //ruta para eliminar planta (baja)
-    @GetMapping("/baja-planta/{id}")
-    public RedirectView bajaPlanta(Planta planta) throws Exception {
-        plantaService.bajaPlanta(planta);
-        return new RedirectView("/xx");//agregar ruta listado plantas
-    }
+		try {
+			if (id == null) {
+				plantaService.registrar(nombre, tipoCultivo, profundidadSiembra, horasSol, cantidadRiego, cosecha,
+						heladas, diasCosecha, mesSiembra, descripcion, archivo);
+				ra.addFlashAttribute("exitoso", "Se cargó nueva planta correctamente!");
+			} else {
+				plantaService.modificar(heladas, nombre, tipoCultivo, profundidadSiembra, horasSol, cantidadRiego,
+						cosecha, heladas, diasCosecha, mesSiembra, descripcion, archivo);
+				ra.addFlashAttribute("exitoso", "Se cargó la modificación correctamente!");
+			}
+			return "redirect:/admin/registrar-planta/";// agregar ruta (no el nombre del html) para caso exitoso
+		} catch (WebException e) {
+			ra.addFlashAttribute("error", e.getMessage());
+		}
+		return "redirect:/admin/registrar-planta/";// agregar ruta (no el nombre del html) para caso NO exitoso
+	}
 
-    //ruta para eliminar usuario
-    @GetMapping("/baja-usuario/{id}")
-    public RedirectView bajaUsuario(Usuario usuario) throws Exception {
-        usuarioService.bajaUsuario(usuario);
-        return new RedirectView("/xx");//agregar ruta listado usuarios
-    }
+	// ruta para eliminar planta (baja)
+	@GetMapping("/baja-planta/{id}")
+	public RedirectView bajaPlanta(Planta planta) throws Exception {
+		plantaService.bajaPlanta(planta);
+		return new RedirectView("/xx");// agregar ruta listado plantas
+	}
 
-    //Metodo para cargar una foto de planta
-    @GetMapping("/foto/{id}")
-    public ResponseEntity<byte[]> fotoPlanta(@PathVariable String id) throws WebException {
-        Optional<Planta> planta = plantaService.buscarPlantaID(id);
+	// ruta para eliminar usuario
+	@GetMapping("/baja-usuario/{id}")
+	public RedirectView bajaUsuario(Usuario usuario) throws Exception {
+		usuarioService.bajaUsuario(usuario);
+		return new RedirectView("/xx");// agregar ruta listado usuarios
+	}
 
-        if (planta.isPresent()) {
-            if (planta.get().getFoto() == null) {
-                throw new WebException("La planta no posee foto");
-            }
-            byte[] foto = planta.get().getFoto().getContenido();
+	// Metodo para cargar una foto de planta
+	@GetMapping("/foto/{id}")
+	public ResponseEntity<byte[]> fotoPlanta(@PathVariable String id) throws WebException {
+		Optional<Planta> planta = plantaService.buscarPlantaID(id);
 
-            HttpHeaders headers = new HttpHeaders();
-            headers.setContentType(MediaType.IMAGE_JPEG);
+		if (planta.isPresent()) {
+			if (planta.get().getFoto() == null) {
+				throw new WebException("La planta no posee foto");
+			}
+			byte[] foto = planta.get().getFoto().getContenido();
 
-            return new ResponseEntity<>(foto, headers, HttpStatus.OK);
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.IMAGE_JPEG);
 
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(foto, headers, HttpStatus.OK);
 
-    }
+		}
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
+	}
 
 }
