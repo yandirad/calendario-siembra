@@ -5,12 +5,14 @@
  */
 package com.calendario_siembra.demo.controller;
 
+import com.calendario_siembra.demo.entity.Parcela;
 import com.calendario_siembra.demo.entity.Planta;
 import com.calendario_siembra.demo.entity.Usuario;
 import com.calendario_siembra.demo.exceptions.WebException;
 import com.calendario_siembra.demo.services.ParcelaService;
 import com.calendario_siembra.demo.services.PlantaService;
 import com.calendario_siembra.demo.services.UsuarioService;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -40,6 +42,17 @@ public class AdminController {
 
     @Autowired
     PlantaService plantaService;
+    
+    //metodo para mostrar tablas
+    @GetMapping("/")
+    public String verTablas(Model modelo, @RequestParam(required = false) String error) {
+        List<Usuario> usuarios = usuarioService.listarUsuarios();
+        List<Planta> plantas = plantaService.listarPlantas();
+        modelo.addAttribute("usuarios", usuarios);
+        modelo.addAttribute("plantas", plantas);
+        modelo.addAttribute("error", error);
+        return "admin.html";
+    }
 
     //ruta para crear/modificar planta
     @GetMapping("/registrar-planta")

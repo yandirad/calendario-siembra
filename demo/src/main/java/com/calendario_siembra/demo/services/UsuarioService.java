@@ -28,6 +28,7 @@ import com.calendario_siembra.demo.entity.Usuario;
 import com.calendario_siembra.demo.exceptions.WebException;
 import com.calendario_siembra.demo.repository.ParcelaRepository;
 import com.calendario_siembra.demo.repository.UsuarioRepository;
+import java.util.List;
 
 /**
  *
@@ -133,4 +134,9 @@ public class UsuarioService implements UserDetailsService {
 		usuario.setEstado(false);
 		usuarioRepository.save(usuario);
 	}
+        
+        public List<Usuario> listarUsuarios(){
+            List<Usuario> usuarios = usuarioRepository.findAll();
+            return usuarios;
+        }
 }
