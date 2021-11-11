@@ -63,12 +63,12 @@ public class AdminController {
     }
 
     @PostMapping("/registrar-planta")
-    public String plantaGuardar(RedirectAttributes ra, @RequestParam(required = false) String id, String nombre, String tipoCultivo, String profundidadSiembra,
+    public String plantaGuardar(RedirectAttributes ra, String id, String nombre, String tipoCultivo, String profundidadSiembra,
             Integer horasSol, String cantidadRiego, String cosecha, String heladas, String diasCosecha,
             String mesSiembra, String descripcion, MultipartFile archivo) {
 
         try {
-            if (id == null) {
+            if ("".equals(id)) {
                 plantaService.registrar(nombre, tipoCultivo, profundidadSiembra, horasSol, cantidadRiego, cosecha,
                         heladas, diasCosecha, mesSiembra, descripcion, archivo);
                 ra.addFlashAttribute("exitoso", "Se cargó nueva planta correctamente!");
