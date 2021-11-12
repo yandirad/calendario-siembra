@@ -49,16 +49,16 @@
                         <div class="dropdown col-12 d-grid">
                             <div><h5 class="h5">Selecciona la estacion en la que queres sembrar</h5></div>
                             <div class="btn-group btn-estaciones" role="group" aria-label="Basic radio toggle button group">
-                                <input type="radio" class="btn-check" name="btnradio" th:id="btnInvierno" autocomplete="off" th:attr="onclick=|guardarEstacion('I')|">
+                                <input type="radio" class="btn-check" name="btnradio" th:id="btnInvierno" autocomplete="off" th:attr="onclick=|guardarEstacion('Invierno')|">
                                 <label class="btn btn-outline-primary btn-invierno" th:for="btnInvierno"></label>
 
-                                <input type="radio" class="btn-check" name="btnradio" th:id="btnOtoño" autocomplete="off" th:attr="onclick=|guardarEstacion('O')|">
+                                <input type="radio" class="btn-check" name="btnradio" th:id="btnOtoño" autocomplete="off" th:attr="onclick=|guardarEstacion('Otoño')|">
                                 <label class="btn btn-outline-primary btn-otoño" th:for="btnOtoño"></label>
 
-                                <input type="radio" class="btn-check" name="btnradio" th:id="btnPrimavera" autocomplete="off" th:attr="onclick=|guardarEstacion('P')|">
+                                <input type="radio" class="btn-check" name="btnradio" th:id="btnPrimavera" autocomplete="off" th:attr="onclick=|guardarEstacion('Primavera')|">
                                 <label class="btn btn-outline-primary btn-primavera" th:for="btnPrimavera"></label>
 
-                                <input type="radio" class="btn-check" th:name="verano" th:id="btnVerano" autocomplete="off" th:attr="onclick=|guardarEstacion('V')|">
+                                <input type="radio" class="btn-check" th:name="verano" th:id="btnVerano" autocomplete="off" th:attr="onclick=|guardarEstacion('Verano')|">
                                 <label class="btn btn-outline-primary btn-verano" th:for="btnVerano"></label>
                             </div>
                             <br>
@@ -80,7 +80,7 @@
                                 <h2 id="nombre"></h2>
                             </div>
                             <div>
-                                <img id="foto" max-with="3"/>
+                                <img id="foto" style="max-width:20vw"/>
                             </div>
                             <div class="descripcion-detalle">
                                 <p id="descripcion"></p>

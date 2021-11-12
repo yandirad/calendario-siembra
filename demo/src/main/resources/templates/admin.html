@@ -40,51 +40,47 @@
                                     <input type="hidden" name="id" th:value="${planta} == null ? 'no tiene' : ${planta.id}"/>
                                     <div class="col-md-4">
                                       <label for="inputEmail4" class="form-label">Nombre</label>
-                                      <input type="text" class="form-control" th:name="nombre" th:value="${planta} == null ? 'no tiene' : ${planta.nombre}" >
+                                      <input type="text" class="form-control" th:name="nombre" th:value="${planta} == null ? '' : ${planta.nombre}" >
                                     </div>
                                     <div class="col-md-4">
                                         <label for="inputEmail4" class="form-label">Tipo de riego</label>
-                                        <input type="text" class="form-control" th:name="cantidadRiego" th:value="${planta} == null ? 'no tiene' : ${planta.cantidadRiego}" >
+                                        <input type="text" class="form-control" th:name="cantidadRiego" th:value="${planta} == null ? '' : ${planta.cantidadRiego}" >
                                     </div>
                                     <div class="col-md-4">
                                         <label for="inputEmail4" class="form-label">Recomendacion de cosecha</label>
-                                        <input type="email" class="form-control" th:name="cosecha" th:value="${planta} == null ? 'no tiene' : ${planta.cosecha}" >
+                                        <input type="email" class="form-control" th:name="cosecha" th:value="${planta} == null ? '' : ${planta.cosecha}" >
                                       </div>
                                     <div class="col-4">
                                       <label for="inputAddress" class="form-label">Descripcion</label>
-                                      <textarea class="form-control" aria-label="With textarea" th:name="descripcion" th:value="${planta} == null ? 'no tiene' : ${planta.descripcion}"></textarea>
+                                      <textarea class="form-control" aria-label="With textarea" th:name="descripcion" th:value="${planta} == null ? '' : ${planta.descripcion}"></textarea>
                                     </div>
                                     <div class="col-4">
                                       <label for="inputAddress2" class="form-label">Dias de cosecha</label>
-                                      <input type="text" class="form-control" th:name="diasCosecha" th:value="${planta} == null ? 'no tiene' : ${planta.diasCosecha}" >
+                                      <input type="text" class="form-control" th:name="diasCosecha" th:value="${planta} == null ? '' : ${planta.diasCosecha}" >
                                     </div>
                                     <div class="col-4">
                                         <label for="inputAddress2" class="form-label">Estado</label>
-                                        <input type="text" class="form-control" th:name="estado" th:value="${planta} == null ? 'no tiene' : ${planta.estado}" >
+                                        <input type="text" class="form-control" th:name="estado" th:value="${planta} == null ? '' : ${planta.estado}" >
                                       </div>
                                     <div class="col-4">
                                       <label for="inputCity" class="form-label">Heladas</label>
-                                      <input type="text" class="form-control" th:name="heladas" th:value="${planta} == null ? 'no tiene' : ${planta.heladas" >
+                                      <input type="text" class="form-control" th:name="heladas" th:value="${planta} == null ? '' : ${planta.heladas}" >
                                     </div>
                                     <div class="col-4">
                                         <label for="inputCity" class="form-label">Horas de sol</label>
-                                        <input type="text" class="form-control" th:name="horasSol" th:value="${planta} == null ? 'no tiene' : ${planta.horasSol}" >
-                                    </div>
-                                    <div class="col-4">
-                                        <label for="inputCity" class="form-label">Horas de sol</label>
-                                        <input type="text" class="form-control" id="inputCity" >
+                                        <input type="text" class="form-control" th:name="horasSol" th:value="${planta} == null ? '' : ${planta.horasSol}" >
                                     </div>
                                     <div class="col-4">
                                         <label for="inputCity" class="form-label">Mes de siembra</label>
-                                        <input type="text" class="form-control" th:name="mesSiembra" th:value="${planta} == null ? 'no tiene' : ${planta.mesSiembra}" >
+                                        <input type="text" class="form-control" th:name="mesSiembra" th:value="${planta} == null ? '' : ${planta.mesSiembra}" >
                                     </div>
                                     <div class="col-4">
                                         <label for="inputCity" class="form-label">Profundidad siembra</label>
-                                        <input type="text" class="form-control" th:name="profundidadSiembra" th:value="${planta} == null ? 'no tiene' : ${planta.profundidadSiembra}" >
+                                        <input type="text" class="form-control" th:name="profundidadSiembra" th:value="${planta} == null ? '' : ${planta.profundidadSiembra}" >
                                     </div>
                                     <div class="col-4">
                                         <label for="inputCity" class="form-label">Tipo de cultivo</label>
-                                        <input type="text" class="form-control" th:name="tipoCultivo" th:value="${planta} == null ? 'no tiene' : ${planta.tipoCultivo}">
+                                        <input type="text" class="form-control" th:name="tipoCultivo" th:value="${planta} == null ? '' : ${planta.tipoCultivo}">
                                     </div>
                                         <div class="mb-2 container">
                                             <label for="archivo" class="form-label">Foto</label>
