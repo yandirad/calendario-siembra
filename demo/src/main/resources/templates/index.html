@@ -68,8 +68,10 @@
                     <div class="row resultados">
                         <div class="collapse" id="collapseExample">
                             <div class="col-12">
-                                <ul class="row">
-                                    <li id="botones" class="seleccionados col-2"></li>
+                                <ul class="row" id="botones">
+                                    <li th:each="planta : ${listaPlantas}" class="seleccionados col-2">
+                                    	<button class="btn btn-outline-success btn-lista" data-bs-toggle="collapse" data-bs-target="#collapseDetalle" aria-expanded="false" aria-controls="collapseDetalle" type="submit" th:attr="onclick=|almacenTemporal('${planta.nombre}', '${planta.foto}', '${planta.tipoCultivo}', '${planta.profundidadSiembra}', '${planta.horasSol}', '${planta.cantidadRiego}', '${planta.cosecha}', '${planta.heladas}', '${planta.diasCosecha}', '${planta.mesSiembra}', '${planta.descripcion}')|" th:text="${planta.nombre}"></button>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -112,7 +114,7 @@
             var img = document.getElementById("foto");  
             var ul = document.getElementById("detalles");
             var p = document.getElementById("descripcion");
-            var li = document.getElementById("botones");
+            var ulBotones = document.getElementById("botones");
             
             function almacenTemporal(nombre, foto, tipoCultivo, profundidadSiembra, horasSol, cantidadRiego, cosecha, heladas, diasCosecha, mesSiembra, descripcion) {
                 ul.innerHTML = "";
@@ -129,16 +131,14 @@
             }
 
             function guardarEstacion(estacion){
-                li.innerHTML = "";
+            	ulBotones.innerHTML = "";
                 var lista = [[${listaPlantas}]];
                 for(var k in lista){
-                    if(lista[k].mesSiembra == estacion){
-                        li.innerHTML += `<button class="btn btn-outline-success btn-lista" 
+                    if(lista[k].mesSiembra == estacion || lista[k].mesSiembra == "Todas"){
+                    	ulBotones.innerHTML += `<li class="seleccionados col-2"><button class="btn btn-outline-success btn-lista" 
                             data-bs-toggle="collapse" data-bs-target="#collapseDetalle" aria-expanded="false" 
-                            aria-controls="collapseDetalle" type="submit" onclick="almacenTemporal('${lista[k].nombre}', 'data:${lista[k].foto && lista[k].foto.mime};base64,${lista[k].foto && lista[k].foto.contenido}',
-                            '${lista[k].tipoCultivo}', '${lista[k].profundidadSiembra}', '${lista[k].horasSol}', 
-                            '${lista[k].cantidadRiego}', '${lista[k].cosecha}', '${lista[k].heladas}', 
-                            '${lista[k].diasCosecha}', '${lista[k].mesSiembra}', '${lista[k].descripcion}')">${lista[k].nombre}</button>`
+                            aria-controls="collapseDetalle" type="submit" onclick="almacenTemporal('${lista[k].nombre}', 'data:${lista[k].foto && lista[k].foto.mime};base64,${lista[k].foto && lista[k].foto.contenido}', '${lista[k].tipoCultivo}', '${lista[k].profundidadSiembra}', '${lista[k].horasSol}', '${lista[k].cantidadRiego}', '${lista[k].cosecha}', '${lista[k].heladas}', '${lista[k].diasCosecha}', '${lista[k].mesSiembra}', '${lista[k].descripcion}')">${lista[k].nombre}</button>
+                            </li>`
                     }
                 }
             }
