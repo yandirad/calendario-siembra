@@ -393,3 +393,10 @@ nav{
     border-radius: 1rem;
     min-height: 80vh;
 }
+
+.boton-adm{
+    right: 3%;
+    position: fixed;
+    z-index: 11000;
+    display:flex;
+}
