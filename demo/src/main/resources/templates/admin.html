@@ -48,7 +48,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label for="inputEmail4" class="form-label">Recomendacion de cosecha</label>
-                                        <input type="email" class="form-control" th:name="cosecha" th:value="${planta} == null ? '' : ${planta.cosecha}" >
+                                        <input type="text" class="form-control" th:name="cosecha" th:value="${planta} == null ? '' : ${planta.cosecha}" >
                                       </div>
                                     <div class="col-4">
                                       <label for="inputAddress" class="form-label">Descripcion</label>
@@ -59,16 +59,12 @@
                                       <input type="text" class="form-control" th:name="diasCosecha" th:value="${planta} == null ? '' : ${planta.diasCosecha}" >
                                     </div>
                                     <div class="col-4">
-                                        <label for="inputAddress2" class="form-label">Estado</label>
-                                        <input type="text" class="form-control" th:name="estado" th:value="${planta} == null ? '' : ${planta.estado}" >
-                                      </div>
-                                    <div class="col-4">
                                       <label for="inputCity" class="form-label">Heladas</label>
                                       <input type="text" class="form-control" th:name="heladas" th:value="${planta} == null ? '' : ${planta.heladas}" >
                                     </div>
                                     <div class="col-4">
                                         <label for="inputCity" class="form-label">Horas de sol</label>
-                                        <input type="text" class="form-control" th:name="horasSol" th:value="${planta} == null ? '' : ${planta.horasSol}" >
+                                        <input type="number" class="form-control" th:name="horasSol" th:value="${planta} == null ? '' : ${planta.horasSol}" >
                                     </div>
                                     <div class="col-4">
                                         <label for="inputCity" class="form-label">Mes de siembra</label>
@@ -114,7 +110,7 @@
                             </thead>
                             <tbody>
                                 <tr th:each="planta: ${plantas}">
-                                  <td type="hidden" th:text="${planta.id}"></td>
+                                  <td style="display:none;" th:text="${planta.id}"></td>
                                   <th scope="row" th:text="${planta.nombre}"></th>
                                   <td th:text="${planta.cantidadRiego}"></th>
                                   <td th:text="${planta.diasCosecha}"></th>
