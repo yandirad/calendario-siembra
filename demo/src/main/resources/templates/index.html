@@ -49,16 +49,16 @@
                         <div class="dropdown col-12 d-grid">
                             <div><h5 class="h5">Selecciona la estacion en la que queres sembrar</h5></div>
                             <div class="btn-group btn-estaciones" role="group" aria-label="Basic radio toggle button group">
-                                <input type="radio" class="btn-check" name="btnradio" th:id="btnInvierno" autocomplete="off" th:attr="onclick=|guardarEstacion('INVIERNO')|">
+                                <input type="radio" class="btn-check" name="btnradio" th:id="btnInvierno" autocomplete="off" th:attr="onclick=|guardarEstacion('Invierno')|">
                                 <label class="btn btn-outline-primary btn-invierno" th:for="btnInvierno"></label>
 
-                                <input type="radio" class="btn-check" name="btnradio" th:id="btnOtoño" autocomplete="off" th:attr="onclick=|guardarEstacion('OTOÑO')|">
+                                <input type="radio" class="btn-check" name="btnradio" th:id="btnOtoño" autocomplete="off" th:attr="onclick=|guardarEstacion('Otoño')|">
                                 <label class="btn btn-outline-primary btn-otoño" th:for="btnOtoño"></label>
 
-                                <input type="radio" class="btn-check" name="btnradio" th:id="btnPrimavera" autocomplete="off" th:attr="onclick=|guardarEstacion('PRIMAVERA')|">
+                                <input type="radio" class="btn-check" name="btnradio" th:id="btnPrimavera" autocomplete="off" th:attr="onclick=|guardarEstacion('Primavera')|">
                                 <label class="btn btn-outline-primary btn-primavera" th:for="btnPrimavera"></label>
 
-                                <input type="radio" class="btn-check" th:name="verano" th:id="btnVerano" autocomplete="off" th:attr="onclick=|guardarEstacion('VERANO')|">
+                                <input type="radio" class="btn-check" th:name="verano" th:id="btnVerano" autocomplete="off" th:attr="onclick=|guardarEstacion('Verano')|">
                                 <label class="btn btn-outline-primary btn-verano" th:for="btnVerano"></label>
                             </div>
                             <br>
@@ -68,8 +68,10 @@
                     <div class="row resultados">
                         <div class="collapse" id="collapseExample">
                             <div class="col-12">
-                                <ul class="row">
-                                    <li id="botones" class="seleccionados col-2"></li>
+                                <ul class="row" id="botones">
+                                    <li th:each="planta : ${listaPlantas}" class="seleccionados col-2">
+                                    	<button class="btn btn-outline-success btn-lista" data-bs-toggle="collapse" data-bs-target="#collapseDetalle" aria-expanded="false" aria-controls="collapseDetalle" type="submit" th:attr="onclick=|almacenTemporal('${planta.nombre}', '${planta.foto}', '${planta.tipoCultivo}', '${planta.profundidadSiembra}', '${planta.horasSol}', '${planta.cantidadRiego}', '${planta.cosecha}', '${planta.heladas}', '${planta.diasCosecha}', '${planta.mesSiembra}', '${planta.descripcion}')|" th:text="${planta.nombre}"></button>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -79,11 +81,14 @@
                             <div class="titulo-detalle">
                                 <h2 id="nombre"></h2>
                             </div>
+                            <div>
+                                <img id="foto" style="max-width:20vw"/>
+                            </div>
                             <div class="descripcion-detalle">
                                 <p id="descripcion"></p>
                             </div>
                             <div>
-                                <ul class="detalle-atributo" id="detalles">
+                                <ul class="row" id="detalles">
                                 </ul>
                                 <div class="crearCuenta">
                                     <div class="parrafo-cuenta">
@@ -106,30 +111,36 @@
         <!-- JS QUE COMPLETA EL HTML EN BASE A LA PLANTA SELECCIONADA -->
         <script type="text/javascript" th:inline="javascript">
             var h2 = document.getElementById("nombre");
+            var img = document.getElementById("foto");  
             var ul = document.getElementById("detalles");
             var p = document.getElementById("descripcion");
-            var li = document.getElementById("botones");
-            function almacenTemporal(nombre, tipoCultivo, profundidadSiembra, horasSol, cantidadRiego, cosecha, heladas, diasCosecha, mesSiembra, descripcion) {
-            ul.innerHTML = "";
-            h2.innerHTML = nombre;
-            p.innerHTML = descripcion;
-            if(!mesSiembra){
-            mesSiembra = "Cualquier estación"
-            }
-            var lista = {"Tipo de cultivo":tipoCultivo, "Profundiad de siembra":profundidadSiembra, "Horas de sol":horasSol, "Cantidad de riego":cantidadRiego, "Forma de cosecha":cosecha, "Resistencia a heladas":heladas, "Dias para la cosecha":diasCosecha, "Mes de siembra":mesSiembra };
-            for(var k in lista){
-            ul.innerHTML += `<h5>${k}</h5><li class="lista-detalle">${lista[k]}</li>`;
-            }
+            var ulBotones = document.getElementById("botones");
+            
+            function almacenTemporal(nombre, foto, tipoCultivo, profundidadSiembra, horasSol, cantidadRiego, cosecha, heladas, diasCosecha, mesSiembra, descripcion) {
+                ul.innerHTML = "";
+                h2.innerHTML = nombre;
+                img.src = foto;
+                p.innerHTML = descripcion;
+                if(!mesSiembra){
+                mesSiembra = "Cualquier estación"
+                }
+                var lista = {"Tipo de cultivo":tipoCultivo, "Profundidad de siembra":profundidadSiembra, "Horas de sol":horasSol, "Cantidad de riego":cantidadRiego, "Forma de cosecha":cosecha, "Resistencia a heladas":heladas, "Dias para la cosecha":diasCosecha, "Mes de siembra":mesSiembra };
+                for(var k in lista){
+                ul.innerHTML += `<li class="col-sm-4 lista-detalle"><h5>${k}</h5><div>${lista[k]}</div></li>`;
+                }
             }
 
             function guardarEstacion(estacion){
-            li.innerHTML = "";
-            var lista = [[${listaPlantas}]];
-            for(var k in lista){
-            if(lista[k].mesSiembra == estacion){
-            li.innerHTML += `<button class="btn btn-outline-success btn-lista" data-bs-toggle="collapse" data-bs-target="#collapseDetalle" aria-expanded="false" aria-controls="collapseDetalle" type="submit" onclick="almacenTemporal('${lista[k].nombre}', '${lista[k].tipoCultivo}', '${lista[k].profundidadSiembra}', '${lista[k].horasSol}', '${lista[k].cantidadRiego}', '${lista[k].cosecha}', '${lista[k].heladas}', '${lista[k].diasCosecha}', '${lista[k].mesSiembra}', '${lista[k].descripcion}')">${lista[k].nombre}</button>`
-            }
-            }
+            	ulBotones.innerHTML = "";
+                var lista = [[${listaPlantas}]];
+                for(var k in lista){
+                    if(lista[k].mesSiembra == estacion || lista[k].mesSiembra == "Todas"){
+                    	ulBotones.innerHTML += `<li class="seleccionados col-2"><button class="btn btn-outline-success btn-lista" 
+                            data-bs-toggle="collapse" data-bs-target="#collapseDetalle" aria-expanded="false" 
+                            aria-controls="collapseDetalle" type="submit" onclick="almacenTemporal('${lista[k].nombre}', 'data:${lista[k].foto && lista[k].foto.mime};base64,${lista[k].foto && lista[k].foto.contenido}', '${lista[k].tipoCultivo}', '${lista[k].profundidadSiembra}', '${lista[k].horasSol}', '${lista[k].cantidadRiego}', '${lista[k].cosecha}', '${lista[k].heladas}', '${lista[k].diasCosecha}', '${lista[k].mesSiembra}', '${lista[k].descripcion}')">${lista[k].nombre}</button>
+                            </li>`
+                    }
+                }
             }
         </script>
     </body>

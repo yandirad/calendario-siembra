@@ -23,7 +23,7 @@ public class AppController {
 
 	@GetMapping({ "/", "/index" })
 	public String index(Model modelo) {
-		modelo.addAttribute("listaPlantas", plantaService.listarPlantas());
+		modelo.addAttribute("listaPlantas", plantaService.listarPlantasActivas());
 		return "index.html";
 	}
 

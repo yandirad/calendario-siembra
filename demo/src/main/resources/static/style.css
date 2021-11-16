@@ -211,6 +211,8 @@ h3{
 }
 .lista-detalle{
     list-style: none;
+    margin-bottom: 45px;
+    text-align: center;
 }
 .crearCuenta{
     background:rgb(193, 203, 156);
@@ -392,4 +394,11 @@ nav{
     background: #ffffff80;
     border-radius: 1rem;
     min-height: 80vh;
+}
+
+.boton-adm{
+    right: 3%;
+    position: fixed;
+    z-index: 11000;
+    display:flex;
 }
