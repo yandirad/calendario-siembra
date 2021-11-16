@@ -88,7 +88,7 @@
                                 <p id="descripcion"></p>
                             </div>
                             <div>
-                                <ul class="detalle-atributo" id="detalles">
+                                <ul class="row" id="detalles">
                                 </ul>
                                 <div class="crearCuenta">
                                     <div class="parrafo-cuenta">
@@ -126,7 +126,7 @@
                 }
                 var lista = {"Tipo de cultivo":tipoCultivo, "Profundidad de siembra":profundidadSiembra, "Horas de sol":horasSol, "Cantidad de riego":cantidadRiego, "Forma de cosecha":cosecha, "Resistencia a heladas":heladas, "Dias para la cosecha":diasCosecha, "Mes de siembra":mesSiembra };
                 for(var k in lista){
-                ul.innerHTML += `<h5>${k}</h5><li class="lista-detalle">${lista[k]}</li>`;
+                ul.innerHTML += `<li class="col-sm-4 lista-detalle"><h5>${k}</h5><div>${lista[k]}</div></li>`;
                 }
             }
 

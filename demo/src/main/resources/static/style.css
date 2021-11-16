@@ -211,6 +211,8 @@ h3{
 }
 .lista-detalle{
     list-style: none;
+    margin-bottom: 45px;
+    text-align: center;
 }
 .crearCuenta{
     background:rgb(193, 203, 156);
