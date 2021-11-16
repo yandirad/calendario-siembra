@@ -134,7 +134,7 @@
                                   <td th:text="${planta.diasCosecha}"></th>
                                   <td th:text="${planta.descripcion}"></th>
                                   <td th:text="${planta.cosecha}"></th>
-                                  <td th:text="${planta.estado}"></th>
+                                  <td th:text="${planta.estado== true} ? 'Activa' : 'Inactiva'"></th>
                                   <td th:text="${planta.heladas}"></th>
                                   <td th:text="${planta.horasSol}"></th>
                                   <td th:text="${planta.mesSiembra}"></th>
@@ -231,14 +231,18 @@
                                 <th scope="col">Usuario</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Correo electronico</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Permisos</th>
                                 <th scope="col"></th>
                             </tr>
                             </thead>
                             <tbody>
                                 <tr th:each="usuario: ${usuarios}">
-                                    <th scope="row">Usuario</th>
-                                    <td th:text="${usuario.nombre}"></th>
-                                    <td th:text="${usuario.mail}"></th>
+                                    <th th:text="${usuario.usuario}"></th>
+                                    <td th:text="${usuario.nombre}"></td>
+                                    <td th:text="${usuario.mail}"></td>
+                                    <td th:text="${usuario.estado== true} ? 'Activo' : 'Inactivo'"></td>
+                                    <td th:text="${usuario.rol== 'USER'} ? 'No posee' : 'Administrador'"></td>
                                     <td><button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#ModalEliminarUsuario"><i class="far fa-delete"></i>Eliminar</button></td>
                                 </tr>
                             </tbody>
