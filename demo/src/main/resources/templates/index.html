@@ -70,7 +70,7 @@
                             <div class="col-12">
                                 <ul class="row" id="botones">
                                     <li th:each="planta : ${listaPlantas}" class="seleccionados col-2">
-                                    	<button class="btn btn-outline-success btn-lista" data-bs-toggle="collapse" data-bs-target="#collapseDetalle" aria-expanded="false" aria-controls="collapseDetalle" type="submit" th:attr="onclick=|almacenTemporal('${planta.nombre}', '${planta.foto}', '${planta.tipoCultivo}', '${planta.profundidadSiembra}', '${planta.horasSol}', '${planta.cantidadRiego}', '${planta.cosecha}', '${planta.heladas}', '${planta.diasCosecha}', '${planta.mesSiembra}', '${planta.descripcion}')|" th:text="${planta.nombre}"></button>
+                                    	<button class="btn btn-outline-success btn-lista color" data-bs-toggle="collapse" data-bs-target="#collapseDetalle" aria-expanded="false" aria-controls="collapseDetalle" type="submit" th:attr="onclick=|almacenTemporal('${planta.nombre}', '${planta.foto}', '${planta.tipoCultivo}', '${planta.profundidadSiembra}', '${planta.horasSol}', '${planta.cantidadRiego}', '${planta.cosecha}', '${planta.heladas}', '${planta.diasCosecha}', '${planta.mesSiembra}', '${planta.descripcion}')|" th:text="${planta.nombre}"></button>
                                     </li>
                                 </ul>
                             </div>
@@ -81,8 +81,20 @@
                             <div class="titulo-detalle">
                                 <h2 id="nombre"></h2>
                             </div>
+                            <div class="card mb-3">
+                                <div class="row g-0">
+                                  <div class="col-md-6">
+                                    <img id="foto" class="img-fluid rounded-start foto-detalle"/>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="card-body texto-card-body">
+                                      <p id="descripcion" class="card-text texto-detalle"></p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             <div>
-                                <img id="foto" style="max-width:20vw"/>
+                                <img id="foto" class="img-fluid rounded-start" style="max-width:20vw"/>
                             </div>
                             <div class="descripcion-detalle">
                                 <p id="descripcion"></p>
@@ -126,7 +138,7 @@
                 }
                 var lista = {"Tipo de cultivo":tipoCultivo, "Profundidad de siembra":profundidadSiembra, "Horas de sol":horasSol, "Cantidad de riego":cantidadRiego, "Forma de cosecha":cosecha, "Resistencia a heladas":heladas, "Dias para la cosecha":diasCosecha, "Mes de siembra":mesSiembra };
                 for(var k in lista){
-                ul.innerHTML += `<li class="col-sm-4 lista-detalle"><h5>${k}</h5><div>${lista[k]}</div></li>`;
+                ul.innerHTML += `<li class="col-sm-4 lista-detalle"><h5 class="letra-detalle">${k}</h5><div>${lista[k]}</div></li>`;
                 }
             }
 
@@ -135,7 +147,7 @@
                 var lista = [[${listaPlantas}]];
                 for(var k in lista){
                     if(lista[k].mesSiembra == estacion || lista[k].mesSiembra == "Todas"){
-                    	ulBotones.innerHTML += `<li class="seleccionados col-2"><button class="btn btn-outline-success btn-lista" 
+                    	ulBotones.innerHTML += `<li class="seleccionados letra col-2"><button class="btn btn-outline-success btn-lista" 
                             data-bs-toggle="collapse" data-bs-target="#collapseDetalle" aria-expanded="false" 
                             aria-controls="collapseDetalle" type="submit" onclick="almacenTemporal('${lista[k].nombre}', 'data:${lista[k].foto && lista[k].foto.mime};base64,${lista[k].foto && lista[k].foto.contenido}', '${lista[k].tipoCultivo}', '${lista[k].profundidadSiembra}', '${lista[k].horasSol}', '${lista[k].cantidadRiego}', '${lista[k].cosecha}', '${lista[k].heladas}', '${lista[k].diasCosecha}', '${lista[k].mesSiembra}', '${lista[k].descripcion}')">${lista[k].nombre}</button>
                             </li>`
