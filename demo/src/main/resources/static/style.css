@@ -397,8 +397,11 @@ nav{
 }
 
 .boton-adm{
+  
     right: 3%;
     position: fixed;
     z-index: 11000;
-    display:flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 60px;
 }
