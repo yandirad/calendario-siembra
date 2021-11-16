@@ -19,6 +19,7 @@ import com.calendario_siembra.demo.entity.Foto;
 import com.calendario_siembra.demo.entity.Planta;
 import com.calendario_siembra.demo.exceptions.WebException;
 import com.calendario_siembra.demo.repository.PlantaRepository;
+import java.util.ArrayList;
 
 @Service
 public class PlantaService {
@@ -60,6 +61,17 @@ public class PlantaService {
 
 	public List<Planta> listarPlantas() {
 		return plantaRepository.findAll();
+	}
+        
+        public List<Planta> listarPlantasActivas() {
+		List<Planta> plantas = plantaRepository.findAll();
+                List<Planta> activas = new ArrayList();
+                for (Planta planta : plantas) {
+                    if(planta.getEstado()){
+                        activas.add(planta);
+                    }
+                }
+                return activas;
 	}
 
 	// Metodo creado para el uso exclusivo de los administradores

@@ -47,7 +47,7 @@ public class MyAccountController {
 		}
 		modelo.addAttribute("usuario", usuario);
 		modelo.addAttribute("nuevaParcela", new Parcela(usuario));
-		modelo.addAttribute("listaCultivos", plantaService.listarPlantas());
+		modelo.addAttribute("listaCultivos", plantaService.listarPlantasActivas());
 		modelo.addAttribute("nuevaPlanta", new Planta());
 		modelo.addAttribute("error", error);
 		return "myaccount.html";
