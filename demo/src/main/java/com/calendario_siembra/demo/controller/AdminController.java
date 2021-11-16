@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.calendario_siembra.demo.entity.Planta;
 import com.calendario_siembra.demo.entity.Usuario;
@@ -54,6 +53,9 @@ public class AdminController {
 			modelo.addAttribute("usuarios", usuarios);
 			modelo.addAttribute("plantas", plantas);
 			modelo.addAttribute("error", error);
+			if (modelo.getAttribute("nav") == null) {
+				modelo.addAttribute("nav", false);
+			}
 			return "admin.html";
 		} else {
 			return "redirect:/my-account/";
@@ -98,10 +100,11 @@ public class AdminController {
 	}
 
 	// ruta para eliminar usuario
-	@GetMapping("/baja-usuario/{id}")
-	public RedirectView bajaUsuario(Usuario usuario) throws Exception {
-		usuarioService.bajaUsuario(usuario);
-		return new RedirectView("/xx");// agregar ruta listado usuarios
+	@PostMapping("/baja-usuario")
+	public String cambiarEstadoUsuario(String id, RedirectAttributes ra) throws Exception {
+		usuarioService.cambiarEstadoUsuario(id);
+		ra.addFlashAttribute("nav", true);
+		return "redirect:/admin/";// agregar ruta listado usuarios
 	}
 
 	// Metodo para cargar una foto de planta
@@ -123,5 +126,13 @@ public class AdminController {
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
+	}
+
+	// ruta para cambiar el rol
+	@PostMapping("/rol-cambiar")
+	public String cambiarRolUsuario(String id, String rol, RedirectAttributes ra) throws Exception {
+		usuarioService.cambiarRolUsuario(id, rol);
+		ra.addFlashAttribute("nav", true);
+		return "redirect:/admin/";// agregar ruta listado usuarios
 	}
 }

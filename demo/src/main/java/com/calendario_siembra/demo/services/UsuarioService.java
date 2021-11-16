@@ -7,6 +7,8 @@
 package com.calendario_siembra.demo.services;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,7 +30,6 @@ import com.calendario_siembra.demo.entity.Usuario;
 import com.calendario_siembra.demo.exceptions.WebException;
 import com.calendario_siembra.demo.repository.ParcelaRepository;
 import com.calendario_siembra.demo.repository.UsuarioRepository;
-import java.util.List;
 
 /**
  *
@@ -130,13 +131,27 @@ public class UsuarioService implements UserDetailsService {
 		}
 	}
 
-	public void bajaUsuario(Usuario usuario) throws WebException {
-		usuario.setEstado(false);
-		usuarioRepository.save(usuario);
+	public void cambiarEstadoUsuario(String id) throws WebException {
+		Optional<Usuario> rta = usuarioRepository.findById(id);
+		if (rta.isPresent()) {
+			if (rta.get().getEstado())
+				rta.get().setEstado(false);
+			else
+				rta.get().setEstado(true);
+		}
+		usuarioRepository.save(rta.get());
 	}
-        
-        public List<Usuario> listarUsuarios(){
-            List<Usuario> usuarios = usuarioRepository.findAll();
-            return usuarios;
-        }
+
+	public List<Usuario> listarUsuarios() {
+		List<Usuario> usuarios = usuarioRepository.findAll();
+		return usuarios;
+	}
+
+	public void cambiarRolUsuario(String id, String rol) throws WebException {
+		Optional<Usuario> rta = usuarioRepository.findById(id);
+		if (rta.isPresent()) {
+			rta.get().setRol(rol);
+		}
+		usuarioRepository.save(rta.get());
+	}
 }
