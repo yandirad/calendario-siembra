@@ -91,10 +91,10 @@ public class AdminController {
 	}
 
 	// ruta para eliminar planta (baja)
-	@GetMapping("/baja-planta/{id}")
-	public RedirectView bajaPlanta(Planta planta) throws Exception {
-		plantaService.bajaPlanta(planta);
-		return new RedirectView("/xx");// agregar ruta listado plantas
+	@PostMapping("/baja-planta")
+	public String bajaPlanta(String id) throws Exception {
+		plantaService.bajaPlanta(id);
+		return "redirect:/admin/";// agregar ruta listado plantas
 	}
 
 	// ruta para eliminar usuario
