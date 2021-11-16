@@ -134,7 +134,7 @@
                                   <td th:text="${planta.diasCosecha}"></th>
                                   <td th:text="${planta.descripcion}"></th>
                                   <td th:text="${planta.cosecha}"></th>
-                                  <td th:text="${planta.estado== true} ? 'Activa' : 'Inactiva'"></th>
+                                  <td th:text="${planta.estado == true} ? 'Activa' : 'Inactiva'"></th>
                                   <td th:text="${planta.heladas}"></th>
                                   <td th:text="${planta.horasSol}"></th>
                                   <td th:text="${planta.mesSiembra}"></th>
@@ -206,17 +206,38 @@
 					                                                </div>                                                                                                                           
 					                                        
 					                                    </div>    
-					                                    					                                <div class="modal-footer">
-					                                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
-					                                    <button type="submit" class="btn btn-success">Editar</button>
-					                                </div>
+					                                    <div class="modal-footer">
+					                                    	<button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
+					                                    	<button type="submit" class="btn btn-success">Editar</button>
+					                                	</div>
 					                                    </form>
 					                                </div>
 					                            </div>
 					                        </div>
 					                </div>   
                                   </td>
-                                  <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" th:attr="data-bs-target=|#eliminarPlanta${planta.id}">Eliminar</button></td>
+                                  <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" th:attr="data-bs-target=|#eliminarPlanta${planta.id}">Cambiar estado</button></td>
+                                	<div class="modal fade" th:attr="id=|eliminarPlanta${planta.id}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ModalEliminarCultivo" aria-hidden="true">
+					                    <form th:action="@{/admin/baja-planta}" method="post" enctype="multipart/form-data">
+					                        <input type="hidden" th:name="id" th:value="${planta.id}">
+					                        <div class="modal-dialog" >
+					                            <div class="modal-content">
+					                                <div class="modal-header">
+					                                    <h5 class="modal-title" id="ModalEliminarPlantaLabel">Baja Cultivo</h5>
+					                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					                                </div>
+					                                <div class="modal-body">
+					                                    <p>¿Esta seguro que desea cambiar el estado de este Cultivo?</p>
+					                                    <label th:text="${planta.estado == true ? 'Estado actual: ACTIVA' : 'Estado actual: INACTIVA'}"></label>
+					                                </div>
+					                                <div class="modal-footer">
+					                                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
+					                                    <button type="submit" class="btn btn-danger" th:text="${planta.estado == true ? 'DESACTIVAR' : 'ACTIVAR'}"></button>
+					                                </div>
+					                            </div>
+					                        </div>
+					                    </form>
+					                </div>
                                 </tr>
                                
                             </tbody>
@@ -256,7 +277,7 @@
                         <div class="modal-dialog" >
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="ModalEliminarUsuarioLabel">Eliminar Cultivo</h5>
+                                    <h5 class="modal-title" id="ModalEliminarUsuarioLabel">Baja usuario</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
