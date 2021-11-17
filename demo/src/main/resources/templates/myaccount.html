@@ -35,15 +35,15 @@
 			                        <strong th:text="${error}"></strong>
 			                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 			                    </div>
-                                <h3>Mis Datos</h3>
+                                <h3 style="text-align: center">Mis Datos</h3>
                                 <ul class="lista-usuario">
-                                    <li class="card-title" th:text="'Nombre: ' + ${usuario.nombre}"></li>
+                                    <li th:text="'Nombre: ' + ${usuario.nombre}"></li>
                                     <li th:text="'Usuario: ' + ${usuario.usuario}"></li>
                                     <li th:text="'Mail: ' + ${usuario.mail}"></li>
                                 </ul>
 
                                 <div class="d-grid d-flex justify-content-md-end">
-                                    <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#modifUsuario">Modificar</button>
+                                    <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#modifUsuario"><i class="far fa-edit"></i> Modificar</button>
                                 </div>
                                 <!--Modal Modificacion Usuarios-->
 
@@ -130,7 +130,7 @@
                                     <div th:attr="id=|collapse${parcela.id}|" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#collapse">
                                         <div class="accordion-body">
                                             <!-- Button trigger modal --><!--    BOTON PARA AGREGAR NUEVAS PLANTAS A LA PARCELA  -->
-                                            <button type="button" class="btn btn-primary boton" data-bs-toggle="modal" th:attr="data-bs-target=|#modal${parcela.id}|">
+                                            <button type="button" class="btn btn-warning boton" data-bs-toggle="modal" th:attr="data-bs-target=|#modal${parcela.id}|">
                                                 Agregar nuevo cultivo
                                             </button>
                                             <!--    MOSTRAR TODAS LAS PLANTAS DE ESTA PARCELA    -->
@@ -176,8 +176,8 @@
                                                             </ol>
                                                             </p>
                                                             <div class="d-grid gap-2 d-md-flex align-items-end justify-content-md-end">
-                                                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" data-bs-toggle="modal" th:attr="data-bs-target=|#ModalDetalle${planta.id}|" >Ver detalles</button>
-                                                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" data-bs-toggle="modal" th:attr="data-bs-target=|#eliminarplanta${planta.id}de${parcela.id}"><i class="far fa-delete"></i> Eliminar</button>
+                                                                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal" data-bs-toggle="modal" th:attr="data-bs-target=|#ModalDetalle${planta.id}|" ><i class="fas fa-info-circle"></i> Ver detalles</button>
+                                                                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" data-bs-toggle="modal" th:attr="data-bs-target=|#eliminarplanta${planta.id}de${parcela.id}"><i class="fas fa-trash-alt"></i> Eliminar</button>
                                                             </div>
 
                                                             <!-- Modal Detalle-->
@@ -204,7 +204,7 @@
                                                                 <div class="modal-dialog" >
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
-                                                                            <h5 class="modal-title" id="ModalEliminarCultivoLabel">Eliminar Cultivo</h5>
+                                                                            <h5 class="modal-title" id="ModalEliminarCultivoLabel"><i class="fas fa-trash-alt"></i>Eliminar Cultivo</h5>
                                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body">
@@ -212,7 +212,7 @@
                                                                         </div>
                                                                         <div class="modal-footer">
                                                                             <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
-                                                                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                                                                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i>Eliminar</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -301,8 +301,8 @@
                                                 </div>
                                             </form>
                                             <div class="d-grid gap-2 d-md-flex align-items-end justify-content-md-end botones-eliminar-modificar-parcela">
-                                                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" th:attr="data-bs-target=|#modificarparcela${parcela.id}" data-bs-dismiss="modal"></i> Modificar parcela</button>
-                                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" th:attr="data-bs-target=|#eliminarparcela${parcela.id}" data-bs-dismiss="eliminar-parcela"><i class="far fa-delete"></i> Eliminar parcela</button>
+                                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" th:attr="data-bs-target=|#modificarparcela${parcela.id}" data-bs-dismiss="modal"><i class="fas fa-edit"></i> Modificar parcela</button>
+                                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" th:attr="data-bs-target=|#eliminarparcela${parcela.id}" data-bs-dismiss="eliminar-parcela"><i class="fas fa-trash-alt"></i> Eliminar parcela</button>
                                                 <div class="modal fade" th:attr="id=|modificarparcela${parcela.id}|" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
 
                                                     <div class="modal-dialog">
