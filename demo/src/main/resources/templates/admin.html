@@ -1,327 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Administrador</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Administrador</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="static/style.css" th:href="@{/style.css}">
         <link rel="stylesheet" href="../static/style.css">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Irish+Grover&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="fondo-admin">
-        <div  class="row boton-adm">
-            
-                <button type="button" class="btn btn-success btn-sm d-grid"><a>Cerrar Sesión</a></button>
-            
-        </div>
-        <div class="row">
-            <div class="col-1 colum1">
-
+    </head>
+    <body>
+        <div class="fondo-admin">
+            <div  class="row boton-adm">
+                <button type="button" class="btn btn-success btn-sm"><a th:href="@{/logout}">Cerrar Sesión</a></button>
             </div>
-            <div class="col-10 back-admin">    
-                <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button th:attr="class=|${nav == true ? 'nav-link' : 'nav-link active'}|" th:attrappend="aria-selected=${nav == true ? 'false' : 'true'}" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home">Administrar plantas</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button th:attr="class=|${nav == true ? 'nav-link active' : 'nav-link'}|"  id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" th:attrappend="aria-selected=${nav == true ? 'true' : 'false'}">Administrar usuarios</button>
-                    </li>
-                </ul>
-                <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-			                        <strong th:text="${error}"></strong>
-			                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			    </div>
-			    <div th:if="${exitoso}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-			                        <strong th:text="${exitoso}"></strong>
-			                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			    </div>
-                <!--    FORMULARIO CARGA PLANTAS    -->
-                <div class="tab-content" id="myTabContent">
-                    <div th:attr="class=|${nav == true ? 'tab-pane fade' : 'tab-pane fade active show'}|" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="cargar-planta">
-                            <button class="btn btn-outline-light col-6 mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Cargar Planta</button>
-                        </div>
-                        <div class="collapse" id="collapseExample">
-                            <div class="card card-body form-libros">
-                                <form class="row g-3" th:action="@{/admin/registrar-planta}" method="post" th:object="${planta}" enctype="multipart/form-data">
-                                    <input type="hidden" name="id" th:value="${planta} == null ? '' : ${planta.id}"/>
-                                    <div class="col-md-4">
-                                      <label for="inputEmail4" class="form-label">Nombre</label>
-                                      <input type="text" class="form-control" th:name="nombre" th:value="${planta} == null ? '' : ${planta.nombre}" >
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="inputEmail4" class="form-label">Tipo de riego</label>
-                                        <input type="text" class="form-control" th:name="cantidadRiego" th:value="${planta} == null ? '' : ${planta.cantidadRiego}" >
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="inputEmail4" class="form-label">Recomendacion de cosecha</label>
-                                        <input type="text" class="form-control" th:name="cosecha" th:value="${planta} == null ? '' : ${planta.cosecha}" >
-                                      </div>
-                                    <div class="col-4">
-                                      <label for="inputAddress" class="form-label">Descripcion</label>
-                                      <textarea class="form-control" aria-label="With textarea" th:name="descripcion" th:value="${planta} == null ? '' : ${planta.descripcion}"></textarea>
-                                    </div>
-                                    <div class="col-4">
-                                      <label for="inputAddress2" class="form-label">Dias de cosecha</label>
-                                      <input type="text" class="form-control" th:name="diasCosecha" th:value="${planta} == null ? '' : ${planta.diasCosecha}" >
-                                    </div>
-                                    <div class="col-4">
-                                      <label for="inputCity" class="form-label">Heladas</label>
-                                      <input type="text" class="form-control" th:name="heladas" th:value="${planta} == null ? '' : ${planta.heladas}" >
-                                    </div>
-                                    <div class="col-4">
-                                        <label for="inputCity" class="form-label">Horas de sol</label>
-                                        <input type="number" class="form-control" th:name="horasSol" th:value="${planta} == null ? '' : ${planta.horasSol}" >
-                                    </div>
-                                    <div class="col-4">
-                                        <div class="dropdown col-12 d-grid gap-2">
-                                            <label for="">Mes de siembra</label>
-                                            <select class="color-boton btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true" th:name="mesSiembra">
-                                                <option th:value="'Invierno'">Invierno</option>
-                                                <option th:value="'Otoño'">Otoño</option>
-                                                <option th:value="'Primavera'">Primavera</option>
-                                                <option th:value="'Verano'">Verano</option>
-                                            </select>
+            <div class="row">
+                <div class="col-1 colum1">
+
+                </div>
+                <div class="col-10 back-admin">    
+                    <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button th:attr="class=|${nav == true ? 'nav-link' : 'nav-link active'}|" th:attrappend="aria-selected=${nav == true ? 'false' : 'true'}" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home">Administrar plantas</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button th:attr="class=|${nav == true ? 'nav-link active' : 'nav-link'}|"  id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" th:attrappend="aria-selected=${nav == true ? 'true' : 'false'}">Administrar usuarios</button>
+                        </li>
+                    </ul>
+                    <div th:if="${error}" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                        <strong th:text="${error}"></strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <div th:if="${exitoso}" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                        <strong th:text="${exitoso}"></strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    <!--    FORMULARIO CARGA PLANTAS    -->
+                    <div class="tab-content" id="myTabContent">
+                        <div th:attr="class=|${nav == true ? 'tab-pane fade' : 'tab-pane fade active show'}|" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="cargar-planta">
+                                <button class="btn btn-outline-light col-6 mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Cargar Planta</button>
+                            </div>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body form-libros">
+                                    <form class="row g-3" th:action="@{/admin/registrar-planta}" method="post" th:object="${planta}" enctype="multipart/form-data">
+                                        <input type="hidden" name="id" th:value="${planta} == null ? '' : ${planta.id}"/>
+                                        <div class="col-md-4">
+                                            <label for="inputEmail4" class="form-label">Nombre</label>
+                                            <input type="text" class="form-control" th:name="nombre" th:value="${planta} == null ? '' : ${planta.nombre}" >
                                         </div>
-                                    </div>
-                                    <div class="col-4">
-                                        <label for="inputCity" class="form-label">Profundidad siembra</label>
-                                        <input type="text" class="form-control" th:name="profundidadSiembra" th:value="${planta} == null ? '' : ${planta.profundidadSiembra}" >
-                                    </div>
-                                    <div class="col-4">
-                                        <label for="inputCity" class="form-label">Tipo de cultivo</label>
-                                        <input type="text" class="form-control" th:name="tipoCultivo" th:value="${planta} == null ? '' : ${planta.tipoCultivo}">
-                                    </div>
+                                        <div class="col-md-4">
+                                            <label for="inputEmail4" class="form-label">Tipo de riego</label>
+                                            <input type="text" class="form-control" th:name="cantidadRiego" th:value="${planta} == null ? '' : ${planta.cantidadRiego}" >
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label for="inputEmail4" class="form-label">Recomendacion de cosecha</label>
+                                            <input type="text" class="form-control" th:name="cosecha" th:value="${planta} == null ? '' : ${planta.cosecha}" >
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="inputAddress" class="form-label">Descripcion</label>
+                                            <textarea class="form-control" aria-label="With textarea" th:name="descripcion" th:value="${planta} == null ? '' : ${planta.descripcion}"></textarea>
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="inputAddress2" class="form-label">Dias de cosecha</label>
+                                            <input type="text" class="form-control" th:name="diasCosecha" th:value="${planta} == null ? '' : ${planta.diasCosecha}" >
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="inputCity" class="form-label">Heladas</label>
+                                            <input type="text" class="form-control" th:name="heladas" th:value="${planta} == null ? '' : ${planta.heladas}" >
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="inputCity" class="form-label">Horas de sol</label>
+                                            <input type="number" class="form-control" th:name="horasSol" th:value="${planta} == null ? '' : ${planta.horasSol}" >
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="dropdown col-12 d-grid gap-2">
+                                                <label for="">Mes de siembra</label>
+                                                <select class="color-boton btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true" th:name="mesSiembra">
+                                                    <option th:value="'Invierno'">Invierno</option>
+                                                    <option th:value="'Otoño'">Otoño</option>
+                                                    <option th:value="'Primavera'">Primavera</option>
+                                                    <option th:value="'Verano'">Verano</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="inputCity" class="form-label">Profundidad siembra</label>
+                                            <input type="text" class="form-control" th:name="profundidadSiembra" th:value="${planta} == null ? '' : ${planta.profundidadSiembra}" >
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="inputCity" class="form-label">Tipo de cultivo</label>
+                                            <input type="text" class="form-control" th:name="tipoCultivo" th:value="${planta} == null ? '' : ${planta.tipoCultivo}">
+                                        </div>
                                         <div class="col-4">
                                             <label for="archivo" class="form-label">Foto</label>
                                             <input type="file" class="form-control" th:name="archivo">
                                         </div>
-                                    <div class="col-12">
-                                        <button type="submit" class="btn btn-secondary d-grid mx-auto col-6">Guardar</button>
-                                    </div>
-                                </form>
+                                        <div class="col-12">
+                                            <button type="submit" class="btn btn-secondary d-grid mx-auto col-6">Guardar</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
+
+                            <!--    TABLA PLANTAS    -->
+                            <table class="table table-light table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Riego</th>
+                                        <th scope="col">Cosecha</th>
+                                        <th scope="col">Descripcion</th>
+                                        <th scope="col">Tipo cosecha</th>
+                                        <th scope="col">Estado</th>
+                                        <th scope="col">Heladas</th>
+                                        <th scope="col">Horas sol</th>
+                                        <th scope="col">Mes siembra</th>
+                                        <th scope="col">Profunidad de siembra</th>
+                                        <th scope="col">Tipo cultivo</th>
+                                        <th scope="col">Foto</th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="planta: ${plantas}">
+                                        <td style="display:none;" th:text="${planta.id}"></td>
+                                        <th scope="row" th:text="${planta.nombre}"></th>
+                                        <td th:text="${planta.cantidadRiego}"></th>
+                                        <td th:text="${planta.diasCosecha}"></th>
+                                        <td th:text="${planta.descripcion}"></th>
+                                        <td th:text="${planta.cosecha}"></th>
+                                        <td th:text="${planta.estado == true} ? 'Activa' : 'Inactiva'"></th>
+                                        <td th:text="${planta.heladas}"></th>
+                                        <td th:text="${planta.horasSol}"></th>
+                                        <td th:text="${planta.mesSiembra}"></th>
+                                        <td th:text="${planta.profundidadSiembra}"></th>
+                                        <td th:text="${planta.tipoCultivo}"></th>
+                                        <td th:text="${planta.foto == null} ? 'No tiene' : 'Tiene'"></th>
+                                        <td>
+                                            <button type="button" class="btn btn-success" data-bs-toggle="modal" th:attr="data-bs-target=|#modificarPlanta${planta.id}">Editar</button>
+                                            <div class="modal fade" th:attr="id=|modificarPlanta${planta.id}|" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ModalEliminarPlanta" aria-hidden="true">
+                                                <div class="modal-dialog" >
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="ModalEditarPlantaLabel">Editar Planta</h5>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form th:action="@{/admin/registrar-planta}" method="post" th:object="${planta}" enctype="multipart/form-data">
+                                                                <div class="row">
+                                                                    <input type="hidden" name="id" th:value="${planta} == null ? '' : ${planta.id}"/>
+                                                                    <div class="col-md-4">
+                                                                        <label for="inputEmail4" class="form-label">Nombre</label>
+                                                                        <input type="text" class="form-control" th:value="${planta.nombre}" th:name="nombre" >
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label for="inputEmail4" class="form-label">Tipo de riego</label>
+                                                                        <input type="text" class="form-control" th:value="${planta.cantidadRiego}" th:name="cantidadRiego">
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label for="inputEmail4" class="form-label">Recomendacion de cosecha</label>
+                                                                        <input type="text" class="form-control" th:value="${planta.cosecha}" th:name="cosecha">
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <label for="inputAddress" class="form-label">Descripcion</label>
+                                                                        <textarea class="form-control" aria-label="With textarea" th:text="${planta.descripcion}" th:name="descripcion"></textarea>
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <label for="inputAddress2" class="form-label">Dias de cosecha</label>
+                                                                        <input type="text" class="form-control" th:value="${planta.diasCosecha}" th:name="diasCosecha" >
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <label for="inputCity" class="form-label">Heladas</label>
+                                                                        <input type="text" class="form-control" th:value="${planta.heladas}" th:name="heladas">
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <label for="inputCity" class="form-label">Horas de sol</label>
+                                                                        <input type="number" class="form-control" th:value="${planta.horasSol}" th:name="horasSol" >
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <div class="dropdown col-12 d-grid gap-2">
+                                                                            <label for="">Mes de siembra</label>
+                                                                            <select class="color-boton btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true" th:name="mesSiembra">
+                                                                                <option th:selected="${planta.mesSiembra == 'Invierno' ? true : false}" th:value="'Invierno'">Invierno</option>
+                                                                                <option th:selected="${planta.mesSiembra == 'Otoño' ? true : false}" th:value="'Otoño'">Otoño</option>
+                                                                                <option th:selected="${planta.mesSiembra == 'Primavera' ? true : false}" th:value="'Primavera'">Primavera</option>
+                                                                                <option th:selected="${planta.mesSiembra == 'Verano' ? true : false}" th:value="'Verano'">Verano</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <label for="inputCity" class="form-label">Profundidad siembra</label>
+                                                                        <input type="text" class="form-control" th:value="${planta.profundidadSiembra}" th:name="profundidadSiembra">
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <label for="inputCity" class="form-label">Tipo de cultivo</label>
+                                                                        <input type="text" class="form-control" th:value="${planta.tipoCultivo}" th:name="tipoCultivo">
+                                                                    </div>
+                                                                    <div class="mb-2 container">
+                                                                        <label for="archivo" class="form-label">Foto</label>
+                                                                        <input type="file" class="form-control" th:value="${planta.foto}" th:name="archivo">
+                                                                    </div>                                                                                                                           
+
+                                                                </div>    
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
+                                                                    <button type="submit" class="btn btn-success">Editar</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>   
+                                        </td>
+                                        <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" th:attr="data-bs-target=|#eliminarPlanta${planta.id}">Cambiar estado</button></td>
+                                <div class="modal fade" th:attr="id=|eliminarPlanta${planta.id}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ModalEliminarCultivo" aria-hidden="true">
+                                    <form th:action="@{/admin/baja-planta}" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" th:name="id" th:value="${planta.id}">
+                                        <div class="modal-dialog" >
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="ModalEliminarPlantaLabel">Cambiar estado del Cultivo</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>¿Esta seguro que desea cambiar el estado de este Cultivo?</p>
+                                                    <label th:text="${planta.estado == true ? 'Estado actual: ACTIVA' : 'Estado actual: INACTIVA'}"></label>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
+                                                    <button type="submit" class="btn btn-danger" th:text="${planta.estado == true ? 'DESACTIVAR' : 'ACTIVAR'}"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                </tr>
+
+                                </tbody>
+                            </table>    
                         </div>
-                        
-                        <!--    TABLA PLANTAS    -->
-                        <table class="table table-light table-striped">
-                            <thead>
-                              <tr>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Riego</th>
-                                <th scope="col">Cosecha</th>
-                                <th scope="col">Descripcion</th>
-                                <th scope="col">Tipo cosecha</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col">Heladas</th>
-                                <th scope="col">Horas sol</th>
-                                <th scope="col">Mes siembra</th>
-                                <th scope="col">Profunidad de siembra</th>
-                                <th scope="col">Tipo cultivo</th>
-                                <th scope="col">Foto</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="planta: ${plantas}">
-                                  <td style="display:none;" th:text="${planta.id}"></td>
-                                  <th scope="row" th:text="${planta.nombre}"></th>
-                                  <td th:text="${planta.cantidadRiego}"></th>
-                                  <td th:text="${planta.diasCosecha}"></th>
-                                  <td th:text="${planta.descripcion}"></th>
-                                  <td th:text="${planta.cosecha}"></th>
-                                  <td th:text="${planta.estado == true} ? 'Activa' : 'Inactiva'"></th>
-                                  <td th:text="${planta.heladas}"></th>
-                                  <td th:text="${planta.horasSol}"></th>
-                                  <td th:text="${planta.mesSiembra}"></th>
-                                  <td th:text="${planta.profundidadSiembra}"></th>
-                                  <td th:text="${planta.tipoCultivo}"></th>
-                                  <td th:text="${planta.foto == null} ? 'No tiene' : 'Tiene'"></th>
-                                  <td>
-                                  	<button type="button" class="btn btn-success" data-bs-toggle="modal" th:attr="data-bs-target=|#modificarPlanta${planta.id}">Editar</button>
-                                    <div class="modal fade" th:attr="id=|modificarPlanta${planta.id}|" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ModalEliminarPlanta" aria-hidden="true">
-					                        <div class="modal-dialog" >
-					                            <div class="modal-content">
-					                                <div class="modal-header">
-					                                    <h5 class="modal-title" id="ModalEditarPlantaLabel">Editar Planta</h5>
-					                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					                                </div>
-					                                <div class="modal-body">
-					                                <form th:action="@{/admin/registrar-planta}" method="post" th:object="${planta}" enctype="multipart/form-data">
-					                                    <div class="row">
-					                                            <input type="hidden" name="id" th:value="${planta} == null ? '' : ${planta.id}"/>
-					                                            <div class="col-md-4">
-					                                            <label for="inputEmail4" class="form-label">Nombre</label>
-					                                            <input type="text" class="form-control" th:value="${planta.nombre}" th:name="nombre" >
-					                                            </div>
-					                                            <div class="col-md-4">
-					                                                <label for="inputEmail4" class="form-label">Tipo de riego</label>
-					                                                <input type="text" class="form-control" th:value="${planta.cantidadRiego}" th:name="cantidadRiego">
-					                                            </div>
-					                                            <div class="col-md-4">
-					                                                <label for="inputEmail4" class="form-label">Recomendacion de cosecha</label>
-					                                                <input type="text" class="form-control" th:value="${planta.cosecha}" th:name="cosecha">
-					                                            </div>
-					                                            <div class="col-4">
-					                                            <label for="inputAddress" class="form-label">Descripcion</label>
-					                                            <textarea class="form-control" aria-label="With textarea" th:text="${planta.descripcion}" th:name="descripcion"></textarea>
-					                                            </div>
-					                                            <div class="col-4">
-					                                            <label for="inputAddress2" class="form-label">Dias de cosecha</label>
-					                                            <input type="text" class="form-control" th:value="${planta.diasCosecha}" th:name="diasCosecha" >
-					                                            </div>
-					                                            <div class="col-4">
-					                                            <label for="inputCity" class="form-label">Heladas</label>
-					                                            <input type="text" class="form-control" th:value="${planta.heladas}" th:name="heladas">
-					                                            </div>
-					                                            <div class="col-4">
-					                                                <label for="inputCity" class="form-label">Horas de sol</label>
-					                                                <input type="number" class="form-control" th:value="${planta.horasSol}" th:name="horasSol" >
-					                                            </div>
-					                                            <div class="col-4">
-					                                                <div class="dropdown col-12 d-grid gap-2">
-							                                            <label for="">Mes de siembra</label>
-							                                            <select class="color-boton btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true" th:name="mesSiembra">
-							                                                <option th:selected="${planta.mesSiembra == 'Invierno' ? true : false}" th:value="'Invierno'">Invierno</option>
-							                                                <option th:selected="${planta.mesSiembra == 'Otoño' ? true : false}" th:value="'Otoño'">Otoño</option>
-							                                                <option th:selected="${planta.mesSiembra == 'Primavera' ? true : false}" th:value="'Primavera'">Primavera</option>
-							                                                <option th:selected="${planta.mesSiembra == 'Verano' ? true : false}" th:value="'Verano'">Verano</option>
-							                                            </select>
-					                                                </div>
-					                                            </div>
-					                                            <div class="col-4">
-					                                                <label for="inputCity" class="form-label">Profundidad siembra</label>
-					                                                <input type="text" class="form-control" th:value="${planta.profundidadSiembra}" th:name="profundidadSiembra">
-					                                            </div>
-					                                            <div class="col-4">
-					                                                <label for="inputCity" class="form-label">Tipo de cultivo</label>
-					                                                <input type="text" class="form-control" th:value="${planta.tipoCultivo}" th:name="tipoCultivo">
-					                                            </div>
-					                                                <div class="mb-2 container">
-					                                                    <label for="archivo" class="form-label">Foto</label>
-					                                                    <input type="file" class="form-control" th:value="${planta.foto}" th:name="archivo">
-					                                                </div>                                                                                                                           
-					                                        
-					                                    </div>    
-					                                    <div class="modal-footer">
-					                                    	<button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
-					                                    	<button type="submit" class="btn btn-success">Editar</button>
-					                                	</div>
-					                                    </form>
-					                                </div>
-					                            </div>
-					                        </div>
-					                </div>   
-                                  </td>
-                                  <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" th:attr="data-bs-target=|#eliminarPlanta${planta.id}">Cambiar estado</button></td>
-                                	<div class="modal fade" th:attr="id=|eliminarPlanta${planta.id}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ModalEliminarCultivo" aria-hidden="true">
-					                    <form th:action="@{/admin/baja-planta}" method="post" enctype="multipart/form-data">
-					                        <input type="hidden" th:name="id" th:value="${planta.id}">
-					                        <div class="modal-dialog" >
-					                            <div class="modal-content">
-					                                <div class="modal-header">
-					                                    <h5 class="modal-title" id="ModalEliminarPlantaLabel">Cambiar estado del Cultivo</h5>
-					                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					                                </div>
-					                                <div class="modal-body">
-					                                    <p>¿Esta seguro que desea cambiar el estado de este Cultivo?</p>
-					                                    <label th:text="${planta.estado == true ? 'Estado actual: ACTIVA' : 'Estado actual: INACTIVA'}"></label>
-					                                </div>
-					                                <div class="modal-footer">
-					                                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
-					                                    <button type="submit" class="btn btn-danger" th:text="${planta.estado == true ? 'DESACTIVAR' : 'ACTIVAR'}"></button>
-					                                </div>
-					                            </div>
-					                        </div>
-					                    </form>
-					                </div>
+
+                        <!--    TABLA USUARIOS    -->
+                        <div th:attr="class=|${nav == true ? 'tab-pane fade active show' : 'tab-pane fade'}|" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <table class="table table-light table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Usuario</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Correo electronico</th>
+                                        <th scope="col">Estado</th>
+                                        <th scope="col">Permisos</th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="usuario: ${usuarios}">
+                                        <th th:text="${usuario.usuario}"></th>
+                                        <td th:text="${usuario.nombre}"></td>
+                                        <td th:text="${usuario.mail}"></td>
+                                        <td th:text="${usuario.estado== true} ? 'Activo' : 'Inactivo'"></td>
+                                        <td th:text="${usuario.rol== 'USER'} ? 'Usuario' : 'Administrador'"></td>
+                                        <td><button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal" th:attr="data-bs-target=|#eliminarUsuario${usuario.id}"><i class="far fa-delete"></i>Cambiar estado</button></td>
+                                <div class="modal fade" th:attr="id=|eliminarUsuario${usuario.id}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ModalEliminarUsuario" aria-hidden="true">
+                                    <form th:action="@{/admin/baja-usuario}" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" th:name="id" th:value="${usuario.id}">
+                                        <div class="modal-dialog" >
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="ModalEliminarUsuarioLabel">Cambiar estado del usuario</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>¿Esta seguro que desea cambiar el estado del usuario?</p>
+                                                    <label th:text="${usuario.estado == true ? 'Estado actual: ACTIVO' : 'Estado actual: INACTIVO'}"></label>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
+                                                    <button type="submit" class="btn btn-danger" th:text="${usuario.estado == true ? 'DESACTIVAR' : 'ACTIVAR'}"></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <td><button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal" th:attr="data-bs-target=|#cambiarRol${usuario.id}"><i class="far fa-delete"></i>Cambiar Rol</button></td>
+                                <div class="modal fade" th:attr="id=|cambiarRol${usuario.id}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ModalEliminarUsuario" aria-hidden="true">
+                                    <form th:action="@{/admin/rol-cambiar}" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" th:name="id" th:value="${usuario.id}">
+                                        <div class="modal-dialog" >
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="ModalEliminarUsuarioLabel">Cambiar estado del usuario</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Seleccione un Rol</p>
+                                                    <select class="color-boton btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true" th:name="rol">
+                                                        <option th:value="'ADMIN'">Administrador</option>
+                                                        <option th:value="'USER'">Usuario</option>
+                                                    </select>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
+                                                    <button type="submit" class="btn btn-danger">Cambiar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                                 </tr>
-                               
-                            </tbody>
-                        </table>    
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    
-                    <!--    TABLA USUARIOS    -->
-                    <div th:attr="class=|${nav == true ? 'tab-pane fade active show' : 'tab-pane fade'}|" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                        <table class="table table-light table-striped">
-                            <thead>
-                            <tr>
-                                <th scope="col">Usuario</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Correo electronico</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col">Permisos</th>
-                                <th scope="col"></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="usuario: ${usuarios}">
-                                    <th th:text="${usuario.usuario}"></th>
-                                    <td th:text="${usuario.nombre}"></td>
-                                    <td th:text="${usuario.mail}"></td>
-                                    <td th:text="${usuario.estado== true} ? 'Activo' : 'Inactivo'"></td>
-                                    <td th:text="${usuario.rol== 'USER'} ? 'Usuario' : 'Administrador'"></td>
-                                    <td><button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal" th:attr="data-bs-target=|#eliminarUsuario${usuario.id}"><i class="far fa-delete"></i>Cambiar estado</button></td>
-                                    <div class="modal fade" th:attr="id=|eliminarUsuario${usuario.id}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ModalEliminarUsuario" aria-hidden="true">
-					                    <form th:action="@{/admin/baja-usuario}" method="post" enctype="multipart/form-data">
-					                        <input type="hidden" th:name="id" th:value="${usuario.id}">
-					                        <div class="modal-dialog" >
-					                            <div class="modal-content">
-					                                <div class="modal-header">
-					                                    <h5 class="modal-title" id="ModalEliminarUsuarioLabel">Cambiar estado del usuario</h5>
-					                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					                                </div>
-					                                <div class="modal-body">
-					                                    <p>¿Esta seguro que desea cambiar el estado del usuario?</p>
-					                                    <label th:text="${usuario.estado == true ? 'Estado actual: ACTIVO' : 'Estado actual: INACTIVO'}"></label>
-					                                </div>
-					                                <div class="modal-footer">
-					                                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
-					                                    <button type="submit" class="btn btn-danger" th:text="${usuario.estado == true ? 'DESACTIVAR' : 'ACTIVAR'}"></button>
-					                                </div>
-					                            </div>
-					                        </div>
-					                    </form>
-					                </div>
-					                <td><button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-toggle="modal" th:attr="data-bs-target=|#cambiarRol${usuario.id}"><i class="far fa-delete"></i>Cambiar Rol</button></td>
-                                    <div class="modal fade" th:attr="id=|cambiarRol${usuario.id}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ModalEliminarUsuario" aria-hidden="true">
-					                    <form th:action="@{/admin/rol-cambiar}" method="post" enctype="multipart/form-data">
-					                        <input type="hidden" th:name="id" th:value="${usuario.id}">
-					                        <div class="modal-dialog" >
-					                            <div class="modal-content">
-					                                <div class="modal-header">
-					                                    <h5 class="modal-title" id="ModalEliminarUsuarioLabel">Cambiar estado del usuario</h5>
-					                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					                                </div>
-					                                <div class="modal-body">
-					                                    <p>Seleccione un Rol</p>
-					                                    <select class="color-boton btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="true" th:name="rol">
-			                                                <option th:value="'ADMIN'">Administrador</option>
-			                                                <option th:value="'USER'">Usuario</option>
-			                                            </select>
-					                                </div>
-					                                <div class="modal-footer">
-					                                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
-					                                    <button type="submit" class="btn btn-danger">Cambiar</button>
-					                                </div>
-					                            </div>
-					                        </div>
-					                    </form>
-					                </div>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div> 
-            <div class="col-1 colum3">
-            </div>   
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</body>
+                </div> 
+                <div class="col-1 colum3">
+                </div>   
+            </div>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    </body>
 </html>
