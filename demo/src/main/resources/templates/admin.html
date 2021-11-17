@@ -122,6 +122,7 @@
                                 <th scope="col">Mes siembra</th>
                                 <th scope="col">Profunidad de siembra</th>
                                 <th scope="col">Tipo cultivo</th>
+                                <th scope="col">Foto</th>
                                 <th scope="col"></th>
                                 <th scope="col"></th>
                               </tr>
@@ -140,6 +141,7 @@
                                   <td th:text="${planta.mesSiembra}"></th>
                                   <td th:text="${planta.profundidadSiembra}"></th>
                                   <td th:text="${planta.tipoCultivo}"></th>
+                                  <td th:text="${planta.foto == null} ? 'No tiene' : 'Tiene'"></th>
                                   <td>
                                   	<button type="button" class="btn btn-success" data-bs-toggle="modal" th:attr="data-bs-target=|#modificarPlanta${planta.id}">Editar</button>
                                     <div class="modal fade" th:attr="id=|modificarPlanta${planta.id}|" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ModalEliminarPlanta" aria-hidden="true">
