@@ -57,6 +57,14 @@ h1{
     margin-bottom: 15px; 
     text-align: center;
 }
+.color-boton-index{
+    background-color: yellowgreen;
+    color: #333333;
+}
+.color-boton-index:hover{
+    background-color: #00b36b;
+}
+
 .color-boton{
     background-color: #00e68a;
     color: #333333;
