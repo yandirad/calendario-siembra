@@ -183,6 +183,19 @@ h1{
     width: 60px;
 
 }
+.texto-card-body {
+    overflow-y: scroll;
+    height: 247px!important;
+}
+
+.foto-detalle{
+    width: 100%;
+    height: auto;
+    background-size: auto;
+}
+.texto-detalle{
+    font-size: 18px;
+}
 .detalle-cultivo{
     height: auto;
     max-height: auto;
@@ -205,7 +218,6 @@ h1{
     flex-grow: 1;
     padding: 25px;
 }
-
 h3{
     font-size: 25px;
 }
@@ -213,6 +225,15 @@ h3{
     list-style: none;
     margin-bottom: 45px;
     text-align: center;
+    font-size: 18px;
+}
+.color{
+    font-weight: bold;
+    color: whitesmoke;
+}
+.letra-detalle{
+    font-size: 20px;
+    font-weight: bold;
 }
 .crearCuenta{
     background:rgb(193, 203, 156);
