@@ -147,7 +147,7 @@
                 var lista = [[${listaPlantas}]];
                 for(var k in lista){
                     if(lista[k].mesSiembra == estacion || lista[k].mesSiembra == "Todas"){
-                    	ulBotones.innerHTML += `<li class="seleccionados letra col-2"><button class="btn btn-outline-success btn-lista" 
+                    	ulBotones.innerHTML += `<li class="seleccionados letra col-2"><button class="btn btn-outline-success btn-lista color" 
                             data-bs-toggle="collapse" data-bs-target="#collapseDetalle" aria-expanded="false" 
                             aria-controls="collapseDetalle" type="submit" onclick="almacenTemporal('${lista[k].nombre}', 'data:${lista[k].foto && lista[k].foto.mime};base64,${lista[k].foto && lista[k].foto.contenido}', '${lista[k].tipoCultivo}', '${lista[k].profundidadSiembra}', '${lista[k].horasSol}', '${lista[k].cantidadRiego}', '${lista[k].cosecha}', '${lista[k].heladas}', '${lista[k].diasCosecha}', '${lista[k].mesSiembra}', '${lista[k].descripcion}')">${lista[k].nombre}</button>
                             </li>`
