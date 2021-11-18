@@ -60,7 +60,7 @@
                                 <label class="btn btn-outline-primary btn-verano" th:for="btnVerano"></label>
                             </div>
                             <br>
-                            <button class="btn btn-success d-grid boton-cultivo" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">BUSCAR MI CULTIVO IDEAL</button>
+                            <button id="buscarCultivo" class="btn btn-success d-grid boton-cultivo" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" th:attr="onclick=|collapse()|">BUSCAR MI CULTIVO IDEAL</button>
                         </div>
                     </div>
                     <div class="row resultados">
@@ -68,7 +68,7 @@
                             <div class="col-12">
                                 <ul class="row" id="botones">
                                     <li th:each="planta : ${listaPlantas}" class="seleccionados col-2">
-                                    	<button class="btn btn-outline-success btn-lista color" data-bs-toggle="collapse" data-bs-target="#collapseDetalle" aria-expanded="false" aria-controls="collapseDetalle" type="submit" th:attr="onclick=|almacenTemporal('${planta.nombre}', '${planta.foto}', '${planta.tipoCultivo}', '${planta.profundidadSiembra}', '${planta.horasSol}', '${planta.cantidadRiego}', '${planta.cosecha}', '${planta.heladas}', '${planta.diasCosecha}', '${planta.mesSiembra}', '${planta.descripcion}')|" th:text="${planta.nombre}"></button>
+                                    	<button id="button" class="btn btn-outline-success btn-lista color" data-bs-toggle="collapse" data-bs-target="#collapseDetalle" aria-expanded="false" aria-controls="collapseDetalle" type="submit" th:attr="onclick=|almacenTemporal('${planta.nombre}', '${planta.foto}', '${planta.tipoCultivo}', '${planta.profundidadSiembra}', '${planta.horasSol}', '${planta.cantidadRiego}', '${planta.cosecha}', '${planta.heladas}', '${planta.diasCosecha}', '${planta.mesSiembra}', '${planta.descripcion}')|" th:text="${planta.nombre}"></button>
                                     </li>
                                 </ul>
                             </div>
@@ -126,14 +126,30 @@
             var p = document.getElementById("descripcion");
             var ulBotones = document.getElementById("botones");
             
+            function collapse(){
+            	if (document.getElementById("buscarCultivo").getAttribute("aria-expanded") == 'false'){
+            		var button = document.getElementById("button");
+                	document.getElementById("collapseDetalle").setAttribute("class", "detalle-cultivo-internal collapse")
+            	}
+            }
+            
             function almacenTemporal(nombre, foto, tipoCultivo, profundidadSiembra, horasSol, cantidadRiego, cosecha, heladas, diasCosecha, mesSiembra, descripcion) {
-                ul.innerHTML = "";
+                var button = document.getElementById("button");
+                if(button.getAttribute("aria-expanded")){
+                	button.setAttribute("aria-expanded", true)
+                	button.setAttribute("class", "btn btn-outline-success btn-lista color")
+                	document.getElementById("collapseDetalle").setAttribute("class", "detalle-cultivo-internal collapse show")
+                }
+            	ul.innerHTML = "";
                 h2.innerHTML = nombre;
                 img.innerHTML = `<img id="foto" class="img-fluid rounded-start foto-detalle"/>`;
                 var lista = [[${listaPlantas}]];
                 for(var k in lista){
                 	if(lista[k].nombre == nombre){
-                		img.src = 'data:image/jpeg;base64,'+lista[k].foto.nombre;
+                		if(lista[k].foto != null)
+                			img.src = 'data:image/jpeg;base64,'+lista[k].foto.nombre;
+                		else
+                			img.src = ""
                 	}
                 }
                 p.innerHTML = descripcion;
@@ -151,7 +167,7 @@
                 var lista = [[${listaPlantas}]];
                 for(var k in lista){
                     if(lista[k].mesSiembra == estacion || lista[k].mesSiembra == "Todas"){
-                    	ulBotones.innerHTML += `<li class="seleccionados letra col-2"><button class="btn btn-outline-success btn-lista color" 
+                    	ulBotones.innerHTML += `<li class="seleccionados letra col-2"><button id="button" class="btn btn-outline-success btn-lista color" 
                             data-bs-toggle="collapse" data-bs-target="#collapseDetalle" aria-expanded="false" 
                             aria-controls="collapseDetalle" type="submit" onclick="almacenTemporal('${lista[k].nombre}', 'data:${lista[k].foto && lista[k].foto.mime};base64,${lista[k].foto && lista[k].foto.contenido}', '${lista[k].tipoCultivo}', '${lista[k].profundidadSiembra}', '${lista[k].horasSol}', '${lista[k].cantidadRiego}', '${lista[k].cosecha}', '${lista[k].heladas}', '${lista[k].diasCosecha}', '${lista[k].mesSiembra}', '${lista[k].descripcion}')">${lista[k].nombre}</button>
                             </li>`
