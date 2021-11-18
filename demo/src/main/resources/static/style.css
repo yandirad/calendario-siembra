@@ -430,3 +430,7 @@ nav{
     margin-bottom: 20px;
     height: 60px;
 }
+
+.text-wrap-table{
+    text-align: center;
+}
