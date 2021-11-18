@@ -204,7 +204,7 @@
                                                                     </div>
                                                                     <div class="mb-2 container">
                                                                         <label for="archivo" class="form-label">Foto</label>
-                                                                        <input type="file" class="form-control" th:value="${planta.foto.nombre}" th:name="archivo">
+                                                                        <input type="file" class="form-control" th:value="${planta.foto != null ? planta.foto.nombre : ''}" th:name="archivo">
                                                                     </div>                                                                                                                           
 
                                                                 </div>    
