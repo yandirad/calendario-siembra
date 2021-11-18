@@ -129,7 +129,13 @@
             function almacenTemporal(nombre, foto, tipoCultivo, profundidadSiembra, horasSol, cantidadRiego, cosecha, heladas, diasCosecha, mesSiembra, descripcion) {
                 ul.innerHTML = "";
                 h2.innerHTML = nombre;
-                img.src = foto;
+                img.innerHTML = `<img id="foto" class="img-fluid rounded-start foto-detalle"/>`;
+                var lista = [[${listaPlantas}]];
+                for(var k in lista){
+                	if(lista[k].nombre == nombre){
+                		img.src = 'data:image/jpeg;base64,'+lista[k].foto.nombre;
+                	}
+                }
                 p.innerHTML = descripcion;
                 if(!mesSiembra){
                 mesSiembra = "Cualquier estación"

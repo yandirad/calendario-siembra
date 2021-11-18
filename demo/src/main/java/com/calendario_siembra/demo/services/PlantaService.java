@@ -6,11 +6,13 @@
 
 package com.calendario_siembra.demo.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,7 +21,6 @@ import com.calendario_siembra.demo.entity.Foto;
 import com.calendario_siembra.demo.entity.Planta;
 import com.calendario_siembra.demo.exceptions.WebException;
 import com.calendario_siembra.demo.repository.PlantaRepository;
-import java.util.ArrayList;
 
 @Service
 public class PlantaService {
@@ -62,16 +63,18 @@ public class PlantaService {
 	public List<Planta> listarPlantas() {
 		return plantaRepository.findAll();
 	}
-        
-        public List<Planta> listarPlantasActivas() {
+
+	public List<Planta> listarPlantasActivas() {
 		List<Planta> plantas = plantaRepository.findAll();
-                List<Planta> activas = new ArrayList();
-                for (Planta planta : plantas) {
-                    if(planta.getEstado()){
-                        activas.add(planta);
-                    }
-                }
-                return activas;
+		List<Planta> activas = new ArrayList();
+		for (Planta planta : plantas) {
+			if (planta.getEstado()) {
+				if (planta.getFoto() != null)
+					planta.getFoto().setNombre(Base64.encodeBase64String(planta.getFoto().getContenido()));
+				activas.add(planta);
+			}
+		}
+		return activas;
 	}
 
 	// Metodo creado para el uso exclusivo de los administradores
