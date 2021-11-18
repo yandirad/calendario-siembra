@@ -140,7 +140,8 @@
                                         <td th:text="${planta.mesSiembra}"></th>
                                         <td th:text="${planta.profundidadSiembra}"></th>
                                         <td th:text="${planta.tipoCultivo}"></th>
-                                        <td th:text="${planta.foto == null} ? 'No tiene' : 'Tiene'"></th>
+                                        <td>
+                                            <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal" data-bs-toggle="modal" th:attr="data-bs-target=|#ModalVerFoto${planta.id}|"><i class="far fa-image"></i> Ver</button>                                            
                                         <td>
                                             <button type="button" class="btn btn-success" data-bs-toggle="modal" th:attr="data-bs-target=|#modificarPlanta${planta.id}"><i class="fas fa-edit"></i> Editar</button>
                                             <div class="modal fade" th:attr="id=|modificarPlanta${planta.id}|" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ModalEliminarPlanta" aria-hidden="true">
@@ -203,13 +204,13 @@
                                                                     </div>
                                                                     <div class="mb-2 container">
                                                                         <label for="archivo" class="form-label">Foto</label>
-                                                                        <input type="file" class="form-control" th:value="${planta.foto}" th:name="archivo">
+                                                                        <input type="file" class="form-control" th:value="${planta.foto.nombre}" th:name="archivo">
                                                                     </div>                                                                                                                           
 
                                                                 </div>    
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Cancelar</button>
-                                                                    <button type="submit" class="btn btn-success">Editar</button>
+                                                                    <button type="submit" class="btn btn-success">Guardar</button>
                                                                 </div>
                                                             </form>
                                                         </div>
@@ -218,6 +219,23 @@
                                             </div>   
                                         </td>
                                         <td><button type="button" class="btn btn-danger" data-bs-toggle="modal" th:attr="data-bs-target=|#eliminarPlanta${planta.id}"><i class="fas fa-tools"></i> Estado</button></td>
+
+                                 <!-- Modal Ver Foto-->
+                                <div class="modal fade" th:attr="id=|ModalVerFoto${planta.id}|" tabindex="-1" aria-labelledby="ModalDetalle" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="ModalDetalleLabel" th:text="${planta.nombre}"></h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">                                                
+                                                <img th:if="${planta.foto != null}" th:src="${'/admin/foto/' + planta.id}" class="card-img" max-width="30px !important"></th>
+                                                <p th:if="${planta.foto == null}">La planta no tiene imagen cargada.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="modal fade" th:attr="id=|eliminarPlanta${planta.id}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ModalEliminarCultivo" aria-hidden="true">
                                     <form th:action="@{/admin/baja-planta}" method="post" enctype="multipart/form-data">
                                         <input type="hidden" th:name="id" th:value="${planta.id}">
