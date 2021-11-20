@@ -10,7 +10,7 @@ a{
 .colum2{
     background: rgba(255, 255, 255, 0.8);
     height: auto;
-    margin-top: 50px;
+    margin-top: 120px;
     padding: 20px;
     border-radius: .8rem;
 }
@@ -287,6 +287,19 @@ h3{
     display:flex;
 }
 
+
+.crear-cuenta-sesion2 {
+    height: 160px;
+    width: 230px;
+    background: url(img/logo-calendario-01.png);
+    left: 2%;
+    position: absolute;
+    background-position: center;
+    z-index: 11000;
+    display: flex;
+    background-size: cover;
+}
+
 .login-buttons {
     display: flex;
     flex-direction: column;
@@ -404,20 +417,18 @@ nav{
 }
 .cargar-planta{
     width: 100%;
-    height: 90px;
+    height: 160px;
     background-image: url('img/cargarlibro.jpg');
     background-position: center;
     background-size: cover;
     font-size: 50px;
     color: antiquewhite;
     text-align: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    padding-top:30px;
 }
 
 .back-admin {
-    margin-top: 40px;
-    background: #ffffff80;
+    background: #ffffff60;
     border-radius: 1rem;
     min-height: 80vh;
 }
@@ -433,4 +444,9 @@ nav{
 
 .text-wrap-table{
     text-align: center;
+}
+
+.cerrar-sesion{
+    max-width: 80px;
+    font-size: 20px;
 }
